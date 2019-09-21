@@ -50,12 +50,17 @@ export class GlassFilter extends Entity {
         engine.addEntity(this);
 
         // a carryable filter entity - jittery
-        //this.createFilterEntity()
+        this.createFilterEntity()
         
-        this.createUIFilter()
+        //this.createUIFilter()
       
     }
 
+
+    /**
+     * Creates the Filter with the UI components - better
+     * but it has the draback that it can't be detected if it has been hidden
+     */
     private createUIFilter() {
       
         this.filterCanvas = new UICanvas();

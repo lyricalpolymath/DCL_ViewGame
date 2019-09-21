@@ -2,10 +2,21 @@
 import { GlassFilter } from "gameObjects/GlassFilter"
 import { State } from "gameState"
 //import { Settings } from "gameSettings"
+import { InventoryUI } from "gameObjects/Inventory"
 
-// create translucid brick
 
-var glass1 = new GlassFilter()
+// the filter that appears in front of the camera
+//var glass1 = new GlassFilter()
+
+let inventory = new InventoryUI();
+
+
+
+
+
+
+
+
 
 /*testing a second UICanvas
 let canvas2 = new UICanvas()
