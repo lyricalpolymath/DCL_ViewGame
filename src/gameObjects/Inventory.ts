@@ -101,6 +101,7 @@ export class InventoryItem {
      */
     toggle() {
         this.setActive(!this.active);
+        State.events.fireEvent(new InventoryItemSelectedEvent(this.name, this.active))
     }
 
     /**
@@ -121,7 +122,6 @@ export class InventoryItem {
         }
         // emit the event
         log(fname+"setActive button " + this.name + "  - isActive: " + this.active + " State: ", State)
-        State.events.fireEvent(new InventoryItemSelectedEvent(this.name, this.active))
     }
 
     /**
