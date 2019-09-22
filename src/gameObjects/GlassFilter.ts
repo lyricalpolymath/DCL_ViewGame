@@ -170,8 +170,6 @@ export class GlassFilter extends Entity {
     };
 
 
-  
-
     private setListeners() {
       log(fname + "setListeners  State.events: ", State.events);
 
@@ -183,56 +181,13 @@ export class GlassFilter extends Entity {
     }
 
     /**
-     * looks at the State and decides which color to set for the filter
+     * retrieves the activeColor from the state and colors the filter accordingly
      */
     private handleStateColors() {
-        log(fname+"handleStateColors - State.glasses: ", State.glasses)
-        let R = State.glasses.RED;
-        let G = State.glasses.GREEN;
-        let B = State.glasses.BLUE;
-
-
-        if (!R.active && !G.active && !B.active) {
-          // all disabled - hide the component
-          this.setVisible(false);
-        
-        } else if (R.active && !G.active && !B.active) {
-          //only RED
-          log(fname+"handleStateColors - selected - ONLY RED")
-          this.setColor(Settings.colors.RED);
-        
-        } else if (!R.active && G.active && !B.active) {
-          // only Green
-          log(fname+"handleStateColors - selected - ONLY GREEN")
-          this.setColor(Settings.colors.GREEN);
-
-        } else if (!R.active && !G.active && B.active) {
-          // only Blue
-          log(fname+"handleStateColors - selected - ONLY BLUE")
-          this.setColor(Settings.colors.BLUE);
-
-        } else if (R.active && G.active && !B.active) {
-          // RED+GREEN = YELLOW
-          log(fname+"handleStateColors - selected - RED+GREEN = YELLOW")
-          this.setColor(Settings.colors.YELLOW);
-        
-        } else if (R.active && !G.active && B.active) {
-          // RED+BLUE = PURPLE
-          log(fname+"handleStateColors - selected - RED+BLUE = PURPLE")
-          this.setColor(Settings.colors.PURPLE);
-        
-        } else if (!R.active && G.active && B.active) {
-          // GREEN+BLUE = CYAN
-          log(fname+"handleStateColors - selected - GREEN+BLUE = CYAN")
-          this.setColor(Settings.colors.CYAN);
-        
-        } else if (R.active && G.active && B.active) {
-          // RED+GREEN+BLUE = WHITE
-          log(fname+"handleStateColors - selected - RED+GREEN+BLUE = WHITE")
-          this.setColor(Settings.colors.WHITE);
-        
-        }
-
+        var activeColorName:string = State.getActiveColor()
+        log(fname+"handleStateColors - activeColorName: " + activeColorName) 
+        if (activeColorName == null ) this.setVisible(false);     // no color = hide the filter
+        else this.setColor( Settings.colors[activeColorName] )    // all colors
     }
 
 }

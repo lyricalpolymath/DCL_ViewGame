@@ -52,9 +52,15 @@ export class Wall extends Entity {
      * handles the State value of the given color
      */
     private handleState () {
-        //log(fname + "handleState")
-        var state = State.glasses[this.colorName]
-        this.setVisible(state.active)
+        var activeColor = State.getActiveColor()
+        var myColor = this.getComponent(ColorGroup).color
+        var bool = (myColor == activeColor)
+        log(fname + "handleState - activeColorName: " + activeColor + " - myColor: " + myColor + " - bool: " + bool)
+        this.setVisible(bool);
+
+        //this method doesn't allow to turn on color combinations (eg RED + GREEN)
+        //var state = State.glasses[this.colorName]
+        //this.setVisible(state.active)
     }
 
     /**

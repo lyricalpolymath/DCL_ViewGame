@@ -76,12 +76,12 @@ export class State {
     /**
      * returns wither a single color is active or multiple ones
      * @return string
-     * /
+     */
     public static getActiveColor(){
         let R = this.glasses.RED;
         let G = this.glasses.GREEN;
         let B = this.glasses.BLUE;
-        let activeColor:string
+        var activeColor:string;
 
         if (!R.active && !G.active && !B.active) {
           // all disabled - hide the component
@@ -89,43 +89,44 @@ export class State {
         
         } else if (R.active && !G.active && !B.active) {
           //only RED
-          activeColor = Settings.colors.RED
+          activeColor = "RED" //Settings.colors.RED
         
         } else if (!R.active && G.active && !B.active) {
           // only Green
           log(fname+"handleStateColors - selected - ONLY GREEN")
-          activeColor = Settings.colors.GREEN
+          activeColor = Settings.colorNames.GREEN
 
         } else if (!R.active && !G.active && B.active) {
           // only Blue
           log(fname+"handleStateColors - selected - ONLY BLUE")
-          activeColor = Settings.colors.BLUE
+          activeColor = Settings.colorNames.BLUE
 
         } else if (R.active && G.active && !B.active) {
           // RED+GREEN = YELLOW
           log(fname+"handleStateColors - selected - RED+GREEN = YELLOW")
-          activeColor = Settings.colors.YELLOW
+          activeColor = Settings.colorNames.YELLOW
         
         } else if (R.active && !G.active && B.active) {
           // RED+BLUE = PURPLE
           log(fname+"handleStateColors - selected - RED+BLUE = PURPLE")
-          activeColor = Settings.colors.PURPLE
+          activeColor = Settings.colorNames.PURPLE
         
         } else if (!R.active && G.active && B.active) {
           // GREEN+BLUE = CYAN
           log(fname+"handleStateColors - selected - GREEN+BLUE = CYAN")
-          activeColor = Settings.colors.CYAN
+          activeColor = Settings.colorNames.CYAN
         
         } else if (R.active && G.active && B.active) {
           // RED+GREEN+BLUE = WHITE
           log(fname+"handleStateColors - selected - RED+GREEN+BLUE = WHITE")
-          activeColor = Settings.colors.WHITE
+          activeColor = Settings.colorNames.WHITE
         
         }
 
+        return activeColor;
     }
 
-    }
+
 
 
 //////////////////////////// STATE MUTATORS

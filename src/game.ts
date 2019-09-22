@@ -1,7 +1,7 @@
 
 import { GlassFilter } from "gameObjects/GlassFilter"
 import { State } from "gameState"
-//import { Settings } from "gameSettings"
+import { Settings } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
 import { Wall } from "gameObjects/Wall"
 
@@ -14,13 +14,15 @@ let inventory = new InventoryUI();
 // create sample walls
 // TODO change the names to an enum somewhere in settings
 let wallScale = new Vector3(1, 3, 0.2)
-let w1 = new Wall( "RED",   { position: new Vector3(1.5, 0, 8), scale: wallScale } )
-let w2 = new Wall( "GREEN", { position: new Vector3(2.5, 0, 8), scale: wallScale } )
-let w3 = new Wall( "BLUE",  { position: new Vector3(3.5, 0, 8), scale: wallScale } )
+let scn = Settings.colorNames; 
+let w1 = new Wall( scn.RED,   { position: new Vector3(1.5, 0, 8), scale: wallScale } )
+let w2 = new Wall( scn.GREEN, { position: new Vector3(2.5, 0, 8), scale: wallScale } )
+let w3 = new Wall( scn.BLUE,  { position: new Vector3(3.5, 0, 8), scale: wallScale } )
 
-
-
-
+let w4 = new Wall( scn.YELLOW,  { position: new Vector3(2, 0, 7), scale: wallScale } )
+let w5 = new Wall( scn.PURPLE,  { position: new Vector3(3.5, 0, 7), scale: wallScale } )
+let w6 = new Wall( scn.CYAN,    { position: new Vector3(5, 0, 7), scale: wallScale } )
+let w7 = new Wall( scn.WHITE,   { position: new Vector3(3, 0, 6), scale: wallScale } )
 
 
 

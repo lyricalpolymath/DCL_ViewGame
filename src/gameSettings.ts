@@ -1,5 +1,16 @@
 
 
+
+export enum _colorNames {
+    RED    = "RED",
+    GREEN  = "GREEN",
+    BLUE   = "BLUE",
+    YELLOW = "YELLOW",
+    PURPLE = "PURPLE",
+    CYAN   = "CYAN",
+    WHITE  = "WHITE",
+} 
+
 /**
  * where to put all the settings of the game so that we can tweak parameters in one unique place
  */
@@ -11,6 +22,8 @@ export abstract class Settings {
         buttonAtlas: "images/ViewGame_Inventory.png"
     }
 
+    static colorNames = _colorNames;
+    
     static colors = {
         transparency: 0.3,               
         RED:    new Color4(1,0,0, 0.4 ),
@@ -22,4 +35,18 @@ export abstract class Settings {
         WHITE:  new Color4(1,1,1, 0.9 )
     }
 
+    
+    /*
+    static color = {
+        RED:    { name:"RED",    color4: new Color4(1,0,0, 0.4 )}, 
+        GREEN:  { name:"RED",    color4: new Color4(0,1,0, 0.4 )}, 
+        BLUE:   { name:"RED",    color4: new Color4(0,0,1, 0.6 )}, 
+        YELLOW: { name:"RED",    color4: new Color4(1,1,0, 0.7 )}, 
+        PURPLE: { name:"RED",    color4: new Color4(1,0,1, 0.4 )}, 
+        CYAN:   { name:"RED",    color4: new Color4(0,1,1, 0.4 )}, 
+        WHITE:  { name:"RED",    color4: new Color4(1,1,1, 0.9 )},
+    }
+    */
 }
+
+
