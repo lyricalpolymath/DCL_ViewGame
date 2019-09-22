@@ -1,26 +1,21 @@
 
 
-//import { CarryableSystem } from '../utilities/carryable';
-import { Carryable, CarryableSystem} from '../utilities/carryable';
+
+import { State, StateUpdate } from "../gameState";
 import { Settings } from "../gameSettings"
-import { GlassFilterSystem } from 'GlassFilterSystem';
+
+import { Carryable, CarryableSystem} from '../utilities/carryable';  // not currently in use
+//import { GlassFilterSystem } from 'GlassFilterSystem';
+
 
 
 const fname = "GlassFilter."
 
-
-/*
-@Component('carryable')
-export class Carryable {
-  
-  public beingCarried: boolean = false;
-  public objPosUser: Vector3 = undefined;
-  public toggleCarry() {
-    this.beingCarried = !this.beingCarried;
-  }
-}
-*/
-
+/**
+ * used only to reveal the bug that if you press the EYE button at the bottom-right  uicanvas.visible  keeps being = true
+ * although it should signal = false
+ * so there is no way to hide the walls if someone presses the eyeve button
+ * /
 class GlassFilterVisibilitySystem implements ISystem {
     uicanvas:UIContainerRect;
     constructor(uic:UIContainerRect) {
@@ -30,30 +25,49 @@ class GlassFilterVisibilitySystem implements ISystem {
       log("GlassFilterVisibilitySystem this.uicanvas.visible: " + this.uicanvas.visible)
     }
 }
+*/
 
+
+/**
+ * this is the filter that appear in front of the camera to reveal the different walls of the appropriate color
+ * it can create this filter in 2 different ways, each with it's own drawbacks
+ * method1 - using UIComponents
+ *    cons: it doesn't paint all the visual field and leaves a top empty banner at the top
+ * 
+ * method2 - using a carryable object
+ *    cons: clunky, slow, and with the elevator effect can push the camera away
+ * 
+ * it responds to StateUpdate events to change the colors of the filter in different combinations
+ * 
+ */
 export class GlassFilter extends Entity {
 
-    public color    :Color3;
+    public color    :Color4;
     public active   :Boolean = false;       //wither the player has it active or not
-    private filter  :Entity                 // will hold the actual
     
-    // use one OR the other
-    private carryable: Carryable    
+    // UIMethod (preferred)
     private filterCanvas: UICanvas
     private filterRect: UIContainerRect
 
-    constructor () {
-        super()
+    // optional Carryable method (doesn't fully work)
+    private carryable: Carryable 
+    private filter  :Entity                 
 
-        //this.color = new Color4(1, 0, 0, 0.3) // new Color3(1, 0, 0) doesn't work
-        this.color = new Color4(1, 0, 0, Settings.glassTransparency )   
+    constructor () {
+        super()        
         engine.addEntity(this);
 
-        // a carryable filter entity - jittery
-        this.createFilterEntity()
-        
-        //this.createUIFilter()
-      
+        //this.createFilterEntity()      // a carryable filter entity - jittery  
+        this.createUIFilter()
+
+        this.setListeners()
+
+        //set color and visibility based on State
+        this.handleStateColors()
+
+        // DEV purposes - enable this to test wither DCL has solved the issue with the EYE not showing the visibility
+        // and uncomment the System at the top of this file
+        //engine.addSystem(new GlassFilterVisibilitySystem(this.filterRect));
     }
 
 
@@ -62,7 +76,6 @@ export class GlassFilter extends Entity {
      * but it has the draback that it can't be detected if it has been hidden
      */
     private createUIFilter() {
-      
         this.filterCanvas = new UICanvas();
         this.filterRect = new UIContainerRect(this.filterCanvas)
         let rect = this.filterRect
@@ -70,22 +83,9 @@ export class GlassFilter extends Entity {
         rect.height = '100%'
         rect.color =  Color4.Red()
         rect.opacity = 0.3
+        rect.visible = false
 
-        
-        // second canvas for the inventory on the sidebar
-        let canvas2 = new UICanvas()
-        let rect2 = new UIContainerRect(canvas2)
-        rect2.width = '100px'
-        rect2.height = '100%'
-        rect2.color =  Color4.Black()
-        rect2.opacity = 0.9
-        rect2.hAlign = 'right'
-
-        engine.addSystem(new GlassFilterVisibilitySystem(this.filterRect));
     }
-
-
-
 
     /**
      * doesn't fully work:
@@ -141,7 +141,98 @@ export class GlassFilter extends Entity {
     }
 
 
+    /**
+     * assign the color of the filter
+     * @param color Color4
+     */
+    public setColor (color:Color4) {
+      // if we are using the UI Method
+      if (this.filterRect) {
+        this.filterRect.color = color
+      }
+
+      // if we are using the carryable method
+      if (this.filter) {
+        this.filter.getComponent(Material).albedoColor = color
+      }
+
+      this.setVisible(true)
+      this.color = color
+    }
+
+    /**
+     * simply sets the visibility of the Glass filter
+     * @param bool 
+     */
+    public setVisible (bool:boolean) {
+      this.filterRect.visible = bool;
+      //this.filter.getComponent()
+    };
 
 
+  
+
+    private setListeners() {
+      log(fname + "setListeners  State.events: ", State.events);
+
+      State.events.addListener( StateUpdate, null, () => {
+        log(fname + "State listener")
+        //State.updateGlassState(name, active);
+        this.handleStateColors()
+      })
+    }
+
+    /**
+     * looks at the State and decides which color to set for the filter
+     */
+    private handleStateColors() {
+        log(fname+"handleStateColors - State.glasses: ", State.glasses)
+        let R = State.glasses.RED;
+        let G = State.glasses.GREEN;
+        let B = State.glasses.BLUE;
+
+
+        if (!R.active && !G.active && !B.active) {
+          // all disabled - hide the component
+          this.setVisible(false);
+        
+        } else if (R.active && !G.active && !B.active) {
+          //only RED
+          log(fname+"handleStateColors - selected - ONLY RED")
+          this.setColor(Settings.colors.RED);
+        
+        } else if (!R.active && G.active && !B.active) {
+          // only Green
+          log(fname+"handleStateColors - selected - ONLY GREEN")
+          this.setColor(Settings.colors.GREEN);
+
+        } else if (!R.active && !G.active && B.active) {
+          // only Blue
+          log(fname+"handleStateColors - selected - ONLY BLUE")
+          this.setColor(Settings.colors.BLUE);
+
+        } else if (R.active && G.active && !B.active) {
+          // RED+GREEN = YELLOW
+          log(fname+"handleStateColors - selected - RED+GREEN = YELLOW")
+          this.setColor(Settings.colors.YELLOW);
+        
+        } else if (R.active && !G.active && B.active) {
+          // RED+BLUE = PURPLE
+          log(fname+"handleStateColors - selected - RED+BLUE = PURPLE")
+          this.setColor(Settings.colors.PURPLE);
+        
+        } else if (!R.active && G.active && B.active) {
+          // GREEN+BLUE = CYAN
+          log(fname+"handleStateColors - selected - GREEN+BLUE = CYAN")
+          this.setColor(Settings.colors.CYAN);
+        
+        } else if (R.active && G.active && B.active) {
+          // RED+GREEN+BLUE = WHITE
+          log(fname+"handleStateColors - selected - RED+GREEN+BLUE = WHITE")
+          this.setColor(Settings.colors.WHITE);
+        
+        }
+
+    }
 
 }

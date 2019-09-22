@@ -1,8 +1,10 @@
 import { Carryable } from '../utilities/carryable';
-import { GlassFilter } from 'GlassFilter'
 
 const fname = "GlassFilterSystem."
 
+
+// NOT IN USE
+// attempt at a carryable object variant
 
 export class GlassFilterSystem implements ISystem {
 

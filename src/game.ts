@@ -6,7 +6,7 @@ import { InventoryUI } from "gameObjects/Inventory"
 
 
 // the filter that appears in front of the camera
-//var glass1 = new GlassFilter()
+var glass = new GlassFilter()
 
 let inventory = new InventoryUI();
 
