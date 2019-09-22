@@ -56,7 +56,7 @@ export class State {
             name: "RED", 
             color:  Settings.colors.RED, 
             available: true, 
-            active: true
+            active: false
         },
         GREEN: { 
             name: "GREEN", 
@@ -73,6 +73,59 @@ export class State {
         
     }
 
+    /**
+     * returns wither a single color is active or multiple ones
+     * @return string
+     * /
+    public static getActiveColor(){
+        let R = this.glasses.RED;
+        let G = this.glasses.GREEN;
+        let B = this.glasses.BLUE;
+        let activeColor:string
+
+        if (!R.active && !G.active && !B.active) {
+          // all disabled - hide the component
+          activeColor = null
+        
+        } else if (R.active && !G.active && !B.active) {
+          //only RED
+          activeColor = Settings.colors.RED
+        
+        } else if (!R.active && G.active && !B.active) {
+          // only Green
+          log(fname+"handleStateColors - selected - ONLY GREEN")
+          activeColor = Settings.colors.GREEN
+
+        } else if (!R.active && !G.active && B.active) {
+          // only Blue
+          log(fname+"handleStateColors - selected - ONLY BLUE")
+          activeColor = Settings.colors.BLUE
+
+        } else if (R.active && G.active && !B.active) {
+          // RED+GREEN = YELLOW
+          log(fname+"handleStateColors - selected - RED+GREEN = YELLOW")
+          activeColor = Settings.colors.YELLOW
+        
+        } else if (R.active && !G.active && B.active) {
+          // RED+BLUE = PURPLE
+          log(fname+"handleStateColors - selected - RED+BLUE = PURPLE")
+          activeColor = Settings.colors.PURPLE
+        
+        } else if (!R.active && G.active && B.active) {
+          // GREEN+BLUE = CYAN
+          log(fname+"handleStateColors - selected - GREEN+BLUE = CYAN")
+          activeColor = Settings.colors.CYAN
+        
+        } else if (R.active && G.active && B.active) {
+          // RED+GREEN+BLUE = WHITE
+          log(fname+"handleStateColors - selected - RED+GREEN+BLUE = WHITE")
+          activeColor = Settings.colors.WHITE
+        
+        }
+
+    }
+
+    }
 
 
 //////////////////////////// STATE MUTATORS

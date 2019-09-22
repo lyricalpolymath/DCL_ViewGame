@@ -3,6 +3,7 @@ import { GlassFilter } from "gameObjects/GlassFilter"
 import { State } from "gameState"
 //import { Settings } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
+import { Wall } from "gameObjects/Wall"
 
 
 // the filter that appears in front of the camera
@@ -10,7 +11,12 @@ var glass = new GlassFilter()
 
 let inventory = new InventoryUI();
 
-
+// create sample walls
+// TODO change the names to an enum somewhere in settings
+let wallScale = new Vector3(1, 3, 0.2)
+let w1 = new Wall( "RED",   { position: new Vector3(1.5, 0, 8), scale: wallScale } )
+let w2 = new Wall( "GREEN", { position: new Vector3(2.5, 0, 8), scale: wallScale } )
+let w3 = new Wall( "BLUE",  { position: new Vector3(3.5, 0, 8), scale: wallScale } )
 
 
 
