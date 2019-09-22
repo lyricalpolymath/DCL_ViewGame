@@ -52,8 +52,6 @@ export class State {
     
 
     public static glasses:any = {    
-        //RED: new GlassState("RED", Settings.colors.RED)
-        //GREEN: new GlassState("GREEN,") 
         RED: { 
             name: "RED", 
             color:  Settings.colors.RED, 
