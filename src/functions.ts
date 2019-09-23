@@ -1,4 +1,7 @@
 import utils from "../node_modules/decentraland-ecs-utils/index"
+import { ActionsSequenceSystem } from "../node_modules/decentraland-ecs-utils/actionsSequenceSystem/actionsSequenceSystem";
+import { Wall } from "./levels/wall";
+
 
 export var TESTMODE = false
 
@@ -11,6 +14,10 @@ export const greenWall = new GLTFShape("models/greenwall.glb")
 export const yellowWall = new GLTFShape("models/yellowwall.glb")
 export const wallCollider = new GLTFShape("models/wall_collider.glb")
 export const transitionBox = new GLTFShape("models/transitionBox.glb")
+
+//export const glitchArray:GLTFShape[] = [null,glitch1,glitch2,glitch3,glitch4,glitch5,glitch6,glitch7,glitch8,glitch9,glitch10,glitch11,glitch12]
+
+
 export const bumpClip = new AudioClip('sounds/bump.mp3')
 export const pickClip = new AudioClip('sounds/pickup.mp3')
 
@@ -19,6 +26,17 @@ export var XFACINGPOSITION = Vector3.Zero()
 
 export var ZFACINGSCALE = new Vector3(2,4,.4)
 export var ZFACINGPOSITION = Vector3.Zero()
+
+export var bumpCount:number = 1
+export var bumpColor:string = "yellow"
+
+
+export var testTextur = new Texture('images/glitchan1.png',{hasAlpha:true, wrap:1})
+export var testMaterial = new Material()
+//testMaterial.hasAlpha = true
+testMaterial.albedoColor = new Color4(.6,.2,.5,0)
+testMaterial.albedoTexture = testTextur
+
 
 export var hiddenMaterial = new Material()
 hiddenMaterial.hasAlpha = true
@@ -73,4 +91,75 @@ export function distance(pos1: Vector3, pos2: Vector3): number {
   const a = pos1.x - pos2.x
   const b = pos1.z - pos2.z
   return a * a + b * b
+}
+
+//Use IAction to define action for movement
+export class DelayAction implements ActionsSequenceSystem.IAction {
+  hasFinished: boolean = false;
+  wall:Wall
+
+  constructor(entity: Wall) {
+    this.wall = entity
+  }
+
+  //Method when action starts
+  onStart(): void {
+    this.wall.addComponentOrReplace(new utils.Delay(50,()=>{
+      this.hasFinished = true
+    }))
+
+  }
+  //Method to run on every frame
+  update(dt: number): void {
+  }
+  //Method to run at the end
+  onFinish(): void {
+  }
+}
+
+
+//Use IAction to define action for movement
+export class BumpAction implements ActionsSequenceSystem.IAction {
+  hasFinished: boolean = false;
+  wall:Wall
+
+  constructor(entity: Wall) {
+    this.wall = entity
+  }
+
+  //Method when action starts
+  onStart(): void {
+    if(bumpCount < 13)
+    {
+
+      this.wall.setParent(null)
+      this.wall.bumpSource.playOnce()
+      this.wall.bumped = true
+      log(bumpCount)
+      log("inside if")
+      if(bumpCount !=1)
+      {
+        this.wall.glitchEntityArray[bumpCount-1].getComponent(Transform).scale = Vector3.Zero()
+      }
+       this.wall.glitchEntityArray[bumpCount].getComponent(Transform).scale = Vector3.One()
+        bumpCount++
+        this.hasFinished = true
+    }
+    else{
+      log("finished aimation, add wall back to scene")
+      this.wall.setParent(this.wall.holdingEntity)
+      this.wall.bumped = false
+      this.hasFinished = true
+      this.wall.glitchEntityArray[bumpCount-1].getComponent(Transform).scale = Vector3.Zero()
+      bumpCount = 1
+    }
+
+
+  }
+  //Method to run on every frame
+  update(dt: number): void {
+  }
+  //Method to run at the end
+  onFinish(): void {
+  }
 }
