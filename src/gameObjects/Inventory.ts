@@ -90,7 +90,7 @@ export class InventoryItem {
      * changes the view of this inventory item based on the
      */
     private handleStateUpdate() {
-        log(fname+"handleStateUpdate ")
+        log(fname+"handleStateUpdate of " + this.name)
         var state = State.glasses[this.name]
         this.setVisible( state.available );
         this.setActive( state.active );
