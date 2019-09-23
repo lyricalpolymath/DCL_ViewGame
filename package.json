@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "leveler-game-jam-2019",
   "version": "1.0.0",
-  "description": "My new Decentraland project",
+  "description": "Collaborative Game Jam 2019",
   "scripts": {
     "start": "dcl start",
     "build": "build-ecs",
@@ -11,6 +11,10 @@
     "ecs:install-next": "npm install --save-dev decentraland-ecs@next"
   },
   "devDependencies": {
-    "decentraland-ecs": "^6.4.1"
+    "decentraland-ecs": "latest"
+  },
+  "dependencies": {
+    "decentraland-ecs-utils": "latest",
+    "now": "latest"
   }
 }

@@ -135,7 +135,7 @@ export class GlassFilter extends Entity {
 
 
         // Create a CarryableSystem to update our Carryable object.
-        engine.addSystem(new CarryableSystem());
+        //engine.addSystem(new CarryableSystem());
         //engine.addSystem(new GlassFilterSystem(this.filter))
         //*/
     }

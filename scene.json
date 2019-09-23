@@ -1,16 +1,16 @@
 {
   "display": {
-    "title": "interactive-text",
+    "title": "leveler-game-jam-2019",
     "favicon": "favicon_asset"
   },
   "contact": {
-    "name": "author-name",
+    "name": "Collaboration",
     "email": ""
   },
   "owner": "",
   "scene": {
     "parcels": [
-      "0,0"
+      "0,0", "0,1","1,0","1,1"
     ],
     "base": "0,0"
   },
@@ -20,10 +20,10 @@
   },
   "policy": {
     "contentRating": "E",
-    "fly": true,
+    "fly": false,
     "voiceEnabled": true,
     "blacklist": [],
-    "teleportPosition": ""
+    "teleportPosition": "26,28"
   },
   "main": "bin/game.js",
   "tags": []

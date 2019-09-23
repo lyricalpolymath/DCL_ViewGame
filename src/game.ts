@@ -1,28 +1,116 @@
+import utils from "../node_modules/decentraland-ecs-utils/index"
+import { Level } from "./levels/level"
+import { TransitionScene } from "./levels/transitionScene"
+import {LevelCompleted, TransitionLevelComplete, transitionBox} from "./functions"
 
 import { GlassFilter } from "gameObjects/GlassFilter"
-import { State } from "gameState"
-import { Settings } from "gameSettings"
+import { State,StateUpdate } from "gameState"
+import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
-import { Wall } from "gameObjects/Wall"
 
 
 // the filter that appears in front of the camera
 var glass = new GlassFilter()
-
 let inventory = new InventoryUI();
 
-// create sample walls
-// TODO change the names to an enum somewhere in settings
-let wallScale = new Vector3(1, 3, 0.2)
-let scn = Settings.colorNames; 
-let w1 = new Wall( scn.RED,   { position: new Vector3(1.5, 0, 8), scale: wallScale } )
-let w2 = new Wall( scn.GREEN, { position: new Vector3(2.5, 0, 8), scale: wallScale } )
-let w3 = new Wall( scn.BLUE,  { position: new Vector3(3.5, 0, 8), scale: wallScale } )
+///have a trigger shape for the avatar
+utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 
-let w4 = new Wall( scn.YELLOW,  { position: new Vector3(2, 0, 7), scale: wallScale } )
-let w5 = new Wall( scn.PURPLE,  { position: new Vector3(3.5, 0, 7), scale: wallScale } )
-let w6 = new Wall( scn.CYAN,    { position: new Vector3(5, 0, 7), scale: wallScale } )
-let w7 = new Wall( scn.WHITE,   { position: new Vector3(3, 0, 6), scale: wallScale } )
+///set up the initial scene
+const scene = new Entity("leveler-game")
+const scenetransform = new Transform({ position: new Vector3(0, 0, 0), rotation: Quaternion.Euler(0, 0, 0), scale: new Vector3(1, 1, 1) })
+scene.addComponent(scenetransform)
+
+//create UI to display which level the player is on
+const canvas = new UICanvas()
+const levelText = new UIText(canvas)
+levelText.value = 'LEVEL'
+levelText.positionX = -200
+levelText.positionY = -15
+levelText.hAlign = 'right'
+levelText.vAlign = 'top'
+levelText.fontSize = 50
+
+const events = new EventManager()
+
+var currentLevel:Level
+var currentLevelNumber:number
+var activeLens:string = _colorNames.NONE
+//var sceneLevels:Level[] = [new Level(scene, events, 0, "Level" + 0,["none"], activeLens)]
+
+///create reusable components across levels
+const transitionScene = new TransitionScene(transitionBox,events)
+//transitionScene.setParent(scene)
+
+
+getCurrentLevel()
+
+//future functionality to grab current scene from server for specific avatar
+function getCurrentLevel()//:Entity
+{
+  log("getting current level from server")
+   currentLevelNumber = 2
+   currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+   currentLevel.setParent(scene)
+   updateLevelUI(currentLevelNumber)
+}
+
+events.addListener(LevelCompleted,null,({l})=>{
+    log("user won the level " + l)
+
+    ///////need to show a congrats message and explain what they just picked up
+    if(l == 1)
+    {
+        log("level " + l + " complete. found blue lens. add it to the inventory.")
+    }
+    doTransitionLevel(l)
+})
+
+
+
+
+
+//////////////////////////
+//listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
+
+/*
+State.events.addListener(StateUpdate,null,()=>{
+  inventory.handleStateUpdate()
+  log("changed lens, so we need to change which walls are visible")
+  currentLevel.showWallsForLens(State.getActiveColor())
+})
+*/
+
+
+//////////////////////////////////////////
+
+
+
+
+//listen for when the transition scene is complete
+events.addListener(TransitionLevelComplete,null,()=>{
+    currentLevelNumber++
+    currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+    currentLevel.setParent(scene)
+    engine.removeEntity(transitionScene)
+    updateLevelUI(currentLevelNumber)
+})
+
+function updateLevelUI(levelui:number)
+{
+    levelText.value = "LEVEL " + levelui
+}
+
+function doTransitionLevel(lev:number)
+{
+    transitionScene.setParent(scene)
+    engine.removeEntity(currentLevel)
+    transitionScene.start()
+}
+
+
+//add scene to the engine
+engine.addEntity(scene)
 
 
 

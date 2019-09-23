@@ -1,4 +1,4 @@
-import { Settings } from "gameSettings"
+import { Settings, _colorNames } from "gameSettings"
 import { InventoryItem } from "./gameObjects/Inventory"
 
 const fname ="gameState."
@@ -85,11 +85,11 @@ export class State {
 
         if (!R.active && !G.active && !B.active) {
           // all disabled - hide the component
-          activeColor = null
+          activeColor = _colorNames.NONE
         
         } else if (R.active && !G.active && !B.active) {
           //only RED
-          activeColor = "RED" //Settings.colors.RED
+          activeColor = _colorNames.RED
         
         } else if (!R.active && G.active && !B.active) {
           // only Green
