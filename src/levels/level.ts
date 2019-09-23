@@ -116,19 +116,19 @@ export class Level extends Entity
       this.blueWalls = new Entity()
       this.blueWalls.setParent(this)
       this.blueWalls.addComponent(new Transform({
-          scale: Vector3.One()
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
       }))
 
       this.yellowWalls = new Entity()
       this.yellowWalls.setParent(this)
       this.yellowWalls.addComponent(new Transform({
-          scale: Vector3.One()
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
       }))
 
       this.greenWalls = new Entity()
       this.greenWalls.setParent(this)
       this.greenWalls.addComponent(new Transform({
-          scale: Vector3.One()
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
       }))
 
 

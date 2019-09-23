@@ -10,15 +10,15 @@ import { InventoryUI } from "gameObjects/Inventory"
 
 
 // the filter that appears in front of the camera
-var glass = new GlassFilter()
-let inventory = new InventoryUI();
+//var glass = new GlassFilter()
+//let inventory = new InventoryUI();
 
 ///have a trigger shape for the avatar
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 
 ///set up the initial scene
 const scene = new Entity("leveler-game")
-const scenetransform = new Transform({ position: new Vector3(0, 0, 0), rotation: Quaternion.Euler(0, 0, 0), scale: new Vector3(1, 1, 1) })
+const scenetransform = new Transform({ position: new Vector3(0, 0, 0), rotation: new Quaternion(0, 0, 0,1), scale: new Vector3(1, 1, 1) })
 scene.addComponent(scenetransform)
 
 //create UI to display which level the player is on
@@ -43,10 +43,10 @@ const transitionScene = new TransitionScene(transitionBox,events)
 //transitionScene.setParent(scene)
 
 
-getCurrentLevel()
+getServerInfo()
 
 //future functionality to grab current scene from server for specific avatar
-function getCurrentLevel()//:Entity
+function getServerInfo()//:Entity
 {
   log("getting current level from server")
    currentLevelNumber = 2
@@ -73,13 +73,12 @@ events.addListener(LevelCompleted,null,({l})=>{
 //////////////////////////
 //listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
 
-/*
+
 State.events.addListener(StateUpdate,null,()=>{
-  inventory.handleStateUpdate()
   log("changed lens, so we need to change which walls are visible")
   currentLevel.showWallsForLens(State.getActiveColor())
 })
-*/
+
 
 
 //////////////////////////////////////////

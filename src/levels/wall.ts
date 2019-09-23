@@ -44,9 +44,6 @@ export class Wall extends Entity
         this.setParent(holdingEntity)
         this.addComponent(this.bumpSource)
 
-        if(Globals.TESTMODE)
-        {
-            log("this is wall color " + color)
             switch(color)
             {
                 case _colorNames.BLUE:
@@ -65,11 +62,9 @@ export class Wall extends Entity
                 position:position,
                 rotation:rotation
             }))
-        }
-        else
-        {
+
     //for testing purposes only
-                  
+                  /*
         this.addComponent(new BoxShape())
         //this.addComponentOrReplace(Globals.hiddenMaterial)
         this.addComponentOrReplace(new Transform({
@@ -78,7 +73,7 @@ export class Wall extends Entity
             rotation:rotation
         }))
         
-        }
+        */
         
         this.wallCollider = new Entity(name + "-c"+ this.level)
         this.wallCollider.addComponentOrReplace(Globals.wallCollider)
