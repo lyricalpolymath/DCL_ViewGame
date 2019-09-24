@@ -10,8 +10,8 @@ import { InventoryUI } from "gameObjects/Inventory"
 
 
 // the filter that appears in front of the camera
-//var glass = new GlassFilter()
-//let inventory = new InventoryUI()
+var glass = new GlassFilter()
+let inventory = new InventoryUI()
 
 ///have a trigger shape for the avatar
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
