@@ -31,33 +31,6 @@ export class WallBumpSystem {
             wall.bumped = true
             wall.setParent(null)
             wall.bumpSource.playOnce()
-
-            /*
-
-            for(var i = 0; i < 100; i++)
-            {
-              var num = Math.floor(Math.random() * 3)
-              switch(num)
-              {
-                case 1:
-                  wall.addComponentOrReplace(Globals.yellowWall)
-                  log("yellow")
-                  break;
-                
-                case 2:
-                  wall.addComponentOrReplace(Globals.blueWall)
-                  log("blue")
-                  break;
-
-                case 0:
-                  wall.addComponentOrReplace(Globals.greenWall)
-                  log("green")
-                  break;
-              }
-            }
-            wall.setParent(wall.holdingEntity)
-            wall.bumped = false/
-            */
             
             const sequence = new utils.ActionsSequenceSystem.SequenceBuilder()
               .while(() => Globals.bumpCount < 14 && wall.bumped)

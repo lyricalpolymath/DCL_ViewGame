@@ -26,22 +26,41 @@ export class Wall extends Entity
     wallCollider:Entity
     wallColorsCount:number = 0
     level:Level
-    holdingEntity:Entity
+    holdingEntity:Entity = new Entity()
     bumpSource:AudioSource
     bumped:boolean = false
     glitchEntityArray:Entity[] = [new Entity()]
 
-    constructor(levelE:Level, holdingEntity:Entity, name:string, glb:GLTFShape, position:Vector3, rotation: Quaternion, color:string)
+    constructor(levelE:Level, name:string, position:Vector3, rotation: Quaternion, color:string)
     {
         super(name)
         this.level = levelE
-        this.holdingEntity = holdingEntity
+        //this.holdingEntity = this.lholdingEntity
         this.bumpSource = new AudioSource(Globals.bumpClip)
         this.bumpSource.volume = 1
 
         log("creating wall for level " + this.level.name)
 
-        this.setParent(holdingEntity)
+        switch(color)
+        {
+            case _colorNames.BLUE:
+                this.holdingEntity = this.level.blueWalls
+                break;
+
+            case _colorNames.RED:
+                this.holdingEntity = this.level.redWalls
+                break;
+            
+            case _colorNames.GREEN:
+                this.holdingEntity = this.level.greenWalls
+                break;
+
+            case _colorNames.YELLOW:
+                this.holdingEntity = this.level.yellowWalls
+                break;
+        }
+
+        this.setParent(this.holdingEntity)
         this.addComponent(this.bumpSource)
 
         for(var i = 1; i < 13; i++)

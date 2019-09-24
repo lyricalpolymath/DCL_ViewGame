@@ -135,8 +135,6 @@ export class BumpAction implements ActionsSequenceSystem.IAction {
       this.wall.setParent(null)
       this.wall.bumpSource.playOnce()
       this.wall.bumped = true
-      log(bumpCount)
-      log("inside if")
       if(bumpCount !=1)
       {
         this.wall.glitchEntityArray[bumpCount-1].getComponent(Transform).scale = Vector3.Zero()
