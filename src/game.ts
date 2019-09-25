@@ -8,6 +8,7 @@ import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
 
+import { publicKeyRequest } from "utilities/userData"
 
 // the filter that appears in front of the camera
 var glass = new GlassFilter()
