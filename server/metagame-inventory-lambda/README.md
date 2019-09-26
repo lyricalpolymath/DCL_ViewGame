@@ -1,6 +1,7 @@
-
+#AWS LAMBDA FUNCTIONS VIA APEX
 This folder contains the LambdaFunctions that can be deployed and run form the local computer
 using APEX  http://apex.run
++ view [introductory tutorial](https://www.youtube.com/watch?v=u7spDymJqmc&list=PLzvRQMJ9HDiSQMe68cti8cupI0mzLk1Gc&index=6&t=525s)
 
 ### Prerequisites
 you need to install the AWS Cli (has it's own process)
