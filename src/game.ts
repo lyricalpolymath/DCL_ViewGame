@@ -12,7 +12,9 @@ import { publicKeyRequest } from "utilities/userData"
 
 // the filter that appears in front of the camera
 var glass = new GlassFilter()
+
 let inventory = new InventoryUI();
+
 
 ///have a trigger shape for the avatar
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
@@ -75,7 +77,7 @@ events.addListener(LevelCompleted,null,({l})=>{
 //listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
 
 
-State.events.addListener(StateUpdate,null,()=>{
+State.events.addListener(StateUpdate,scene,()=>{
   log("changed lens, so we need to change which walls are visible")
   currentLevel.showWallsForLens(State.getActiveColor())
 })

@@ -1,4 +1,5 @@
 import { Level } from "../levels/level"
+import utils from "../../node_modules/decentraland-ecs-utils/index"
 import * as Globals from "../functions"
 
 
@@ -25,7 +26,37 @@ export class WallBumpSystem {
           let dist = Globals.distance(transform.position, this.camera.position)
           if ( dist < 2) {
             log("avatar bumped wall, need to animate")
-            wall.animate()
+            //wall.animate()
+
+            wall.bumped = true
+            wall.setParent(null)
+            wall.bumpSource.playOnce()
+            
+            const sequence = new utils.ActionsSequenceSystem.SequenceBuilder()
+              .while(() => Globals.bumpCount < 14 && wall.bumped)
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(wall))
+                .then(new Globals.DelayAction(wall))
+              .endWhile()
+            engine.addSystem(new utils.ActionsSequenceSystem(sequence))
+            
           }
         }
 

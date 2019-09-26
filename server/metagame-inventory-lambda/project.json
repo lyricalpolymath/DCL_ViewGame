@@ -1,0 +1,9 @@
+{
+  "name": "metagame",
+  "description": "lambda functions for DCL's MetaGame",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::281701997159:role/MetaGame-API",
+  "environment": {},
+  "runtime": "nodejs8.10"
+}

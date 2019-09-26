@@ -4,7 +4,7 @@
 import { State, StateUpdate } from "../gameState";
 import { Settings } from "../gameSettings"
 
-import { Carryable, CarryableSystem} from '../utilities/carryable';  // not currently in use
+//import { Carryable, CarryableSystem} from '../utilities/carryable';  // not currently in use
 //import { GlassFilterSystem } from 'GlassFilterSystem';
 
 
@@ -50,7 +50,7 @@ export class GlassFilter extends Entity {
     private filterRect: UIContainerRect
 
     // optional Carryable method (doesn't fully work)
-    private carryable: Carryable 
+    //private carryable: Carryable 
     private filter  :Entity                 
 
     constructor () {
@@ -93,7 +93,7 @@ export class GlassFilter extends Entity {
      * - the carryable system is jittery, as the frame rate is only 30fps while the camera goes at 60fps
      * - there is the "elevator" problem = the carried entity pushes you back and even outside of the scene
      * - plus it projects a shadow
-     */
+     * /
     private createFilterEntity() {
         var f = this.filter
         f = new Entity()
@@ -139,7 +139,8 @@ export class GlassFilter extends Entity {
         //engine.addSystem(new CarryableSystem());
         //engine.addSystem(new GlassFilterSystem(this.filter))
         //*/
-    }
+    //}
+    
 
 
     /**

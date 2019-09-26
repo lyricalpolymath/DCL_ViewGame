@@ -3,7 +3,6 @@ import { Wall } from "./wall"
 import * as Globals from "../functions"
 import * as Walls1 from "./walls1"
 import * as Walls2 from "./walls2"
-import { ShowWallSystem } from "../systems/wallshow"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
 
@@ -16,6 +15,7 @@ export class Level extends Entity
     transitionScene:Entity
     levelWalls:Wall[]
     blueWalls:Entity
+    redWalls:Entity
     greenWalls:Entity
     yellowWalls:Entity
     sceneLevel:number
@@ -37,7 +37,7 @@ export class Level extends Entity
         this.pickSource.volume = 1
         this.pickSource.playing = false
 
-        this.levelWalls = [new Wall(this,null,null,null,null,null,"")]
+        this.levelWalls = [new Wall(this,"blank wall",null,null,"")]
 
         switch(sceneLevel)
         {
@@ -128,6 +128,12 @@ export class Level extends Entity
       this.greenWalls = new Entity()
       this.greenWalls.setParent(this)
       this.greenWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      this.redWalls = new Entity()
+      this.redWalls.setParent(this)
+      this.redWalls.addComponent(new Transform({
           scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
       }))
 

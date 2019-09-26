@@ -24,26 +24,59 @@ export class Wall extends Entity
 {
     visibleWallComponent:GLTFShape
     wallCollider:Entity
-    wallColors:string[]
     wallColorsCount:number = 0
     level:Level
-    holdingEntity:Entity
+    holdingEntity:Entity = new Entity()
     bumpSource:AudioSource
     bumped:boolean = false
+    glitchEntityArray:Entity[] = [new Entity()]
 
-    constructor(levelE:Level, holdingEntity:Entity, name:string, glb:GLTFShape, position:Vector3, rotation: Quaternion, color:string)
+    constructor(levelE:Level, name:string, position:Vector3, rotation: Quaternion, color:string)
     {
         super(name)
         this.level = levelE
-        this.holdingEntity = holdingEntity
+        //this.holdingEntity = this.lholdingEntity
         this.bumpSource = new AudioSource(Globals.bumpClip)
         this.bumpSource.volume = 1
 
         log("creating wall for level " + this.level.name)
 
-        this.setParent(holdingEntity)
+        switch(color)
+        {
+            case _colorNames.BLUE:
+                this.holdingEntity = this.level.blueWalls
+                break;
+
+            case _colorNames.RED:
+                this.holdingEntity = this.level.redWalls
+                break;
+            
+            case _colorNames.GREEN:
+                this.holdingEntity = this.level.greenWalls
+                break;
+
+            case _colorNames.YELLOW:
+                this.holdingEntity = this.level.yellowWalls
+                break;
+        }
+
+        this.setParent(this.holdingEntity)
         this.addComponent(this.bumpSource)
 
+        for(var i = 1; i < 13; i++)
+        {
+            let temp = new Entity()
+            temp.addComponentOrReplace(new GLTFShape("models/glitch"+i+".glb"))
+            temp.addComponentOrReplace(new Transform({
+                position: Vector3.Zero(),
+                rotation: new Quaternion(0,0,0,1),
+                scale: i < 2 ? Vector3.One() : Vector3.Zero()
+            }))
+            temp.setParent(this)
+            this.glitchEntityArray.push(temp)
+        }
+        
+        /*
             switch(color)
             {
                 case _colorNames.BLUE:
@@ -58,28 +91,34 @@ export class Wall extends Entity
                     this.addComponent(Globals.greenWall)
                     break;
             }
+
+            */
             this.addComponentOrReplace(new Transform({
                 position:position,
                 rotation:rotation
             }))
+            
+            
+            //this.addComponentOrReplace(Globals.testMaterial)
 
     //for testing purposes only
-                  /*
+                  
+    /*
         this.addComponent(new BoxShape())
         //this.addComponentOrReplace(Globals.hiddenMaterial)
         this.addComponentOrReplace(new Transform({
             position:position,
             scale:new Vector3(.1,6,2),
-            rotation:rotation
+            rotation:new Quaternion(0,90,0,1)
         }))
-        
         */
+        
         
         this.wallCollider = new Entity(name + "-c"+ this.level)
         this.wallCollider.addComponentOrReplace(Globals.wallCollider)
         this.wallCollider.addComponentOrReplace(new Transform({
-            position: this.getComponent(Transform).position,
-            rotation: this.getComponent(Transform).rotation
+            position: position,
+            rotation: rotation
         }))
         this.wallCollider.setParent(this.level)
     }

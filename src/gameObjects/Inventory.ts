@@ -30,14 +30,8 @@ export class InventoryUI {
 
         // add buttons here - the items themselves will take care to know wither they can be shown or not
         let red     = new InventoryItem(cont, Settings.inventory.buttonAtlas, "RED",    0, 0, 90, 90, 100);
-        //let green   = new InventoryItem(cont, Settings.inventory.buttonAtlas, "GREEN",  0, 100, 90, 90, 100);
-        //let blue    = new InventoryItem(cont, Settings.inventory.buttonAtlas, "BLUE",   0, 200, 90, 90, 100);
-
-        let btn = new UIButton(cont)
-        btn.width = "100%"
-        btn.height = "100"
-        btn.background = Color4.Black()
-        btn.color = Color4.Red()
+        let green   = new InventoryItem(cont, Settings.inventory.buttonAtlas, "GREEN",  0, 100, 90, 90, 100);
+        let blue    = new InventoryItem(cont, Settings.inventory.buttonAtlas, "BLUE",   0, 200, 90, 90, 100);
 
     }
 }
