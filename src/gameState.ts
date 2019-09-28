@@ -50,7 +50,8 @@ export class State {
         InventoryItemSelectedEvent
     }
     
-
+    public static userAddress: string;
+    
     public static glasses:any = {    
         RED: { 
             name: "RED", 

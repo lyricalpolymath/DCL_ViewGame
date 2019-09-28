@@ -8,12 +8,19 @@ import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
 
-import { publicKeyRequest } from "utilities/userData"
+import { UserData /*, publicKeyRequest*/ } from "utilities/userData"
+
+
+// Retrieve User Data
+//UserData.getUserAddress();  //not working
+//UserData.getInventory();
+
 
 // the filter that appears in front of the camera
 var glass = new GlassFilter()
-
 let inventory = new InventoryUI();
+
+
 
 
 ///have a trigger shape for the avatar

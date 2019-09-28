@@ -1,4 +1,6 @@
 {   
+    "user":"test",
+    
     "inventory": {
         "glasses": {
             "RED":   { "available": true },

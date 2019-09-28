@@ -26,3 +26,15 @@ or on AWS CloudWatch https://console.aws.amazon.com/cloudwatch/ > sidebar > Logs
 or you can do locally in another console window  (`-f` watches continuosly the function)
 `apex logs -f inventory-set`
 
+
+### Test the lambdas
+
+#### inventory-get
+`apex invoke inventory-get < functions/inventory-get/testEvent.json`
+
+the REST endpoint is:
+`https://g5oplgqi2h.execute-api.us-east-1.amazonaws.com/live/inventory?user=test`
+
+
+#### inventory-set
+`apex invoke inventory-set < functions/inventory-set/event.json`

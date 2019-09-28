@@ -36,7 +36,9 @@ export abstract class Settings {
         WHITE:  new Color4(1,1,1, 0.9 )
     }
 
-    
+    static urls = {
+        inventory: "https://g5oplgqi2h.execute-api.us-east-1.amazonaws.com/live/inventory"
+    }
     /*
     static color = {
         RED:    { name:"RED",    color4: new Color4(1,0,0, 0.4 )}, 
