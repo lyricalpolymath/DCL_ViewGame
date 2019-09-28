@@ -60,8 +60,10 @@ console.log(fname + ' function starts');
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
-let index = function index(event, context, callback){
+//let index = function index(event, context, callback){
+exports.handle = function(event, context, callback){    
     console.log(fname + 'handler - processing event: %j', event);
+    console.log(fname + 'handler - context: %j', context);
 
     let scanningParameters = {
         TableName: 'MetaGame',//'Leveler',
@@ -72,7 +74,7 @@ let index = function index(event, context, callback){
     };
     console.log(fname + " scanningParameters: ", scanningParameters);
 
-    /*In dynamoDB scan looks through your entire table and fetches all data
+    //*In dynamoDB scan looks through your entire table and fetches all data
     docClient.get(scanningParameters, function(err,data){
         if(err){
             callback(err, null);
@@ -80,7 +82,7 @@ let index = function index(event, context, callback){
             callback(null,data);
         }
     });
-    */
+    //*/
 }
 
-exports.handler = index
+//exports.handler = index
