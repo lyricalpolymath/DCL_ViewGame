@@ -24,16 +24,16 @@ export class WallBumpSystem {
         {
           
           let transform = wall.wallCollider.getComponent(Transform)
-          this.level.wallAnimationEntity.getComponent(Transform).position = transform.position
-          this.level.wallAnimationEntity.getComponent(Transform).rotation = transform.rotation
+         //this.level.wallAnimationEntity.getComponent(Transform).position = transform.position
+         // this.level.wallAnimationEntity.getComponent(Transform).rotation = transform.rotation
 
           let dist = Globals.distance(transform.position, this.camera.position)
           if ( dist < 2) {
             log("avatar bumped wall, need to animate")
+            /*
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
             wall.animate()
-=======
             //wall.animate()
 
             wall.bumped = true
@@ -65,7 +65,7 @@ export class WallBumpSystem {
               .endWhile()
             engine.addSystem(new utils.ActionsSequenceSystem(sequence))
 =======
-
+*/
             wall.bumped = true
             wall.bumpSource.playOnce()
 
@@ -87,9 +87,6 @@ export class WallBumpSystem {
               this.level.glitch3Ent.getComponent(Transform).rotation = wall.getComponent(Transform).rotation
               this.level.glitch3Ent.animate(wall)
             }
->>>>>>> Stashed changes
-            
->>>>>>> Stashed changes
           }
         }
 

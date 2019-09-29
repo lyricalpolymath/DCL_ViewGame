@@ -11,8 +11,10 @@ import * as Globals from "./functions"
 import { UserData } from "./utilities/UserData"
 
 
-export var user_address:string
+export var user_address:string = "NONE"
 export var user_level = 1
+
+
 //try to get user ethereum address
 executeTask(async () => {
   try {
@@ -29,8 +31,8 @@ executeTask(async () => {
 
 
 // the filter that appears in front of the camera
-//var glass = new GlassFilter()
-//let inventory = new InventoryUI();
+var glass = new GlassFilter()
+let inventory = new InventoryUI();
 
 ///have a trigger shape for the avatar
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
@@ -62,11 +64,12 @@ var activeLens:string = _colorNames.NONE
 //transitionScene.setParent(scene)
 
 
-//getServerInfo()
+getServerInfo("")
 
 //future functionality to grab current scene from server for specific avatar
 function getServerInfo(address:string)//:Entity
 {
+
   executeTask(async () => {
     try {
       let response = await fetch(Globals.proxyUrl + Globals.apiUrl + "?user="+ user_address, {
@@ -75,9 +78,12 @@ function getServerInfo(address:string)//:Entity
       })
       .then(response => response.json())
       .then(data => {
+        log(data)
         if(!Object.keys(data).length)
         {
           log("user hasn't played. need to store information on server")
+          currentLevelNumber = 1
+          user_level = 1
         }
         else
         {
@@ -112,13 +118,7 @@ events.addListener(LevelCompleted,null,({l})=>{
 
 
 //listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
-<<<<<<< Updated upstream
-
-
-State.events.addListener(StateUpdate,null,()=>{
-=======
 State.events.addListener(StateUpdate,scene,()=>{
->>>>>>> Stashed changes
   log("changed lens, so we need to change which walls are visible")
   currentLevel.showWallsForLens(State.getActiveColor())
 })

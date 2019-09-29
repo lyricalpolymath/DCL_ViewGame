@@ -2,20 +2,10 @@ import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import * as Globals from "../functions"
 import * as Walls1 from "./walls1"
-<<<<<<< Updated upstream
 import * as Walls2 from "./walls2"
-import { ShowWallSystem } from "../systems/wallshow"
-=======
-import {level2Walls} from "./walls2"
->>>>>>> Stashed changes
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
-<<<<<<< Updated upstream
-import { level2Content } from "./content/level2"
-import { WallAnimation } from "./wall/wallanimation"
-=======
 import { WallAnimation } from "./wall_animation"
->>>>>>> Stashed changes
 
 
 export class Level extends Entity
@@ -34,13 +24,9 @@ export class Level extends Entity
     pickClip = Globals.pickClip
     pickSource = new AudioSource(this.pickClip)
     showWallSystem:WallBumpSystem
-<<<<<<< Updated upstream
-    wallAnimationEntity:WallAnimation
-=======
     glitch1Ent:WallAnimation
     glitch2Ent:WallAnimation
     glitch3Ent:WallAnimation
->>>>>>> Stashed changes
 
     constructor(scene:Entity, events:EventManager, sceneLevel:number, name:string)
     {
@@ -54,11 +40,7 @@ export class Level extends Entity
         this.pickSource.volume = 1
         this.pickSource.playing = false
 
-<<<<<<< Updated upstream
-        this.levelWalls = [new Wall(this,null,null,null,null,null,"")]
-=======
         this.levelWalls = [null]
->>>>>>> Stashed changes
 
         this.glitch1Ent = new WallAnimation(this)
         this.glitch2Ent = new WallAnimation(this)
@@ -79,9 +61,6 @@ export class Level extends Entity
 
       //TODO
       //need to show active lens from server
-
-      this.wallAnimationEntity = new WallAnimation()
-      //this.wallAnimationEntity.setParent(this)
       this.showWallSystem = new WallBumpSystem(this)
       engine.addSystem(this.showWallSystem)
     }
@@ -93,12 +72,8 @@ export class Level extends Entity
 
     createLevel2()
     {
-<<<<<<< Updated upstream
-    //// add the wall holding entities for all the types of lenses in this level
-=======
 
       //// add the wall holding entities for all the types of lenses in this level
->>>>>>> Stashed changes
       this.blueWalls = new Entity()
       this.blueWalls.setParent(this)
       this.blueWalls.addComponent(new Transform({
@@ -117,25 +92,9 @@ export class Level extends Entity
           scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
       }))
 
-<<<<<<< Updated upstream
-=======
-      this.redWalls = new Entity()
-      this.redWalls.setParent(this)
-      this.redWalls.addComponent(new Transform({
-          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
-      }))
-
-<<<<<<< Updated upstream
-      //create level 2 content
-      level2Content(this)
->>>>>>> Stashed changes
-=======
       Walls2.createScene(this)
->>>>>>> Stashed changes
-
       //////////////create all the walls for this level
-      level2Walls(this)
-
+      Walls2.createWalls(this)
     }
 
     getWalls()

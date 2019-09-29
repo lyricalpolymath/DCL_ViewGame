@@ -30,28 +30,17 @@ export class Wall extends Entity
     holdingEntity:Entity
     bumpSource:AudioSource
     bumped:boolean = false
-<<<<<<< Updated upstream
-=======
     glitchEntityArray:Entity[] = [null]
->>>>>>> Stashed changes
 
-    constructor(levelE:Level, holdingEntity:Entity, name:string, glb:GLTFShape, position:Vector3, rotation: Quaternion, color:string)
+    constructor(levelE:Level, name:string, position:Vector3, rotation: Quaternion, color:string)
     {
         super(name)
         this.level = levelE
-        this.holdingEntity = holdingEntity
         this.bumpSource = new AudioSource(Globals.bumpClip)
         this.bumpSource.volume = 1
 
         log("creating wall for level " + this.level.name)
-
-<<<<<<< Updated upstream
-        this.setParent(holdingEntity)
         this.addComponent(this.bumpSource)
-<<<<<<< Updated upstream
-
-=======
-        
         
         
         /*
@@ -70,9 +59,6 @@ export class Wall extends Entity
 
         *//////
         
-        /*
->>>>>>> Stashed changes
-=======
         switch(color)
         {
             case _colorNames.BLUE:
@@ -81,7 +67,7 @@ export class Wall extends Entity
                 break;
 
             case _colorNames.RED:
-                this.holdingEntity = this.level.redWalls
+                this.holdingEntity = this.level.yellowWalls
                 this.addComponentOrReplace(Globals.redWall)
                 break;
             
@@ -132,17 +118,13 @@ export class Wall extends Entity
                     this.addComponent(Globals.greenWall)
                     break;
             }
-<<<<<<< Updated upstream
-=======
 
             */
 
->>>>>>> Stashed changes
             this.addComponentOrReplace(new Transform({
                 position:position,
                 rotation:rotation
             }))
-<<<<<<< Updated upstream
 
     //for testing purposes only
                   /*
@@ -153,8 +135,6 @@ export class Wall extends Entity
             scale:new Vector3(.1,6,2),
             rotation:rotation
         }))
-=======
->>>>>>> Stashed changes
         
         */
         

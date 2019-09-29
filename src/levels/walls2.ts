@@ -1,6 +1,7 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import * as Globals from "../functions"
+import {blueWall, greenWall, yellowWall} from "../functions"
 import { Level } from "./level"
 import { _colorNames } from "../gameSettings"
 import { user_level, user_address } from "../game"
@@ -174,42 +175,33 @@ metalstructure.addComponentOrReplace(transform_123)
 
 }
 
-    export function level2Walls(level:Level)
+    export function createWalls(level:Level)
     {
 
-        level.levelWalls.push(new Wall(level,level.blueWalls,"Wall " + level.levelWalls.length,blueWall, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
     
-        level.levelWalls.push(new Wall(level,level.greenWalls,"Wall " + level.levelWalls.length, greenWall, new Vector3(27.5, 1.5, 28.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),_colorNames.GREEN))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(27.5, 1.5, 28.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),_colorNames.GREEN))
         
-        level.levelWalls.push(new Wall(level,level.blueWalls,"Wall " + level.levelWalls.length,blueWall, new Vector3(30, 1.5, 29.5), new Quaternion(0, 0, 0, 1),_colorNames.BLUE))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(30, 1.5, 29.5), new Quaternion(0, 0, 0, 1),_colorNames.BLUE))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 28.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 28.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 26.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 26.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 25), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 25), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 23), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 23), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 21), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 21), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-<<<<<<< Updated upstream
-        level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
-=======
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-<<<<<<< Updated upstream
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-
-
-
-        
->>>>>>> Stashed changes
-=======
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 15.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 13.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
@@ -225,7 +217,6 @@ metalstructure.addComponentOrReplace(transform_123)
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 3.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 1.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
->>>>>>> Stashed changes
         
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
 

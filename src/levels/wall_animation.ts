@@ -7,10 +7,6 @@ import { Wall } from "./wall"
 
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 
-
-
-
-
 export class WallAnimation extends Entity
 {
  
@@ -69,9 +65,6 @@ export class WallAnimation extends Entity
               this.getComponent(Transform).scale = Vector3.Zero()
             }
 
-        })
-
-
+        }))
     }
-
 }
