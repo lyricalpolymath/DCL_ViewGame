@@ -18,9 +18,9 @@ import { user_level, user_address } from "../game"
       }))
       skull.addComponentOrReplace(new OnClick(e=>{
         log("pushing data to server")
-        fetch(Globals.awsAPI, {
+        fetch(Globals.awsPut, {
           method: 'post',
-          body: JSON.stringify({"id": user_address, "level": user_level})
+          body: JSON.stringify({"id": user_address, "level": 1})
         }).then(function(response) {
           return response.json();
         }).then(function(data) {
