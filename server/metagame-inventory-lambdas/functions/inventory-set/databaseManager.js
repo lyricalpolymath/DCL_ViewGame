@@ -51,10 +51,12 @@ module.exports.deleteItem = user => {
 };
 
 module.exports.updateItem = (user, paramsName, paramsValue) => {
+	console.log("dataBaseManager.updateItem user: " + user + " - paramsName: " + paramsName + " - paramsValue: " + paramsValue);
+	
 	const params = {
 		TableName: TABLE_NAME,
 		Key: {
-			user
+			user: user
 		},
 		ConditionExpression: 'attribute_exists(user)',
 		UpdateExpression: 'set ' + paramsName + ' = :v',
