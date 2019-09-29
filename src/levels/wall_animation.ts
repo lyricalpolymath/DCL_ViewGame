@@ -41,7 +41,6 @@ export class WallAnimation extends Entity
 
     animate(wall:Wall)
     {
-        var counter:number = 0
         this.isAnimating = true
         var wall = wall
         this.getComponent(Transform).scale = Vector3.One()

@@ -10,6 +10,8 @@ utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new
 export var proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 export var getUrl = "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.com/production/user/"
 export var awsGet = proxyUrl + getUrl
+export var putUrl = "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.com/production/user/update/"
+export var awsPut = proxyUrl + putUrl
 export var levelUser:string
 
 export const blackWall = new GLTFShape("models/neonwall-BLACK.glb")

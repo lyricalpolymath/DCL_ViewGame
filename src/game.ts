@@ -83,6 +83,9 @@ function getServerInfo(address:string)//:Entity
           log("user hasn't played. need to store information on server")
           currentLevelNumber = 1
           user_level = 1
+          currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+          currentLevel.setParent(scene)
+          updateLevelUI(currentLevelNumber)
         }
         else
         {
