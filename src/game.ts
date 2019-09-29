@@ -1,14 +1,43 @@
 import utils from "../node_modules/decentraland-ecs-utils/index"
 import { Level } from "./levels/level"
 import { TransitionScene } from "./levels/transitionScene"
-import {LevelCompleted, TransitionLevelComplete, transitionBox} from "./functions"
-
+import {LevelCompleted, TransitionLevelComplete} from "./functions"
+import { getUserAccount } from '@decentraland/EthereumController'
 import { GlassFilter } from "gameObjects/GlassFilter"
 import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
+import * as Globals from "./functions"
 
-import { UserData /*, publicKeyRequest*/ } from "utilities/userData"
+
+
+export var user_address:string = "NONE"
+export var user_level = 1
+
+
+//try to get user ethereum address
+log("executeTask 1")
+executeTask(async () => {
+  log("executeTask1")
+  try {
+    log("executeTask: calling getUseAccount()" ); 
+    const address = await getUserAccount()
+    log("Found user address: " + address)
+    user_address = address
+
+    //getServerInfo(address, true)    //LAUSTRAM's Version
+    getServerInfo_BB(address, true)   //BB Version
+  
+  } catch (error) {
+    log("heres the eror " + error.toString())
+    
+    getServerInfo_BB("", false)   //BB-Version
+    //getServerInfo("", false)    /// LAUSTRAM's Version
+    //getServerInfo()
+  }
+})
+
+import { UserData /*, publicKeyRequest*/ } from "utilities/UserData"
 
 
 // Retrieve User Data
@@ -19,9 +48,6 @@ import { UserData /*, publicKeyRequest*/ } from "utilities/userData"
 // the filter that appears in front of the camera
 var glass = new GlassFilter()
 let inventory = new InventoryUI();
-
-
-
 
 ///have a trigger shape for the avatar
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
@@ -49,20 +75,139 @@ var activeLens:string = _colorNames.NONE
 //var sceneLevels:Level[] = [new Level(scene, events, 0, "Level" + 0,["none"], activeLens)]
 
 ///create reusable components across levels
-const transitionScene = new TransitionScene(transitionBox,events)
+//const transitionScene = new TransitionScene(transitionBox,events)
 //transitionScene.setParent(scene)
 
 
-getServerInfo()
+//getServerInfo("")
 
-//future functionality to grab current scene from server for specific avatar
-function getServerInfo()//:Entity
+
+
+// BB Version
+function getServerInfo_BB(address:string,ethSuccess:boolean)//:Entity
 {
-  log("getting current level from server")
-   currentLevelNumber = 2
-   currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
-   currentLevel.setParent(scene)
-   updateLevelUI(currentLevelNumber)
+  log("GET SERVER INFO ethSuccess: " + ethSuccess)
+  if(ethSuccess)
+  {
+    log("GET SERVER INFO - found a user")
+    address = address.toLowerCase();                 // correct the address case to make sure of consinstency
+    let apiUrl = Globals.awsGet + "?user="+ address  //use address not user_address so that the function works with any address passed as parm of the function 
+    log("GET SERVER INFO - address: " + address)
+    log("GET SERVER INFO - going to call url: " + apiUrl )
+    
+    executeTask(async () => {
+      try {
+        //let response = await fetch(Globals.awsGet + "?user="+ user_address, {
+        let response = await fetch(apiUrl, {  
+          headers: { "Content-Type": "application/json" },
+          method: "GET"
+        })
+        .then(response => response.json())
+        .then(data => {
+          log("GET SERVER INFO - data:", data)
+          if(!Object.keys(data).length)
+          {
+            //TODO implement the POST to the server
+            log("GET SERVER INFO - user hasn't played. need to store information on server")
+            currentLevelNumber = 1
+            user_level = 1
+            updateLevelUI(currentLevelNumber)
+            currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+            currentLevel.setParent(scene)
+          }
+          else
+          {
+            log("GET SERVER INFO - user found. retrieving information data: ", data)
+            log(data.Item.level)
+            //UserData.parseServerData(data)
+
+            user_level = data.Item.level
+  
+            currentLevelNumber = data.Item.level
+            updateLevelUI(currentLevelNumber)
+            currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+            currentLevel.setParent(scene)
+            
+          }
+        })
+      } catch(e) {
+        log("error is " + e)
+      }
+    })
+  }
+  else
+  {
+      log("got here")
+      user_address = "NONE"
+      user_level = 1
+      currentLevelNumber = user_level
+      updateLevelUI(currentLevelNumber)
+      currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+      currentLevel.setParent(scene)
+      
+  }
+
+}
+
+
+
+
+//LAUSTRAM's version 
+//future functionality to grab current scene from server for specific avatar
+function getServerInfo(address:string,ethSuccess:boolean)//:Entity
+{
+  if(ethSuccess)
+  {
+    log("found a user")
+    executeTask(async () => {
+      try {
+        let response = await fetch(Globals.awsGet + "?user="+ user_address, {
+          headers: { "Content-Type": "application/json" },
+          method: "GET"
+        })
+        .then(response => response.json())
+        .then(data => {
+          log(data)
+          if(!Object.keys(data).length)
+          {
+            log("user hasn't played. need to store information on server")
+            currentLevelNumber = 1
+            user_level = 1
+            updateLevelUI(currentLevelNumber)
+            currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+            currentLevel.setParent(scene)
+          }
+          else
+          {
+            log("user found. retrieving information.")
+            log(data)
+            log(data.Item.level)
+            user_level = data.Item.level
+  
+            currentLevelNumber = data.Item.level
+            updateLevelUI(currentLevelNumber)
+            currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+            currentLevel.setParent(scene)
+            
+          }
+        })
+      } catch(e) {
+        log("error is " + e)
+      }
+    })
+  }
+  else
+  {
+      log("got here")
+      user_address = "NONE"
+      user_level = 1
+      currentLevelNumber = user_level
+      updateLevelUI(currentLevelNumber)
+      currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+      currentLevel.setParent(scene)
+      
+  }
+
 }
 
 events.addListener(LevelCompleted,null,({l})=>{
@@ -77,23 +222,11 @@ events.addListener(LevelCompleted,null,({l})=>{
 })
 
 
-
-
-
-//////////////////////////
 //listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
-
-
 State.events.addListener(StateUpdate,scene,()=>{
   log("changed lens, so we need to change which walls are visible")
   currentLevel.showWallsForLens(State.getActiveColor())
 })
-
-
-
-//////////////////////////////////////////
-
-
 
 
 //listen for when the transition scene is complete
@@ -101,116 +234,23 @@ events.addListener(TransitionLevelComplete,null,()=>{
     currentLevelNumber++
     currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
     currentLevel.setParent(scene)
-    engine.removeEntity(transitionScene)
+    //engine.removeEntity(transitionScene)
     updateLevelUI(currentLevelNumber)
 })
 
 function updateLevelUI(levelui:number)
 {
+    log('updating level text ' + levelui)
     levelText.value = "LEVEL " + levelui
 }
 
 function doTransitionLevel(lev:number)
 {
-    transitionScene.setParent(scene)
+   // transitionScene.setParent(scene)
     engine.removeEntity(currentLevel)
-    transitionScene.start()
+    //transitionScene.start()
 }
 
 
 //add scene to the engine
 engine.addEntity(scene)
-
-
-
-/*testing a second UICanvas
-let canvas2 = new UICanvas()
-let r2 = new UIContainerRect(this.filterCanvas)
-rect.width = '20%'
-rect.height = '100%'
-rect.color =  Color4.Black()
-rect.opacity = 0.3
-//*/
-
-
-/* UserData doesn't work
-import { getUserData } from "@decentraland/Identity"
-
-let data:any;
-const userData = executeTask(async () => {
-  data = await getUserData()
-  log(data.displayName)
-  return data.displayName
-})
-
-class userDataSystem implements ISystem{
-  update (dt:number) {
-    log("userDataSystem userData: ", userData)
-  }
-}
-engine.addSystem(new userDataSystem())
-*/
-
-
-
-
-
-
-
-
-
-
-/* Default scene 
-/// --- Set up a system ---
-
-class RotatorSystem {
-  // this group will contain every entity that has a Transform component
-  group = engine.getComponentGroup(Transform)
-
-  update(dt: number) {
-    // iterate over the entities of the group
-    for (let entity of this.group.entities) {
-      // get the Transform component of the entity
-      const transform = entity.getComponent(Transform)
-
-      // mutate the rotation
-      transform.rotate(Vector3.Up(), dt * 10)
-    }
-  }
-}
-
-// Add a new instance of the system to the engine
-engine.addSystem(new RotatorSystem())
-
-/// --- Spawner function ---
-
-function spawnCube(x: number, y: number, z: number) {
-  // create the entity
-  const cube = new Entity()
-
-  // add a transform to the entity
-  cube.addComponent(new Transform({ position: new Vector3(x, y, z) }))
-
-  // add a shape to the entity
-  cube.addComponent(new BoxShape())
-
-  // add the entity to the engine
-  engine.addEntity(cube)
-
-  return cube
-}
-
-/// --- Spawn a cube ---
-
-const cube = spawnCube(8, 1, 8)
-
-cube.addComponent(
-  new OnClick(() => {
-    cube.getComponent(Transform).scale.z *= 1.1
-    cube.getComponent(Transform).scale.x *= 0.9
-
-    spawnCube(Math.random() * 8 + 1, Math.random() * 8, Math.random() * 8 + 1)
-  })
-)
-
-//*/

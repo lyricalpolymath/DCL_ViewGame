@@ -1,12 +1,15 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
-import {greenWall, yellowWall, blueWall, Yellow} from "../functions"
+import * as Globals from "../functions"
+import {blueWall, greenWall, yellowWall} from "../functions"
 import { Level } from "./level"
 import { _colorNames } from "../gameSettings"
+import { user_level, user_address } from "../game"
 
-    export function createLevel(level:Level)
+    export function createScene(level:Level)
     {
 
+<<<<<<< HEAD
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
     
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(27.5, 1.5, 28.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),_colorNames.GREEN))
@@ -648,443 +651,387 @@ bluewall_16.setParent(level).addComponentOrReplace(new Blue())
 bluewall_16.addComponentOrReplace(gltfShape_2)
 const transform_70 = new Transform({
   position: new Vector3(6.5, 1.5, 29.5),
+=======
+      const skull = new Entity()
+      skull.setParent(level)
+      skull.addComponentOrReplace(new GLTFShape('models/skull1.glb'))
+      skull.addComponentOrReplace(new Transform({
+        position: new Vector3(5,1,4),
+        scale: new Vector3(.1,.1,.1)
+      }))
+      skull.addComponentOrReplace(new OnClick(e=>{
+        log("pushing data to server")
+        fetch(Globals.awsPut, {
+          method: 'post',
+          body: JSON.stringify({"id": user_address, "level": 1})
+        }).then(function(response) {
+          log(response)
+          return response.json();
+        }).then(function(data) {
+          log("added user to the server")
+          log(data)
+        });
+      }))
+
+  const topologylevel2 = new Entity()
+topologylevel2.setParent(level)
+const gltfShape_5 = new GLTFShape('models/topologylevel2.glb')
+topologylevel2.addComponentOrReplace(gltfShape_5)
+const transform_110 = new Transform({
+  position: new Vector3(16, 0.06939495457063316, 16),
+>>>>>>> 66eb04580a54c6c101f0d09781dc83b6266098f8
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_16.addComponentOrReplace(transform_70)
-engine.addEntity(bluewall_16)
+topologylevel2.addComponentOrReplace(transform_110)
 
-const bluewall_17 = new Entity()
-bluewall_17.setParent(level).addComponentOrReplace(new Blue())
-bluewall_17.addComponentOrReplace(gltfShape_2)
-const transform_71 = new Transform({
-  position: new Vector3(4.5, 1.5, 29.5),
+const biohazardsuit = new Entity()
+biohazardsuit.setParent(level)
+const gltfShape_6 = new GLTFShape('models/biohazardsuit.glb')
+biohazardsuit.addComponentOrReplace(gltfShape_6)
+const transform_111 = new Transform({
+  position: new Vector3(25.5, 1.5, 17),
+  rotation: new Quaternion(0, 0.19509032201612825, 0, 0.9807852804032304),
+  scale: new Vector3(1, 1, 1)
+})
+biohazardsuit.addComponentOrReplace(transform_111)
+
+const openbarrel = new Entity()
+openbarrel.setParent(level)
+const gltfShape_7 = new GLTFShape('models/openbarrel.glb')
+openbarrel.addComponentOrReplace(gltfShape_7)
+const transform_112 = new Transform({
+  position: new Vector3(10, 1.590246778641803, 3.5),
+  rotation: new Quaternion(0, -0.38268343236508984, 0, 0.9238795325112868),
+  scale: new Vector3(1, 1, 1)
+})
+openbarrel.addComponentOrReplace(transform_112)
+
+const openbarrel_2 = new Entity()
+openbarrel_2.setParent(level)
+openbarrel_2.addComponentOrReplace(gltfShape_7)
+const transform_113 = new Transform({
+  position: new Vector3(10.5, 1.5, 5),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_17.addComponentOrReplace(transform_71)
-engine.addEntity(bluewall_17)
+openbarrel_2.addComponentOrReplace(transform_113)
 
-const bluewall_18 = new Entity()
-bluewall_18.setParent(level).addComponentOrReplace(new Blue())
-bluewall_18.addComponentOrReplace(gltfShape_2)
-const transform_72 = new Transform({
-  position: new Vector3(2.5, 1.5, 29.5),
+const openbarrel_3 = new Entity()
+openbarrel_3.setParent(level)
+openbarrel_3.addComponentOrReplace(gltfShape_7)
+const transform_114 = new Transform({
+  position: new Vector3(13, 1.5, 2),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_18.addComponentOrReplace(transform_72)
-engine.addEntity(bluewall_18)
+openbarrel_3.addComponentOrReplace(transform_114)
 
-const yellowwall_34 = new Entity()
-yellowwall_34.setParent(level)
-yellowwall_34.addComponentOrReplace(gltfShape_4)
-const transform_73 = new Transform({
-  position: new Vector3(15, 1.5, 7),
-  rotation: new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16),
-  scale: Vector3.Zero()
-})
-yellowwall_34.addComponentOrReplace(transform_73)
-engine.addEntity(yellowwall_34)
-
-const greenwall_17 = new Entity()
-greenwall_17.setParent(level)
-greenwall_17.addComponentOrReplace(gltfShape_3)
-const transform_74 = new Transform({
-  position: new Vector3(28.5, 1.5, 22),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_17.addComponentOrReplace(transform_74)
-engine.addEntity(greenwall_17)
-
-const greenwall_18 = new Entity()
-greenwall_18.setParent(level)
-greenwall_18.addComponentOrReplace(gltfShape_3)
-const transform_75 = new Transform({
-  position: new Vector3(26.5, 1.5, 20),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_18.addComponentOrReplace(transform_75)
-engine.addEntity(greenwall_18)
-
-const greenwall_19 = new Entity()
-greenwall_19.setParent(level)
-greenwall_19.addComponentOrReplace(gltfShape_3)
-const transform_76 = new Transform({
-  position: new Vector3(28.5, 1.5, 18),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_19.addComponentOrReplace(transform_76)
-engine.addEntity(greenwall_19)
-
-const greenwall_20 = new Entity()
-greenwall_20.setParent(level)
-greenwall_20.addComponentOrReplace(gltfShape_3)
-const transform_77 = new Transform({
-  position: new Vector3(26.5, 1.5, 16),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_20.addComponentOrReplace(transform_77)
-engine.addEntity(greenwall_20)
-
-const greenwall_21 = new Entity()
-greenwall_21.setParent(level)
-greenwall_21.addComponentOrReplace(gltfShape_3)
-const transform_78 = new Transform({
-  position: new Vector3(28.5, 1.5, 14),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_21.addComponentOrReplace(transform_78)
-engine.addEntity(greenwall_21)
-
-const bluewall_19 = new Entity()
-bluewall_19.setParent(level).addComponentOrReplace(new Blue())
-bluewall_19.addComponentOrReplace(gltfShape_2)
-const transform_79 = new Transform({
-  position: new Vector3(27.5, 1.5, 7),
+const closedbarrel = new Entity()
+closedbarrel.setParent(level)
+const gltfShape_8 = new GLTFShape('models/closedbarrel.glb')
+closedbarrel.addComponentOrReplace(gltfShape_8)
+const transform_115 = new Transform({
+  position: new Vector3(14, 0, 3.5),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_19.addComponentOrReplace(transform_79)
-engine.addEntity(bluewall_19)
+closedbarrel.addComponentOrReplace(transform_115)
 
-const bluewall_20 = new Entity()
-bluewall_20.setParent(level).addComponentOrReplace(new Blue())
-bluewall_20.addComponentOrReplace(gltfShape_2)
-const transform_80 = new Transform({
-  position: new Vector3(25, 1.5, 7),
+const closedbarrel_2 = new Entity()
+closedbarrel_2.setParent(level)
+closedbarrel_2.addComponentOrReplace(gltfShape_8)
+const transform_116 = new Transform({
+  position: new Vector3(18, 0, 2.5),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_20.addComponentOrReplace(transform_80)
-engine.addEntity(bluewall_20)
+closedbarrel_2.addComponentOrReplace(transform_116)
 
-const bluewall_21 = new Entity()
-bluewall_21.setParent(level).addComponentOrReplace(new Blue())
-bluewall_21.addComponentOrReplace(gltfShape_2)
-const transform_81 = new Transform({
-  position: new Vector3(22.5, 1.5, 7),
+const openbarrel_4 = new Entity()
+openbarrel_4.setParent(level)
+openbarrel_4.addComponentOrReplace(gltfShape_7)
+const transform_117 = new Transform({
+  position: new Vector3(17, 1.5, 6),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_21.addComponentOrReplace(transform_81)
-engine.addEntity(bluewall_21)
+openbarrel_4.addComponentOrReplace(transform_117)
 
-const bluewall_22 = new Entity()
-bluewall_22.setParent(level).addComponentOrReplace(new Blue())
-bluewall_22.addComponentOrReplace(gltfShape_2)
-const transform_82 = new Transform({
-  position: new Vector3(20, 1.5, 7),
+const openbarrel_5 = new Entity()
+openbarrel_5.setParent(level)
+openbarrel_5.addComponentOrReplace(gltfShape_7)
+const transform_118 = new Transform({
+  position: new Vector3(24, 1.5, 8),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_22.addComponentOrReplace(transform_82)
-engine.addEntity(bluewall_22)
+openbarrel_5.addComponentOrReplace(transform_118)
 
-const bluewall_23 = new Entity()
-bluewall_23.setParent(level).addComponentOrReplace(new Blue())
-bluewall_23.addComponentOrReplace(gltfShape_2)
-const transform_83 = new Transform({
-  position: new Vector3(17.5, 1.5, 7),
+const openbarrel_6 = new Entity()
+openbarrel_6.setParent(level)
+openbarrel_6.addComponentOrReplace(gltfShape_7)
+const transform_119 = new Transform({
+  position: new Vector3(25.5, 1.5, 8),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_23.addComponentOrReplace(transform_83)
-engine.addEntity(bluewall_23)
+openbarrel_6.addComponentOrReplace(transform_119)
 
-const yellowwall_35 = new Entity()
-yellowwall_35.setParent(level)
-yellowwall_35.addComponentOrReplace(gltfShape_4)
-const transform_84 = new Transform({
-  position: new Vector3(18.5, 1.5, 10.5),
-  rotation: new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),
-  scale: Vector3.Zero()
-})
-yellowwall_35.addComponentOrReplace(transform_84)
-engine.addEntity(yellowwall_35)
-
-const greenwall_22 = new Entity()
-greenwall_22.setParent(level)
-greenwall_22.addComponentOrReplace(gltfShape_3)
-const transform_85 = new Transform({
-  position: new Vector3(1, 1.5, 28.5),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_22.addComponentOrReplace(transform_85)
-engine.addEntity(greenwall_22)
-
-const yellowwall_36 = new Entity()
-yellowwall_36.setParent(level)
-yellowwall_36.addComponentOrReplace(gltfShape_4)
-const transform_86 = new Transform({
-  position: new Vector3(29.5, 1.5, 25.5),
-  rotation: new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16),
-  scale: Vector3.Zero()
-})
-yellowwall_36.addComponentOrReplace(transform_86)
-engine.addEntity(yellowwall_36)
-
-const yellowwall_37 = new Entity()
-yellowwall_37.setParent(level)
-yellowwall_37.addComponentOrReplace(gltfShape_4)
-const transform_87 = new Transform({
-  position: new Vector3(12.5, 1.5, 7),
-  rotation: new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16),
-  scale: Vector3.Zero()
-})
-yellowwall_37.addComponentOrReplace(transform_87)
-engine.addEntity(yellowwall_37)
-
-const yellowwall_38 = new Entity()
-yellowwall_38.setParent(level)
-yellowwall_38.addComponentOrReplace(gltfShape_4)
-const transform_88 = new Transform({
-  position: new Vector3(10, 1.5, 7),
-  rotation: new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16),
-  scale: Vector3.Zero()
-})
-yellowwall_38.addComponentOrReplace(transform_88)
-engine.addEntity(yellowwall_38)
-
-const yellowwall_39 = new Entity()
-yellowwall_39.setParent(level)
-yellowwall_39.addComponentOrReplace(gltfShape_4)
-const transform_89 = new Transform({
-  position: new Vector3(7.5, 1.5, 7),
-  rotation: new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16),
-  scale: Vector3.Zero()
-})
-yellowwall_39.addComponentOrReplace(transform_89)
-engine.addEntity(yellowwall_39)
-
-const yellowwall_40 = new Entity()
-yellowwall_40.setParent(level)
-yellowwall_40.addComponentOrReplace(gltfShape_4)
-const transform_90 = new Transform({
-  position: new Vector3(5, 1.5, 7),
-  rotation: new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16),
-  scale: Vector3.Zero()
-})
-yellowwall_40.addComponentOrReplace(transform_90)
-engine.addEntity(yellowwall_40)
-
-const greenwall_23 = new Entity()
-greenwall_23.setParent(level)
-greenwall_23.addComponentOrReplace(gltfShape_3)
-const transform_91 = new Transform({
-  position: new Vector3(4, 1.5, 11.5),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_23.addComponentOrReplace(transform_91)
-engine.addEntity(greenwall_23)
-
-const greenwall_24 = new Entity()
-greenwall_24.setParent(level)
-greenwall_24.addComponentOrReplace(gltfShape_3)
-const transform_92 = new Transform({
-  position: new Vector3(4, 1.5, 14),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_24.addComponentOrReplace(transform_92)
-engine.addEntity(greenwall_24)
-
-const greenwall_25 = new Entity()
-greenwall_25.setParent(level)
-greenwall_25.addComponentOrReplace(gltfShape_3)
-const transform_93 = new Transform({
-  position: new Vector3(4, 1.5, 16.5),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_25.addComponentOrReplace(transform_93)
-engine.addEntity(greenwall_25)
-
-const greenwall_26 = new Entity()
-greenwall_26.setParent(level)
-greenwall_26.addComponentOrReplace(gltfShape_3)
-const transform_94 = new Transform({
-  position: new Vector3(4, 1.5, 19),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_26.addComponentOrReplace(transform_94)
-engine.addEntity(greenwall_26)
-
-const greenwall_27 = new Entity()
-greenwall_27.setParent(level)
-greenwall_27.addComponentOrReplace(gltfShape_3)
-const transform_95 = new Transform({
-  position: new Vector3(4, 1.5, 21.5),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_27.addComponentOrReplace(transform_95)
-engine.addEntity(greenwall_27)
-
-const greenwall_28 = new Entity()
-greenwall_28.setParent(level)
-greenwall_28.addComponentOrReplace(gltfShape_3)
-const transform_96 = new Transform({
-  position: new Vector3(4, 1.5, 24),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_28.addComponentOrReplace(transform_96)
-engine.addEntity(greenwall_28)
-
-const greenwall_29 = new Entity()
-greenwall_29.setParent(level)
-greenwall_29.addComponentOrReplace(gltfShape_3)
-const transform_97 = new Transform({
-  position: new Vector3(4, 1.5, 26.5),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_29.addComponentOrReplace(transform_97)
-engine.addEntity(greenwall_29)
-
-const yellowwall_41 = new Entity()
-yellowwall_41.setParent(level)
-yellowwall_41.addComponentOrReplace(gltfShape_4)
-const transform_98 = new Transform({
-  position: new Vector3(18.5, 1.5, 13),
-  rotation: new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),
-  scale: Vector3.Zero()
-})
-yellowwall_41.addComponentOrReplace(transform_98)
-engine.addEntity(yellowwall_41)
-
-const yellowwall_42 = new Entity()
-yellowwall_42.setParent(level)
-yellowwall_42.addComponentOrReplace(gltfShape_4)
-const transform_99 = new Transform({
-  position: new Vector3(18.5, 1.5, 15.5),
-  rotation: new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),
-  scale: Vector3.Zero()
-})
-yellowwall_42.addComponentOrReplace(transform_99)
-engine.addEntity(yellowwall_42)
-
-const bluewall_24 = new Entity()
-bluewall_24.setParent(level).addComponentOrReplace(new Blue())
-bluewall_24.addComponentOrReplace(gltfShape_2)
-const transform_100 = new Transform({
-  position: new Vector3(12.5, 1.5, 19.5),
+const closedbarrel_3 = new Entity()
+closedbarrel_3.setParent(level)
+closedbarrel_3.addComponentOrReplace(gltfShape_8)
+const transform_120 = new Transform({
+  position: new Vector3(22, 0, 6.5),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_24.addComponentOrReplace(transform_100)
-engine.addEntity(bluewall_24)
+closedbarrel_3.addComponentOrReplace(transform_120)
 
-const bluewall_25 = new Entity()
-bluewall_25.setParent(level).addComponentOrReplace(new Blue())
-bluewall_25.addComponentOrReplace(gltfShape_2)
-const transform_101 = new Transform({
-  position: new Vector3(10, 1.5, 19.5),
-  rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+const biohazardsuit_2 = new Entity()
+biohazardsuit_2.setParent(level)
+biohazardsuit_2.addComponentOrReplace(gltfShape_6)
+const transform_121 = new Transform({
+  position: new Vector3(17.5, 1.7678871423097409, 4.5),
+  rotation: new Quaternion(0, -0.9807852804032305, 0, -0.1950903220161282),
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_25.addComponentOrReplace(transform_101)
-engine.addEntity(bluewall_25)
+biohazardsuit_2.addComponentOrReplace(transform_121)
 
-const bluewall_26 = new Entity()
-bluewall_26.setParent(level).addComponentOrReplace(new Blue())
-bluewall_26.addComponentOrReplace(gltfShape_2)
-const transform_102 = new Transform({
-  position: new Vector3(7.5, 1.5, 19.5),
-  rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+const biohazardsuit_3 = new Entity()
+biohazardsuit_3.setParent(level)
+biohazardsuit_3.addComponentOrReplace(gltfShape_6)
+const transform_122 = new Transform({
+  position: new Vector3(20.5, 2, 8.5),
+  rotation: new Quaternion(0, 0.881921264348355, 0, 0.4713967368259978),
+  scale: new Vector3(1, 1, 1)
 })
-bluewall_26.addComponentOrReplace(transform_102)
-engine.addEntity(bluewall_26)
+biohazardsuit_3.addComponentOrReplace(transform_122)
 
-const bluewall_27 = new Entity()
-bluewall_27.setParent(level).addComponentOrReplace(new Blue())
-bluewall_27.addComponentOrReplace(gltfShape_2)
-const transform_103 = new Transform({
-  position: new Vector3(3, 1.5, 19.5),
-  rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
+const metalstructure = new Entity()
+metalstructure.setParent(level)
+const gltfShape_9 = new GLTFShape('models/metalstructure.glb')
+metalstructure.addComponentOrReplace(gltfShape_9)
+const transform_123 = new Transform({
+  position: new Vector3(11.5, 0, 28),
+  rotation: new Quaternion(0, -0.9999999999999999, 0, -3.608224830031759e-16),
+  scale: new Vector3(0.8685689583211236, 0.8179400548103057, 0.8459883213939605)
 })
-bluewall_27.addComponentOrReplace(transform_103)
-engine.addEntity(bluewall_27)
+metalstructure.addComponentOrReplace(transform_123)
 
-const bluewall_28 = new Entity()
-bluewall_28.setParent(level).addComponentOrReplace(new Blue())
-bluewall_28.addComponentOrReplace(gltfShape_2)
-const transform_104 = new Transform({
-  position: new Vector3(5.246343354628706, 1.5, 19.5),
-  rotation: new Quaternion(0, 0, 0, 1),
-  scale: Vector3.Zero()
-})
-bluewall_28.addComponentOrReplace(transform_104)
-engine.addEntity(bluewall_28)
+}
 
-const greenwall_30 = new Entity()
-greenwall_30.setParent(level)
-greenwall_30.addComponentOrReplace(gltfShape_3)
-const transform_105 = new Transform({
-  position: new Vector3(24, 1.5, 22),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_30.addComponentOrReplace(transform_105)
-engine.addEntity(greenwall_30)
+    export function createWalls(level:Level)
+    {
 
-const greenwall_31 = new Entity()
-greenwall_31.setParent(level)
-greenwall_31.addComponentOrReplace(gltfShape_3)
-const transform_106 = new Transform({
-  position: new Vector3(24, 1.5, 19),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_31.addComponentOrReplace(transform_106)
-engine.addEntity(greenwall_31)
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+    
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(27.5, 1.5, 28.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),_colorNames.GREEN))
+        
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(30, 1.5, 29.5), new Quaternion(0, 0, 0, 1),_colorNames.BLUE))
 
-const greenwall_32 = new Entity()
-greenwall_32.setParent(level)
-greenwall_32.addComponentOrReplace(gltfShape_3)
-const transform_107 = new Transform({
-  position: new Vector3(24, 1.5, 16),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_32.addComponentOrReplace(transform_107)
-engine.addEntity(greenwall_32)
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 28.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-const greenwall_33 = new Entity()
-greenwall_33.setParent(level)
-greenwall_33.addComponentOrReplace(gltfShape_3)
-const transform_108 = new Transform({
-  position: new Vector3(24, 1.5, 13),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_33.addComponentOrReplace(transform_108)
-engine.addEntity(greenwall_33)
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 26.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-const greenwall_34 = new Entity()
-greenwall_34.setParent(level)
-greenwall_34.addComponentOrReplace(gltfShape_3)
-const transform_109 = new Transform({
-  position: new Vector3(24, 1.5, 24.5),
-  rotation: new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844),
-  scale: Vector3.Zero()
-})
-greenwall_34.addComponentOrReplace(transform_109)
-engine.addEntity(greenwall_34)
-           
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 25), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-    }
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 23), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
-    */
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 21), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 15.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 13.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 11.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 9.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 7.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 5.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 3.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 1.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(30, 1.5, 7), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 9), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18.5, 1.5, 18),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(25.5, 1.5, 28.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(25.5, 1.5, 26.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+        
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(30, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(28, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(22, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15, 1.5, 0.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(12, 1.5, 0.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10, 1.5, 0.5),new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(8, 1.5, 0.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(6, 1.5, 0.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 0.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2, 1.5, 0.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 1.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 3.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 7.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 9.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 11.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 13.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 15.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 17.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 19.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 21), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 23), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 25), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(1, 1.5, 27), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(22.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(14.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(12.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(8.5, 1.5, 25.5), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 26.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 28.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(6.5, 1.5, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4.5, 1.5, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2.5, 1.5, 29.5),new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15, 1.5, 7), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(28.5, 1.5, 22), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+        
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26, 1.5, 20), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(28.5, 1.5, 18), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5, 16), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(28.5, 1.5, 14), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(27.5, 1.5, 7),new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(25.5, 1.5, 7),new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(22.5, 1.5, 7),new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(20, 1.5, 7),new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(17.5, 1.5, 7),new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18.5, 1.5, 10.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29.5, 1.5, 25.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(12.5, 1.5, 7), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 7), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 7), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(5, 1.5, 7), new Quaternion(0, -1.0000000000000002, 0, 2.914335439641036e-16), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 11.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 14), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 16.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 19), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 21.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 24), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4, 1.5, 26.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18.5, 1.5, 13), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18.5, 1.5, 15.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.YELLOW))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(12.5, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(5.5, 1.5, 19.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 22), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 19), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 16), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 13), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 24.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
+
+
+
 }
