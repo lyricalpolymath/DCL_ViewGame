@@ -16,7 +16,7 @@
 
 
 # CHANGE THIS
-fileToRead = "./game_level5.ts"
+fileToRead = "./game_level6.ts"
 
 ################  WALL FUNCTIONS
 def find_between( s, first, last ):
