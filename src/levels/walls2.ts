@@ -22,9 +22,11 @@ import { user_level, user_address } from "../game"
           method: 'post',
           body: JSON.stringify({"id": user_address, "level": 1})
         }).then(function(response) {
+          log(response)
           return response.json();
         }).then(function(data) {
           log("added user to the server")
+          log(data)
         });
       }))
 

@@ -25,6 +25,7 @@ export class Level extends Entity
     activeLens:string
     pickClip = Globals.pickClip
     pickSource = new AudioSource(this.pickClip)
+    levelAudio:AudioSource
     showWallSystem:WallBumpSystem
     glitch1Ent:WallAnimation
     glitch2Ent:WallAnimation
@@ -52,6 +53,12 @@ export class Level extends Entity
         {
             case 1:
                 log("creating level 1")
+                var levelAudio = new AudioClip('sounds/Level1.mp3')
+                this.levelAudio = new AudioSource(levelAudio)
+                this.addComponentOrReplace(this.levelAudio)
+                this.levelAudio.volume = 1
+                this.levelAudio.loop = true
+                this.levelAudio.playing = true
                 this.createLevel1()
                 break;
             
@@ -74,7 +81,14 @@ export class Level extends Entity
 
     createLevel1()
     { 
-        Walls1.createLevel(this)
+      this.blueWalls = new Entity()
+      this.blueWalls.setParent(this)
+      this.blueWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+        Walls1.createScene(this)
+        //Walls1.createWalls(this)
     }
 
     createLevel2()
