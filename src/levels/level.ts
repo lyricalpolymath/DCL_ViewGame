@@ -6,6 +6,7 @@ import * as Walls2 from "./walls2"
 import * as Walls3 from "./walls3"
 import * as Walls4 from "./walls4"
 import * as Walls5 from "./walls5"
+import * as Walls6 from "./walls6"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
 import { WallAnimation } from "./wall_animation"
@@ -83,6 +84,12 @@ export class Level extends Entity
                 log('creating level 5')
                 this.createLevel5()
                 break;
+
+            case 6:
+                log('creating level 6')
+                this.createLevel6()
+                break;
+        
         }
 
       //TODO
@@ -210,6 +217,18 @@ export class Level extends Entity
         Walls5.createScene(this)
         Walls5.createWalls(this)
     }
+    createLevel6()
+    {
+        var levelAudio = new AudioClip('sounds/level6.mp3')
+        this.levelAudio = new AudioSource(levelAudio)
+        this.addComponentOrReplace(this.levelAudio)
+        this.levelAudio.volume = .5
+        this.levelAudio.loop = true
+        this.levelAudio.playing = true
+
+        Walls6.createScene(this)
+        Walls6.createWalls(this)
+    }
 
     getWalls()
     {
@@ -232,6 +251,9 @@ export class Level extends Entity
                 this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;
 
             case _colorNames.BLUE:
@@ -250,6 +272,9 @@ export class Level extends Entity
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;            
                 
             case _colorNames.RED:
@@ -259,6 +284,9 @@ export class Level extends Entity
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;  
                 
             case _colorNames.BLACK:
@@ -268,7 +296,46 @@ export class Level extends Entity
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;    
+
+            case _colorNames.WHITE:
+                    log("need to show all the yellow walls in this level")
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                    this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                break; 
+            
+            case _colorNames.TURQUOISE:
+                    log("need to show all the yellow walls in this level")
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                    this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                break; 
+
+            case _colorNames.PURPLE:
+                    log("need to show all the yellow walls in this level")
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                    this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                break; 
 
             case _colorNames.NONE:
                     log("no lens on, don't show any walls")
@@ -277,6 +344,9 @@ export class Level extends Entity
                     this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;
         }
     }

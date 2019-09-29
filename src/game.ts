@@ -91,8 +91,8 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           {
             log("user found. retrieving information.")
             log(data)
-            log(data.Item.inventory.playerData.currentLevel)
-            user_level = data.Item.inventory.playerData.currentLevel
+            log(data.Item.level)
+            user_level = data.Item.level
   
             currentLevelNumber = user_level
             updateLevelUI(currentLevelNumber)
