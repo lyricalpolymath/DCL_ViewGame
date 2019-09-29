@@ -14,7 +14,6 @@ import * as Globals from "./functions"
 export var user_address:string = "NONE"
 export var user_level = 1
 
-
 //try to get user ethereum address
 executeTask(async () => {
   try {
@@ -60,9 +59,7 @@ var activeLens:string = _colorNames.NONE
 //var sceneLevels:Level[] = [new Level(scene, events, 0, "Level" + 0,["none"], activeLens)]
 
 ///create reusable components across levels
-//const transitionScene = new TransitionScene(transitionBox,events)
-//transitionScene.setParent(scene)
-
+const transitionScene = new TransitionScene(events)
 
 //getServerInfo("")
 
@@ -85,7 +82,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           {
             log("user hasn't played. need to store information on server")
             currentLevelNumber = 1
-            user_level = 1
+            user_level = currentLevelNumber
             updateLevelUI(currentLevelNumber)
             currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
             currentLevel.setParent(scene)
@@ -94,10 +91,10 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           {
             log("user found. retrieving information.")
             log(data)
-            log(data.Item.level)
-            user_level = data.Item.level
+            log(data.Item.inventory.playerData.currentLevel)
+            user_level = data.Item.inventory.playerData.currentLevel
   
-            currentLevelNumber = data.Item.level
+            currentLevelNumber = user_level
             updateLevelUI(currentLevelNumber)
             currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
             currentLevel.setParent(scene)
@@ -144,11 +141,11 @@ State.events.addListener(StateUpdate,scene,()=>{
 
 //listen for when the transition scene is complete
 events.addListener(TransitionLevelComplete,null,()=>{
+    engine.removeEntity(transitionScene)
     currentLevelNumber++
+    updateLevelUI(currentLevelNumber)
     currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
     currentLevel.setParent(scene)
-    //engine.removeEntity(transitionScene)
-    updateLevelUI(currentLevelNumber)
 })
 
 function updateLevelUI(levelui:number)
@@ -159,9 +156,9 @@ function updateLevelUI(levelui:number)
 
 function doTransitionLevel(lev:number)
 {
-   // transitionScene.setParent(scene)
+    transitionScene.setParent(scene)
     engine.removeEntity(currentLevel)
-    //transitionScene.start()
+    transitionScene.start()
 }
 
 

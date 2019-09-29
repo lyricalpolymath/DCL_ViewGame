@@ -77,7 +77,7 @@ export class GlassFilter extends Entity {
         rect.color =  Color4.Red()
         rect.opacity = 0.3
         rect.visible = false
-
+        rect.isPointerBlocker = false
     }
 
     /**

@@ -1,12 +1,14 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import { Level } from "./level"
+import * as Globals from "../functions"
 import { _colorNames } from "../gameSettings"
 
     export function createScene(level:Level)
     {
 
       /*
+      
         const floorBaseGrass_01 = new Entity()
         floorBaseGrass_01.setParent(level)
         const gltfShape = new GLTFShape('models/FloorBaseGrass_01.glb')
@@ -49,7 +51,6 @@ import { _colorNames } from "../gameSettings"
         floorBaseGrass_01_4.addComponentOrReplace(transform_5)
 
         */
-
        const blueGlasses = new Entity()
        blueGlasses.addComponentOrReplace(new GLTFShape('models/blueglasses.glb'))
        blueGlasses.setParent(level)
@@ -57,10 +58,18 @@ import { _colorNames } from "../gameSettings"
          position: new Vector3(16,1.5,16),
          scale: new Vector3(2,2,2)
        }))
+       blueGlasses.addComponentOrReplace(new OnClick(e=>{
+         level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+       }))
+       
 
-        //const lvl1 = new Entity()
-        //lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
-        //lvl1.setParent(level)
+        const lvl1 = new Entity()
+        lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
+        lvl1.addComponentOrReplace(new Transform({
+          position: new Vector3(15,0,15),
+          scale: new Vector3(.99,.99,.99)
+        }))
+        lvl1.setParent(level)
       
     }
 

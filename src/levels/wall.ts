@@ -51,7 +51,7 @@ export class Wall extends Entity
                 break;
 
             case _colorNames.RED:
-                this.holdingEntity = this.level.yellowWalls
+                this.holdingEntity = this.level.redWalls
                 this.addComponentOrReplace(Globals.redWall)
                 break;
             
@@ -66,18 +66,23 @@ export class Wall extends Entity
                 break;
 
             case _colorNames.WHITE:
-                this.holdingEntity = this.level.yellowWalls
+                this.holdingEntity = this.level.whiteWalls
                 this.addComponentOrReplace(Globals.whiteWall)
                 break;
 
             case _colorNames.TURQUOISE:
-                this.holdingEntity = this.level.yellowWalls
+                this.holdingEntity = this.level.turquoiseWalls
                 this.addComponentOrReplace(Globals.turqouiseWall)
                 break;
 
             case _colorNames.PURPLE:
-                this.holdingEntity = this.level.yellowWalls
+                this.holdingEntity = this.level.purpleWalls
                 this.addComponentOrReplace(Globals.purpleWall)
+                break;
+
+            case _colorNames.BLACK:
+                this.holdingEntity = this.level.blackWalls
+                this.addComponentOrReplace(Globals.blackWall)
                 break;
         }
 
