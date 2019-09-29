@@ -8,7 +8,7 @@ export var TESTMODE = true
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 
 export var proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-export var getUrl = "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.com/production/user/"
+export var getUrl = "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.com/production/user"
 export var awsGet = proxyUrl + getUrl
 export var putUrl = "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.com/production/user/update/"
 export var awsPut = proxyUrl + putUrl

@@ -16,7 +16,9 @@ export var user_level = 1
 
 
 //try to get user ethereum address
+log("execute Task 1")
 executeTask(async () => {
+  log("execute Task to get user address")
   try {
     const address = await getUserAccount()
     log(address)
@@ -68,28 +70,38 @@ var activeLens:string = _colorNames.NONE
 //future functionality to grab current scene from server for specific avatar
 function getServerInfo(address:string)//:Entity
 {
+  address = address.toLowerCase();      // correct the address case to make sure of consinstency
+  let apiUrl = Globals.awsGet + "?user="+ address
+  log("GET SERVER INFO - address: " + address)
+  log("GET SERVER INFO - going to call url: " + apiUrl )
 
-  executeTask(async () => {
+  executeTask(async () => {  
     try {
-      let response = await fetch(Globals.awsGet + "?user="+ user_address, {
-        headers: { "Content-Type": "application/json" },
-        method: "GET"
+      let response = await fetch( apiUrl , {
+        headers: { 
+          "Content-Type": "application/json",
+          "Origin": "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.com",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        method: "GET",
       })
-      .then(response => response.json())
+      //.then(response => {response.json()) // this works for lastraum
+      .then(response => {
+        log("GET SERVER INFO - response1: ", response)
+        return response.json(); //BB Note missing return - need to return it to pass it onto the next one
+      })
       .then(data => {
-        log(data)
+        log("GET SERVER INFO - data:", data)
         if(!Object.keys(data).length)
         {
-          log("user hasn't played. need to store information on server")
+          //TODO implement the POST to the server
+          log("GET SERVER INFO - user hasn't played. need to store information on server")
           currentLevelNumber = 1
           user_level = 1
-          currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
-          currentLevel.setParent(scene)
-          updateLevelUI(currentLevelNumber)
         }
         else
         {
-          log("user found. retrieving information.")
+          log("GET SERVER INFO - user found. retrieving information - data: ", data)
           log(data)
           log(data.Item.level)
           user_level = data.Item.level
