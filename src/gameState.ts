@@ -55,23 +55,62 @@ export class State {
         RED: { 
             name: "RED", 
             color:  Settings.colors.RED, 
-            available: true, 
+            available: false, 
             active: false
         },
         GREEN: { 
             name: "GREEN", 
             color:  Settings.colors.GREEN, 
-            available: true, 
+            available: false, 
             active: false
         },
         BLUE: { 
             name: "BLUE", 
             color:  Settings.colors.BLUE, 
-            available: true, 
+            available: false, 
             active: false
         },
         
     }
+
+    public static playerData:any = {
+        //address: "",       // will be assigned when found
+        currentLevel: 1,    //default 1 but we can put a flag in settings when exporting it
+        levels: {
+            level1: {
+                startTime: null,     // Datetime
+                endTime: null,       // will be written when the player finds the reward
+                bumps: 0             // +1 at each bump
+            },
+            level2: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level3: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level4: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level5: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level6: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            }
+        }
+    }
+
+
 
     /**
      * returns wither a single color is active or multiple ones
@@ -132,10 +171,18 @@ export class State {
 //////////////////////////// STATE MUTATORS
 
 
-    // TODO - create this unique function that reduces the State changes and fires this updateStateEvent
-    public static updateState(payload:any) {
-        log(fname+"updateState payload: ", payload);
-        //TODO
+     //TODO - create this unique function that reduces the State changes and fires this updateStateEvent
+     //public static updateState(payload:any) {
+     //    log(fname+"updateState payload: ", payload);
+     //    //TODO
+     //}
+
+    /** 
+     * simple wrapper of a StateUpdate Event to inform all listening objects to update
+    */
+    public static updateState() {
+        log(fname+"updateState");
+        this.events.fireEvent(new StateUpdate())
     }
     
 

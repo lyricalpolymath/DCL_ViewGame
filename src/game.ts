@@ -8,26 +8,30 @@ import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
 import * as Globals from "./functions"
-
+import { UserData } from "utilities/UserData";
 
 
 export var user_address:string = "NONE"
 export var user_level = 1
 
 
-//try to get user ethereum address
+//*try to get user ethereum address
 executeTask(async () => {
   try {
     const address = await getUserAccount()
     log(address)
     user_address = address
-    getServerInfo(address, true)
+    //getServerInfo(address, true)
+    getServerInfo_BB(address, true)
+
+
   } catch (error) {
     log("heres the eror " + error.toString())
     getServerInfo("", false)
     //getServerInfo()
   }
 })
+
 
 
 // the filter that appears in front of the camera
@@ -65,6 +69,86 @@ var activeLens:string = _colorNames.NONE
 
 
 //getServerInfo("")
+
+
+/**
+ * Created alternative Function to be able to tweak it and avoid merging problems
+ * @param address 
+ * @param ethSuccess 
+ */
+const fname = "game."
+function getServerInfo_BB(address:string,ethSuccess:boolean)//:Entity
+{
+  log(fname+"getServerInfo_BB ethSuccess: " + ethSuccess +" - address: " + address )
+  if(ethSuccess)
+  {
+    // convert user to lowerCase to avoid conflicts
+    address = address.toLowerCase()
+    let apiUrl = Globals.awsGet + "?user="+ address         // BB version, better use the parameter passed in the function so that we can call this from anywhere
+    //let apiUrl = Globals.awsGet + "?user="+ user_address // laustram version
+    log(fname+"found a user - fetch url: " + apiUrl)
+
+    executeTask(async () => {
+      try {
+        let response = await fetch( apiUrl, {
+          headers: { "Content-Type": "application/json" },
+          method: "GET"
+        })
+        .then(response => response.json())
+        .then(data => {
+          log(data)
+          if(!Object.keys(data).length)
+          {
+            //TODO - put the info on the server
+            log("user hasn't played. need to store information on server")
+            UserData.updateServer()
+
+            //TODO move these to the appropriate file
+            currentLevelNumber = 1
+            user_level = 1
+            updateLevelUI(currentLevelNumber)
+            currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+            currentLevel.setParent(scene)
+          }
+          else
+          {
+            log(fname+"user found. retrieving information: data", data)
+            UserData.parseServerDataAndUpdateState(data);                // BB added this to parse the Data from the server
+            //log(data)
+            //log(data.Item.level)
+            user_level = data.Item.level
+  
+            currentLevelNumber = data.Item.level
+            updateLevelUI(currentLevelNumber)
+            currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+            currentLevel.setParent(scene)
+            
+          }
+        })
+      } catch(e) {
+        log("error is " + e)
+      }
+    })
+  }
+  else
+  {
+      log("got here")
+      user_address = "NONE"
+      user_level = 1
+      currentLevelNumber = user_level
+      updateLevelUI(currentLevelNumber)
+      currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+      currentLevel.setParent(scene)
+      
+  }
+
+}
+
+
+
+
+
+
 
 //future functionality to grab current scene from server for specific avatar
 function getServerInfo(address:string,ethSuccess:boolean)//:Entity
