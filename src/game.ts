@@ -8,7 +8,7 @@ import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
 import * as Globals from "./functions"
-import { UserData } from "./utilities/UserData"
+
 
 
 export var user_address:string = "NONE"
@@ -22,7 +22,6 @@ executeTask(async () => {
     log(address)
     user_address = address
     getServerInfo(address)
-    return address
   } catch (error) {
     log(error.toString())
     //getServerInfo()
@@ -64,7 +63,7 @@ var activeLens:string = _colorNames.NONE
 //transitionScene.setParent(scene)
 
 
-getServerInfo("")
+//getServerInfo("")
 
 //future functionality to grab current scene from server for specific avatar
 function getServerInfo(address:string)//:Entity
@@ -72,7 +71,7 @@ function getServerInfo(address:string)//:Entity
 
   executeTask(async () => {
     try {
-      let response = await fetch(Globals.proxyUrl + Globals.apiUrl + "?user="+ user_address, {
+      let response = await fetch(Globals.awsGet + "?user="+ user_address, {
         headers: { "Content-Type": "application/json" },
         method: "GET"
       })

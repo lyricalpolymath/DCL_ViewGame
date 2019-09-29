@@ -3,6 +3,7 @@ import { Wall } from "./wall"
 import * as Globals from "../functions"
 import * as Walls1 from "./walls1"
 import * as Walls2 from "./walls2"
+import * as Walls3 from "./wall3"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
 import { WallAnimation } from "./wall_animation"
@@ -18,6 +19,7 @@ export class Level extends Entity
     blueWalls:Entity
     greenWalls:Entity
     yellowWalls:Entity
+    redWalls:Entity
     sceneLevel:number
     events:EventManager
     activeLens:string
@@ -57,6 +59,11 @@ export class Level extends Entity
                 log('creating level 2')
                 this.createLevel2()
                 break;
+
+            case 3:
+                log('creating leve 3')
+                this.createLevel3()
+                break;
         }
 
       //TODO
@@ -95,6 +102,37 @@ export class Level extends Entity
       Walls2.createScene(this)
       //////////////create all the walls for this level
       Walls2.createWalls(this)
+    }
+
+    createLevel3()
+    {
+      //// add the wall holding entities for all the types of lenses in this level
+      this.blueWalls = new Entity()
+      this.blueWalls.setParent(this)
+      this.blueWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      this.yellowWalls = new Entity()
+      this.yellowWalls.setParent(this)
+      this.yellowWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      this.greenWalls = new Entity()
+      this.greenWalls.setParent(this)
+      this.greenWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      this.redWalls = new Entity()
+      this.redWalls.setParent(this)
+      this.redWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      Walls3.createScene(this)
+      Walls3.createWalls(this)
     }
 
     getWalls()
