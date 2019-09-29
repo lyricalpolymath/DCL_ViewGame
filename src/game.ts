@@ -172,6 +172,7 @@ events.addListener(LevelLoadingComplete,null,()=>{
 events.addListener(TransitionLevelComplete,null,()=>{
     engine.removeEntity(transitionScene)
     loadingScene.setParent(scene)
+    engine.addEntity(loadingScene)
 
     currentLevelNumber++
     updateLevelUI(currentLevelNumber)
@@ -189,6 +190,7 @@ function updateLevelUI(levelui:number)
 function doTransitionLevel(lev:number)
 {
     transitionScene.setParent(scene)
+    engine.addEntity(transitionScene)
     engine.removeEntity(currentLevel)
     transitionScene.start()
 }
