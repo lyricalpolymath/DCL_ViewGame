@@ -21,7 +21,7 @@ import { user_level, user_address } from "../game"
         const box = new Entity()
         box.addComponentOrReplace(new BoxShape())
         box.addComponentOrReplace(new Transform({
-          position: new Vector3(16,1.5,16),
+          position: new Vector3(28,1.5,3),
           scale:new Vector3(.8,.8,.8)
         }))
         box.setParent(level)
