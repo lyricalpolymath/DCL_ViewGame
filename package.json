@@ -9,7 +9,7 @@
     "deploy:now": "dcl export && now export",
     "ecs:install": "npm install --save-dev decentraland-ecs@latest",
     "ecs:install-next": "npm install --save-dev decentraland-ecs@next",
-    "reset": "rm -r package-lock.json ./bin ./node_modules"
+    "reset": "rm -r package-lock.json ./bin ./node_modules & npm install"
   },
   "devDependencies": {
     "decentraland-ecs": "^6.4.2"

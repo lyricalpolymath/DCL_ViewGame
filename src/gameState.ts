@@ -74,6 +74,44 @@ export class State {
         
     }
 
+    
+    public static playerData:any = {
+        currentLevel: 1,    //default 1 but we can put a flag in settings when exporting it
+        levels: {
+            level1: {
+                startTime: null,     // Datetime
+                endTime: null,       // will be written when the player finds the reward
+                bumps: 0             // +1 at each bump
+            },
+            level2: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level3: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level4: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level5: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            },
+            level6: {
+                startTime: null,     
+                endTime: null,       
+                bumps: 0             
+            }
+        }
+
+    }
+
     /**
      * returns wither a single color is active or multiple ones
      * @return string
