@@ -50,9 +50,17 @@ import { _colorNames } from "../gameSettings"
 
         */
 
-        const lvl1 = new Entity()
-        lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
-        lvl1.setParent(level)
+       const blueGlasses = new Entity()
+       blueGlasses.addComponentOrReplace(new GLTFShape('models/blueglasses.glb'))
+       blueGlasses.setParent(level)
+       blueGlasses.addComponentOrReplace(new Transform({
+         position: new Vector3(16,1.5,16),
+         scale: new Vector3(2,2,2)
+       }))
+
+        //const lvl1 = new Entity()
+        //lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
+        //lvl1.setParent(level)
       
     }
 
@@ -61,7 +69,7 @@ import { _colorNames } from "../gameSettings"
 
       level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4,1.5,4), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
 
-      /*
+      
 
       level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 21.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
 
@@ -129,6 +137,6 @@ import { _colorNames } from "../gameSettings"
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(28, 1.5, 27.5), new Quaternion(0, 0.3826834323650897, 0, 0.9238795325112867),_colorNames.BLUE))
       
-*/
+
 
 }

@@ -99,17 +99,17 @@ export class Level extends Entity
         var levelAudio = new AudioClip('sounds/Level1.mp3')
         this.levelAudio = new AudioSource(levelAudio)
         this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = 1
+        this.levelAudio.volume = .5
         this.levelAudio.loop = true
-        this.levelAudio.playing = true
+        this.levelAudio.playing = false
         Walls1.createScene(this)
-        //Walls1.createWalls(this)
+        Walls1.createWalls(this)
     }
 
     createLevel2()
     {
 
-      //Walls2.createScene(this)
+      Walls2.createScene(this)
       //////////////create all the walls for this level
       Walls2.createWalls(this)
     }
