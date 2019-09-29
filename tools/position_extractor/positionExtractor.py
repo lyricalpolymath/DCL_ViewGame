@@ -16,7 +16,7 @@
 
 
 # CHANGE THIS
-fileToRead = "./game_level3.ts"
+fileToRead = "./game_level5.ts"
 
 ################  WALL FUNCTIONS
 def find_between( s, first, last ):
@@ -68,7 +68,7 @@ with open(fileToRead, 'r') as myfile:
   data = myfile.read()
     
 #print data  
-entList = data.split("\n\n\n")
+entList = data.split("\n\n")
 print "found " + str(len(entList)) + " objects"
 #print entList[1]
 
