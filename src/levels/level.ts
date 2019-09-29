@@ -49,16 +49,31 @@ export class Level extends Entity
         this.glitch2Ent = new WallAnimation(this)
         this.glitch3Ent = new WallAnimation(this)
 
+        
+      //// add the wall holding entities for all the types of lenses in this level
+      this.blueWalls = new Entity()
+      this.blueWalls.setParent(this)
+      this.blueWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      this.yellowWalls = new Entity()
+      this.yellowWalls.setParent(this)
+      this.yellowWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+      this.greenWalls = new Entity()
+      this.greenWalls.setParent(this)
+      this.greenWalls.addComponent(new Transform({
+          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
+      }))
+
+
         switch(sceneLevel)
         {
             case 1:
                 log("creating level 1")
-                var levelAudio = new AudioClip('sounds/Level1.mp3')
-                this.levelAudio = new AudioSource(levelAudio)
-                this.addComponentOrReplace(this.levelAudio)
-                this.levelAudio.volume = 1
-                this.levelAudio.loop = true
-                this.levelAudio.playing = true
                 this.createLevel1()
                 break;
             
@@ -81,12 +96,12 @@ export class Level extends Entity
 
     createLevel1()
     { 
-      this.blueWalls = new Entity()
-      this.blueWalls.setParent(this)
-      this.blueWalls.addComponent(new Transform({
-          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
-      }))
-
+        var levelAudio = new AudioClip('sounds/Level1.mp3')
+        this.levelAudio = new AudioSource(levelAudio)
+        this.addComponentOrReplace(this.levelAudio)
+        this.levelAudio.volume = 1
+        this.levelAudio.loop = true
+        this.levelAudio.playing = true
         Walls1.createScene(this)
         //Walls1.createWalls(this)
     }
@@ -94,26 +109,7 @@ export class Level extends Entity
     createLevel2()
     {
 
-      //// add the wall holding entities for all the types of lenses in this level
-      this.blueWalls = new Entity()
-      this.blueWalls.setParent(this)
-      this.blueWalls.addComponent(new Transform({
-          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
-      }))
-
-      this.yellowWalls = new Entity()
-      this.yellowWalls.setParent(this)
-      this.yellowWalls.addComponent(new Transform({
-          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
-      }))
-
-      this.greenWalls = new Entity()
-      this.greenWalls.setParent(this)
-      this.greenWalls.addComponent(new Transform({
-          scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
-      }))
-
-      Walls2.createScene(this)
+      //Walls2.createScene(this)
       //////////////create all the walls for this level
       Walls2.createWalls(this)
     }

@@ -59,7 +59,13 @@ import { _colorNames } from "../gameSettings"
     export function createWalls(level:Level)
     {
 
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 21.5), new Quaternion(0, 0, 0, 1), _colorNames.RED))
+      level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4,1.5,4), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+      /*
+
+      level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 21.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 21.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(17.46390046262978, 1.581462796781092, 16), new Quaternion(0, 0.3826834323650897, 0, 0.9238795325112867),_colorNames.BLUE))
 
@@ -123,6 +129,6 @@ import { _colorNames } from "../gameSettings"
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(28, 1.5, 27.5), new Quaternion(0, 0.3826834323650897, 0, 0.9238795325112867),_colorNames.BLUE))
       
-
+*/
 
 }
