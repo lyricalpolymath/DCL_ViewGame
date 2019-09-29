@@ -60,7 +60,6 @@ console.log(fname + ' function starts');
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
-
 // needed to call it "handle" instead of "handler" to solve the error: function response: Handler 'handle' missing on module 'index'
 // this option can be set through the "handler" field in the (apex-project) project.json file
 // if you look at https://apex.run/  by default node uses "index.handle"
@@ -72,10 +71,10 @@ exports.handle = function(event, context, callback){
     console.log(fname + 'handler - context: %j', context);
 
     let scanningParameters = {
-        TableName: 'MetaGame',//'Leveler',
+        TableName: 'MetaGame',  //'Leveler',
         Key:{
-            //id:event.user  // good for Leveler tabel
             user: event.user
+            //id:event.user     // good for Leveler tabel
         }
     };
     console.log(fname + " scanningParameters: ", scanningParameters);
@@ -85,17 +84,8 @@ exports.handle = function(event, context, callback){
         if(err){
             callback(err, null);
         }else{
-            // callback(null,data); // return everything, but we need to set the headers too
-            callback(null, JSON.stringify(data))
-            /*
-            callback(null, {
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'          // will avoid Cors warnings
-                },
-            })
-            */
+            callback(null,data);
+            //callback(null, JSON.stringify(data))
         }
     });
 }

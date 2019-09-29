@@ -1,14 +1,19 @@
 {   
-    "user":"test",
+    "httpMethod": "PUT",
     
-    "inventory": {
-        "glasses": {
-            "RED":   { "available": true },
-            "GREEN": { "available": false },
-            "BLUE": { "available": false }
-        },
-        "playerData": {
-            "firstBump":false
+    "body": {
+        "user":"test",
+    
+        "inventory": {
+            "glasses": {
+                "RED":   { "available": true },
+                "GREEN": { "available": false },
+                "BLUE": { "available": false }
+            },
+            "playerData": {
+                "firstBump":false
+            }
         }
     }
+    
 }
