@@ -7,50 +7,6 @@ import { _colorNames } from "../gameSettings"
     export function createScene(level:Level)
     {
 
-      /*
-      
-        const floorBaseGrass_01 = new Entity()
-        floorBaseGrass_01.setParent(level)
-        const gltfShape = new GLTFShape('models/FloorBaseGrass_01.glb')
-        floorBaseGrass_01.addComponentOrReplace(gltfShape)
-        const transform_2 = new Transform({
-          position: new Vector3(8, 0, 8),
-          rotation: new Quaternion(0, 0, 0, 1),
-          scale: new Vector3(1, 1, 1)
-        })
-        floorBaseGrass_01.addComponentOrReplace(transform_2)
-        
-        const floorBaseGrass_01_2 = new Entity()
-        floorBaseGrass_01_2.setParent(level)
-        floorBaseGrass_01_2.addComponentOrReplace(gltfShape)
-        const transform_3 = new Transform({
-          position: new Vector3(24, 0, 8),
-          rotation: new Quaternion(0, 0, 0, 1),
-          scale: new Vector3(1, 1, 1)
-        })
-        floorBaseGrass_01_2.addComponentOrReplace(transform_3)
-        
-        const floorBaseGrass_01_3 = new Entity()
-        floorBaseGrass_01_3.setParent(level)
-        floorBaseGrass_01_3.addComponentOrReplace(gltfShape)
-        const transform_4 = new Transform({
-          position: new Vector3(8, 0, 24),
-          rotation: new Quaternion(0, 0, 0, 1),
-          scale: new Vector3(1, 1, 1)
-        })
-        floorBaseGrass_01_3.addComponentOrReplace(transform_4)
-        
-        const floorBaseGrass_01_4 = new Entity()
-        floorBaseGrass_01_4.setParent(level)
-        floorBaseGrass_01_4.addComponentOrReplace(gltfShape)
-        const transform_5 = new Transform({
-          position: new Vector3(24, 0, 24),
-          rotation: new Quaternion(0, 0, 0, 1),
-          scale: new Vector3(1, 1, 1)
-        })
-        floorBaseGrass_01_4.addComponentOrReplace(transform_5)
-
-        */
        const blueGlasses = new Entity()
        blueGlasses.addComponentOrReplace(new GLTFShape('models/blueglasses.glb'))
        blueGlasses.setParent(level)
@@ -59,6 +15,17 @@ import { _colorNames } from "../gameSettings"
          scale: new Vector3(2,2,2)
        }))
        blueGlasses.addComponentOrReplace(new OnClick(e=>{
+         engine.removeEntity(blueGlasses)
+         const box = new Entity()
+         box.addComponentOrReplace(new BoxShape())
+         box.addComponentOrReplace(new Transform({
+           position: new Vector3(16,1.5,16),
+           scale:new Vector3(.8,.8,.8)
+         }))
+         box.setParent(level)
+         box.addComponentOrReplace(new OnClick(e=>{
+           level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
+         }))
          level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
        }))
        

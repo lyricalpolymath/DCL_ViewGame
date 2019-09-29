@@ -1,19 +1,24 @@
 import utils from "../node_modules/decentraland-ecs-utils/index"
 import { Level } from "./levels/level"
 import { TransitionScene } from "./levels/transitionScene"
-import {LevelCompleted, TransitionLevelComplete} from "./functions"
+import {LevelCompleted, TransitionLevelComplete, LevelLoadingComplete, DoTransition} from "./functions"
 import { getUserAccount } from '@decentraland/EthereumController'
 import { GlassFilter } from "gameObjects/GlassFilter"
 import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
 import * as Globals from "./functions"
+import { LoadingScene } from "./levels/loadingScene"
 
 
 
 export var user_address:string = "NONE"
 export var user_level = 1
 
+startGame()
+
+function startGame()
+{
 //try to get user ethereum address
 executeTask(async () => {
   try {
@@ -27,7 +32,7 @@ executeTask(async () => {
     //getServerInfo()
   }
 })
-
+}
 
 // the filter that appears in front of the camera
 var glass = new GlassFilter()
@@ -60,6 +65,9 @@ var activeLens:string = _colorNames.NONE
 
 ///create reusable components across levels
 const transitionScene = new TransitionScene(events)
+//transitionScene.setParent(scene)
+const loadingScene = new LoadingScene(events)
+//loadingScene.setParent(scene)
 
 //getServerInfo("")
 
@@ -124,11 +132,24 @@ events.addListener(LevelCompleted,null,({l})=>{
     log("user won the level " + l)
 
     ///////need to show a congrats message and explain what they just picked up
-    if(l == 1)
+    switch(l)
     {
+      case 1:
         log("level " + l + " complete. found blue lens. add it to the inventory.")
+        State.updateGlassState(_colorNames.BLUE, true)
+        break;
+
+      case 2:
+        log("level " + l + " complete. found blue lens. add it to the inventory.")
+        State.updateGlassState(_colorNames.BLUE, false)
+        State.updateGlassState(_colorNames.GREEN, true)
+        break;
     }
-    doTransitionLevel(l)
+})
+
+events.addListener(DoTransition,null,({l})=>{
+  log("transitioning from level " + l + " to level " + (l+1))
+  doTransitionLevel(l)
 })
 
 
@@ -139,13 +160,24 @@ State.events.addListener(StateUpdate,scene,()=>{
 })
 
 
+
+//listen for when the loading current level is complete
+events.addListener(LevelLoadingComplete,null,()=>{
+  engine.removeEntity(loadingScene)
+  loadingScene.setParent(null)
+
+})
+
 //listen for when the transition scene is complete
 events.addListener(TransitionLevelComplete,null,()=>{
     engine.removeEntity(transitionScene)
+    loadingScene.setParent(scene)
+
     currentLevelNumber++
     updateLevelUI(currentLevelNumber)
     currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
     currentLevel.setParent(scene)
+    currentLevel.showWallsForLens(State.getActiveColor())
 })
 
 function updateLevelUI(levelui:number)

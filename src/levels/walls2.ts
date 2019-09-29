@@ -9,6 +9,28 @@ import { user_level, user_address } from "../game"
     export function createScene(level:Level)
     {
 
+      const glasses = new Entity()
+      glasses.addComponentOrReplace(new GLTFShape('models/greenglasses.glb'))
+      glasses.setParent(level)
+      glasses.addComponentOrReplace(new Transform({
+         position: new Vector3(28,1.5,3),
+         scale: new Vector3(2,2,2)
+       }))
+       glasses.addComponentOrReplace(new OnClick(e=>{
+        engine.removeEntity(glasses)
+        const box = new Entity()
+        box.addComponentOrReplace(new BoxShape())
+        box.addComponentOrReplace(new Transform({
+          position: new Vector3(16,1.5,16),
+          scale:new Vector3(.8,.8,.8)
+        }))
+        box.setParent(level)
+        box.addComponentOrReplace(new OnClick(e=>{
+          level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
+        }))
+        level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+      }))
+
       const skull = new Entity()
       skull.setParent(level)
       skull.addComponentOrReplace(new GLTFShape('models/skull1.glb'))
@@ -389,5 +411,5 @@ metalstructure.addComponentOrReplace(transform_123)
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 24.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
 
 
-
+        level.events.fireEvent(new Globals.LevelLoadingComplete())
 }
