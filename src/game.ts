@@ -67,23 +67,17 @@ events.addListener(LevelCompleted,null,({l})=>{
 })
 
 
-
-
-
-//////////////////////////
 //listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
+<<<<<<< Updated upstream
 
 
 State.events.addListener(StateUpdate,null,()=>{
+=======
+State.events.addListener(StateUpdate,scene,()=>{
+>>>>>>> Stashed changes
   log("changed lens, so we need to change which walls are visible")
   currentLevel.showWallsForLens(State.getActiveColor())
 })
-
-
-
-//////////////////////////////////////////
-
-
 
 
 //listen for when the transition scene is complete

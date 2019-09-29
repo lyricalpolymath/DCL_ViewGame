@@ -30,6 +30,10 @@ export class Wall extends Entity
     holdingEntity:Entity
     bumpSource:AudioSource
     bumped:boolean = false
+<<<<<<< Updated upstream
+=======
+    glitchEntityArray:Entity[] = [null]
+>>>>>>> Stashed changes
 
     constructor(levelE:Level, holdingEntity:Entity, name:string, glb:GLTFShape, position:Vector3, rotation: Quaternion, color:string)
     {
@@ -43,7 +47,30 @@ export class Wall extends Entity
 
         this.setParent(holdingEntity)
         this.addComponent(this.bumpSource)
+<<<<<<< Updated upstream
 
+=======
+        
+        
+        
+        /*
+        for(var i = 1; i < 13; i++)
+        {
+            let temp = new Entity()
+            temp.addComponentOrReplace(Globals.glitchArray[i])
+            temp.addComponentOrReplace(new Transform({
+                position: Vector3.Zero(),
+                rotation: new Quaternion(0,0,0,1),
+                scale: i < 2 ? Vector3.One() : Vector3.Zero()
+            }))
+            temp.setParent(this)
+            this.glitchEntityArray.push(temp)
+        }
+
+        *//////
+        
+        /*
+>>>>>>> Stashed changes
             switch(color)
             {
                 case _colorNames.BLUE:

@@ -21,11 +21,49 @@ export class WallBumpSystem {
         let wall = this.level.levelWalls[i]
         if(!wall.bumped)
         {
+          
           let transform = wall.wallCollider.getComponent(Transform)
+          this.level.wallAnimationEntity.getComponent(Transform).position = transform.position
+          this.level.wallAnimationEntity.getComponent(Transform).rotation = transform.rotation
+
           let dist = Globals.distance(transform.position, this.camera.position)
           if ( dist < 2) {
             log("avatar bumped wall, need to animate")
+<<<<<<< Updated upstream
             wall.animate()
+=======
+            //wall.animate()
+
+            wall.bumped = true
+            //wall.setParent(null)
+            wall.bumpSource.playOnce()
+            
+            const sequence = new utils.ActionsSequenceSystem.SequenceBuilder()
+              .while(() => Globals.bumpCount < 14 && wall.bumped)
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+                .then(new Globals.BumpAction(this.level, wall))
+                .then(new Globals.DelayAction(wall))
+              .endWhile()
+            engine.addSystem(new utils.ActionsSequenceSystem(sequence))
+            
+>>>>>>> Stashed changes
           }
         }
 

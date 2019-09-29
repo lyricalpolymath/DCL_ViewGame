@@ -4,7 +4,7 @@ import {greenWall, yellowWall, blueWall, Yellow} from "../functions"
 import { Level } from "./level"
 import { _colorNames } from "../gameSettings"
 
-    export function createLevel(level:Level)
+    export function level2Walls(level:Level)
     {
 
         level.levelWalls.push(new Wall(level,level.blueWalls,"Wall " + level.levelWalls.length,blueWall, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
@@ -27,7 +27,17 @@ import { _colorNames } from "../gameSettings"
 
         level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 19.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
 
+<<<<<<< Updated upstream
         level.levelWalls.push(new Wall(level,level.yellowWalls,"Wall " + level.levelWalls.length,yellowWall, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+=======
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31, 1.5, 17.5),new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476),_colorNames.YELLOW))
+
+
+
+
+
+        
+>>>>>>> Stashed changes
         
           // }));
 
