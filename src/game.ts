@@ -1,12 +1,31 @@
 import utils from "../node_modules/decentraland-ecs-utils/index"
 import { Level } from "./levels/level"
 import { TransitionScene } from "./levels/transitionScene"
-import {LevelCompleted, TransitionLevelComplete, transitionBox} from "./functions"
-
+import {LevelCompleted, TransitionLevelComplete} from "./functions"
+import { getUserAccount } from '@decentraland/EthereumController'
 import { GlassFilter } from "gameObjects/GlassFilter"
 import { State,StateUpdate } from "gameState"
 import { Settings,_colorNames } from "gameSettings"
 import { InventoryUI } from "gameObjects/Inventory"
+import * as Globals from "./functions"
+import { UserData } from "./utilities/UserData"
+
+
+export var user_address:string
+export var user_level = 1
+//try to get user ethereum address
+executeTask(async () => {
+  try {
+    const address = await getUserAccount()
+    log(address)
+    user_address = address
+    getServerInfo(address)
+    return address
+  } catch (error) {
+    log(error.toString())
+    //getServerInfo()
+  }
+})
 
 
 // the filter that appears in front of the camera
@@ -39,20 +58,45 @@ var activeLens:string = _colorNames.NONE
 //var sceneLevels:Level[] = [new Level(scene, events, 0, "Level" + 0,["none"], activeLens)]
 
 ///create reusable components across levels
-const transitionScene = new TransitionScene(transitionBox,events)
+//const transitionScene = new TransitionScene(transitionBox,events)
 //transitionScene.setParent(scene)
 
 
-getServerInfo()
+//getServerInfo()
 
 //future functionality to grab current scene from server for specific avatar
-function getServerInfo()//:Entity
+function getServerInfo(address:string)//:Entity
 {
-  log("getting current level from server")
-   currentLevelNumber = 2
-   currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
-   currentLevel.setParent(scene)
-   updateLevelUI(currentLevelNumber)
+  executeTask(async () => {
+    try {
+      let response = await fetch(Globals.proxyUrl + Globals.apiUrl + "?user="+ user_address, {
+        headers: { "Content-Type": "application/json" },
+        method: "GET"
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(!Object.keys(data).length)
+        {
+          log("user hasn't played. need to store information on server")
+        }
+        else
+        {
+          log("user found. retrieving information.")
+          log(data)
+          log(data.Item.level)
+          user_level = data.Item.level
+
+          currentLevelNumber = data.Item.level
+          currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+          currentLevel.setParent(scene)
+          updateLevelUI(currentLevelNumber)
+        }
+      })
+    } catch(e) {
+      log("error is " + e)
+    }
+  })
+
 }
 
 events.addListener(LevelCompleted,null,({l})=>{
@@ -85,7 +129,7 @@ events.addListener(TransitionLevelComplete,null,()=>{
     currentLevelNumber++
     currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
     currentLevel.setParent(scene)
-    engine.removeEntity(transitionScene)
+    //engine.removeEntity(transitionScene)
     updateLevelUI(currentLevelNumber)
 })
 
@@ -96,9 +140,9 @@ function updateLevelUI(levelui:number)
 
 function doTransitionLevel(lev:number)
 {
-    transitionScene.setParent(scene)
+   // transitionScene.setParent(scene)
     engine.removeEntity(currentLevel)
-    transitionScene.start()
+    //transitionScene.start()
 }
 
 

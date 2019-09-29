@@ -45,6 +45,7 @@ export class Wall extends Entity
 
         log("creating wall for level " + this.level.name)
 
+<<<<<<< Updated upstream
         this.setParent(holdingEntity)
         this.addComponent(this.bumpSource)
 <<<<<<< Updated upstream
@@ -71,6 +72,52 @@ export class Wall extends Entity
         
         /*
 >>>>>>> Stashed changes
+=======
+        switch(color)
+        {
+            case _colorNames.BLUE:
+                this.holdingEntity = this.level.blueWalls
+                this.addComponentOrReplace(Globals.blueWall)
+                break;
+
+            case _colorNames.RED:
+                this.holdingEntity = this.level.redWalls
+                this.addComponentOrReplace(Globals.redWall)
+                break;
+            
+            case _colorNames.GREEN:
+                this.holdingEntity = this.level.greenWalls
+                this.addComponentOrReplace(Globals.greenWall)
+                break;
+
+            case _colorNames.YELLOW:
+                this.holdingEntity = this.level.yellowWalls
+                this.addComponentOrReplace(Globals.yellowWall)
+                break;
+
+            case _colorNames.WHITE:
+                this.holdingEntity = this.level.yellowWalls
+                this.addComponentOrReplace(Globals.whiteWall)
+                break;
+
+            case _colorNames.TURQUOISE:
+                this.holdingEntity = this.level.yellowWalls
+                this.addComponentOrReplace(Globals.turqouiseWall)
+                break;
+
+            case _colorNames.PURPLE:
+                this.holdingEntity = this.level.yellowWalls
+                this.addComponentOrReplace(Globals.purpleWall)
+                break;
+        }
+
+        this.setParent(this.holdingEntity)
+
+        ///hard testing purposes only
+        /*
+        this.addComponent(this.bumpSource)
+        
+>>>>>>> Stashed changes
             switch(color)
             {
                 case _colorNames.BLUE:
@@ -85,10 +132,17 @@ export class Wall extends Entity
                     this.addComponent(Globals.greenWall)
                     break;
             }
+<<<<<<< Updated upstream
+=======
+
+            */
+
+>>>>>>> Stashed changes
             this.addComponentOrReplace(new Transform({
                 position:position,
                 rotation:rotation
             }))
+<<<<<<< Updated upstream
 
     //for testing purposes only
                   /*
@@ -99,6 +153,8 @@ export class Wall extends Entity
             scale:new Vector3(.1,6,2),
             rotation:rotation
         }))
+=======
+>>>>>>> Stashed changes
         
         */
         
@@ -109,21 +165,5 @@ export class Wall extends Entity
             rotation: this.getComponent(Transform).rotation
         }))
         this.wallCollider.setParent(this.level)
-    }
-
-    animate()
-    {
-        if(!this.bumped)
-        {
-            this.setParent(null)
-            this.bumpSource.playOnce()
-            this.bumped = true
-            this.hasComponent(utils.Delay) ? null : 
-            this.addComponentOrReplace(new utils.Delay(1000,()=>{
-                this.setParent(this.holdingEntity)
-                this.bumped = false
-            }))
-        }
-
     }
 }

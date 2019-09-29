@@ -10,8 +10,12 @@ import {level2Walls} from "./walls2"
 >>>>>>> Stashed changes
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
+<<<<<<< Updated upstream
 import { level2Content } from "./content/level2"
 import { WallAnimation } from "./wall/wallanimation"
+=======
+import { WallAnimation } from "./wall_animation"
+>>>>>>> Stashed changes
 
 
 export class Level extends Entity
@@ -30,7 +34,13 @@ export class Level extends Entity
     pickClip = Globals.pickClip
     pickSource = new AudioSource(this.pickClip)
     showWallSystem:WallBumpSystem
+<<<<<<< Updated upstream
     wallAnimationEntity:WallAnimation
+=======
+    glitch1Ent:WallAnimation
+    glitch2Ent:WallAnimation
+    glitch3Ent:WallAnimation
+>>>>>>> Stashed changes
 
     constructor(scene:Entity, events:EventManager, sceneLevel:number, name:string)
     {
@@ -49,6 +59,10 @@ export class Level extends Entity
 =======
         this.levelWalls = [null]
 >>>>>>> Stashed changes
+
+        this.glitch1Ent = new WallAnimation(this)
+        this.glitch2Ent = new WallAnimation(this)
+        this.glitch3Ent = new WallAnimation(this)
 
         switch(sceneLevel)
         {
@@ -79,7 +93,12 @@ export class Level extends Entity
 
     createLevel2()
     {
+<<<<<<< Updated upstream
     //// add the wall holding entities for all the types of lenses in this level
+=======
+
+      //// add the wall holding entities for all the types of lenses in this level
+>>>>>>> Stashed changes
       this.blueWalls = new Entity()
       this.blueWalls.setParent(this)
       this.blueWalls.addComponent(new Transform({
@@ -106,8 +125,12 @@ export class Level extends Entity
           scale: Globals.TESTMODE ? Vector3.One() : Vector3.Zero()
       }))
 
+<<<<<<< Updated upstream
       //create level 2 content
       level2Content(this)
+>>>>>>> Stashed changes
+=======
+      Walls2.createScene(this)
 >>>>>>> Stashed changes
 
       //////////////create all the walls for this level
