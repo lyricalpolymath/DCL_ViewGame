@@ -84,7 +84,9 @@ import { _colorNames } from "../gameSettings"
     export function createWalls(level:Level)
     {
 
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5584415885299827, 30), new Quaternion(0, 0, 0, 1), _colorNames.RED))
+
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(17.46390046262978, 1.581462796781092, 16), new Quaternion(0, 0, 0, 1), _colorNames.RED))
     
       
 

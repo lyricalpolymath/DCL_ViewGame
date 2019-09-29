@@ -3,7 +3,7 @@ import { ActionsSequenceSystem } from "../node_modules/decentraland-ecs-utils/ac
 import { Wall } from "./levels/wall";
 import { Level } from "./levels/level";
 
-export var TESTMODE = true
+export var TESTMODE = false
 
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 
