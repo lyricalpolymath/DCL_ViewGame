@@ -100,15 +100,17 @@ function getServerInfo_BB(address:string,ethSuccess:boolean)//:Entity
           if(!Object.keys(data).length)
           {
             //TODO - put the info on the server
-            log("user hasn't played. need to store information on server")
+            log(fname+" - user hasn't played. need to store information on server + launch level 1")
             UserData.updateServer()
 
-            //TODO move these to the appropriate file
+            createLevel(1);
+            /*this has been moved to it's own function createLevel 
             currentLevelNumber = 1
             user_level = 1
             updateLevelUI(currentLevelNumber)
             currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
             currentLevel.setParent(scene)
+            */
           }
           else
           {
@@ -116,13 +118,14 @@ function getServerInfo_BB(address:string,ethSuccess:boolean)//:Entity
             UserData.parseServerDataAndUpdateState(data);                // BB added this to parse the Data from the server
             //log(data)
             //log(data.Item.level)
+
+            /* this has been moved to it's own function createLevel  called by the StateUpdate
             user_level = data.Item.level
-  
             currentLevelNumber = data.Item.level
             updateLevelUI(currentLevelNumber)
             currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
             currentLevel.setParent(scene)
-            
+            //*/
           }
         })
       } catch(e) {
@@ -221,8 +224,18 @@ events.addListener(LevelCompleted,null,({l})=>{
 
 //listen for state update when a lens is selected and then show all the walls visible within the level that correspond to the active lens color
 State.events.addListener(StateUpdate,scene,()=>{
-  log("changed lens, so we need to change which walls are visible")
-  currentLevel.showWallsForLens(State.getActiveColor())
+  log("game - StateUpdate - changed lens, so we need to change which walls are visible")
+  log("game - StateUpdate currentLevel: ", currentLevel )
+  if (currentLevel != undefined) { //|| currentLevel.showWallsForLens != undefined) {
+      currentLevel.showWallsForLens( State.getActiveColor() )
+  }
+  
+
+  // create appropriate level
+  log("game - StateUpdate listener - going to change the level")
+  if (currentLevelNumber != State.playerData.currentLevel ) {
+      createLevel(State.playerData.currentLevel);
+  }
 })
 
 
@@ -240,6 +253,21 @@ function updateLevelUI(levelui:number)
     log('updating level text ' + levelui)
     levelText.value = "LEVEL " + levelui
 }
+
+
+/**
+ * creates the level based on the number passed to it (retrive it from State)
+ * @param levelNumber 
+ */
+function createLevel(levelNumber:number) {
+    currentLevelNumber = levelNumber // 1
+    user_level = levelNumber         // 1
+
+    updateLevelUI(currentLevelNumber)
+    currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+    currentLevel.setParent(scene)
+}
+
 
 function doTransitionLevel(lev:number)
 {
