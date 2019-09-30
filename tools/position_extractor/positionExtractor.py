@@ -16,7 +16,7 @@
 
 
 # CHANGE THIS
-fileToRead = "./game_level6.ts"
+fileToRead = "./game_level5.ts"
 
 ################  WALL FUNCTIONS
 def find_between( s, first, last ):
@@ -37,6 +37,26 @@ def getColor(ent):
     #print "color: " + color
     return color
 
+def getNeonColor(ent):
+    ent.lower() # avoids neonWall type of things
+    name = find_between(ent, "neonwall", " = new Entity")
+    name = name[1:]
+    secondChar = ""
+    color = ""
+    # second character can be a space " " or "-" or "_"
+    if(name.find("_") != -1 ): 
+        secondChar = "_"
+        color = name[0: name.index(secondChar)]
+    elif(name.find("-") != -1 ): 
+        secondChar = "-"
+        color = name[0: name.index(secondChar)]
+    elif(name.find(" ") != -1 ): 
+        secondChar = " "
+        color = name[0: name.index(secondChar)]
+    else:
+        color = name
+    return color
+
 def getPosition(ent):  
     position = find_between(ent,"position: ", ",\n")
     #print "position: " + position
@@ -48,7 +68,9 @@ def getRotation(ent):
     return rotation
 
 def getNewWallString(col, pos, rot, model):
-    str = 'level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, ' + pos + ', ' + rot +', _colorNames.'+  col.upper() +'))' + model
+    name = find_between(ent, "const ", " = new Entity")
+    str = 'level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, ' + pos + ', ' + rot +', _colorNames.'+  col.upper() +')) ' #+name #+ model
+    #str = name + " - " + col.upper() + " - " + model
     return str
 
 def getModel(ent):
@@ -79,7 +101,8 @@ wallStrings = ""
 for ent in entList:
     #discard if it doesn't have the "engine.addEntity" string
     if ( isWall(ent) != -1 ):
-        col = getColor(ent)
+        #col = getColor(ent)        #for simple color layers called like "redwall"
+        col = getNeonColor(ent)     #for neon color walls names like "neonwall-blue_1" or "neonwall-blue"
         pos = getPosition(ent)
         rot = getRotation(ent)
         mod = getModel(ent)
