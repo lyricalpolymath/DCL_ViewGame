@@ -155,7 +155,7 @@ export class GlassFilter extends Entity {
     private setListeners() {
       log(fname + "setListeners  State.events: ", State.events);
 
-      State.events.addListener( StateUpdate, null, () => {
+      State.events.addListener( StateUpdate, this, () => {
         log(fname + "State listener")
         //State.updateGlassState(name, active);
         this.handleStateColors()
