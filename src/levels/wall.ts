@@ -37,7 +37,7 @@ export class Wall extends Entity
         super(name)
         this.level = levelE
         this.bumpSource = new AudioSource(Globals.bumpClip)
-        this.bumpSource.volume = 1
+        this.bumpSource.volume = .5
 
         log("creating wall for level " + this.level.name)
         this.addComponent(this.bumpSource)

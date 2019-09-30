@@ -37,6 +37,8 @@ import { _colorNames } from "../gameSettings"
           scale: new Vector3(.99,.99,.99)
         }))
         lvl1.setParent(level)
+
+        level.events.fireEvent(new Globals.LevelLoadingComplete())
       
     }
 
@@ -112,7 +114,6 @@ import { _colorNames } from "../gameSettings"
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(14.5, 1.5, 29.5), new Quaternion(0, 0.3826834323650897, 0, 0.9238795325112867),_colorNames.BLUE))
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length,  new Vector3(28, 1.5, 27.5), new Quaternion(0, 0.3826834323650897, 0, 0.9238795325112867),_colorNames.BLUE))
-      
-
+    
 
 }

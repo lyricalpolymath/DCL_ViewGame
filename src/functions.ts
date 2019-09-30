@@ -24,7 +24,7 @@ export const whiteWall = new GLTFShape("models/neonwall-WHITE.glb")
 export const yellowWall = new GLTFShape("models/neonwall-YELLOW.glb")
 export const wallCollider = new GLTFShape('models/wall_collider.glb') 
 
-export const bumpClip = new AudioClip('sounds/bump.mp3')
+export const bumpClip = new AudioClip('sounds/glitch.mp3')
 export const pickClip = new AudioClip('sounds/pickup.mp3')
 
 export var XFACINGSCALE = new Vector3(.4,1,2)

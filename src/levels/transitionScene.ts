@@ -42,7 +42,7 @@ export class TransitionScene extends Entity
 
         var alphac = new Material()
         alphac.hasAlpha = true
-        alphac.albedoColor = new Color4(1,1,1,0)
+        alphac.albedoColor = new Color4(1,1,1,1)
         firstMover.addComponentOrReplace(alphac)
 
         var secondmover = new Entity()

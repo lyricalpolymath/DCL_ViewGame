@@ -2,6 +2,8 @@ import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import { Level } from "./level"
 import { _colorNames } from "../gameSettings"
+import * as Globals from "../functions"
+
 
 // TODO - some of the levels have a SPECIAL COLOR   YELLOW and PURPLE
 
@@ -251,5 +253,7 @@ import { _colorNames } from "../gameSettings"
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9, 7.017493004957531, 26), new Quaternion(0, 0.9238795325112866, 0, 0.38268343236508984), _colorNames.PURPLE))
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9, 4.8381171611533125, 16.5), new Quaternion(0, 0.7132461560631227, 0, 0.7009136329542885), _colorNames.PURPLE))
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9, 5.576066545571663, 19.51776978755677), new Quaternion(0, 0.7132461560631227, 0, 0.7009136329542885), _colorNames.PURPLE))
+
+        level.events.fireEvent(new Globals.LevelLoadingComplete())
 
     }
