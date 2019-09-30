@@ -9,7 +9,9 @@ export enum _colorNames {
     PURPLE = "PURPLE",
     CYAN   = "CYAN",
     WHITE  = "WHITE",
-    NONE   = "NONE"
+    NONE   = "NONE",
+    TURQUOISE = "TURQUOISE",
+    BLACK = "BLACK"
 } 
 
 /**

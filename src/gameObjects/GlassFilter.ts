@@ -4,11 +4,6 @@
 import { State, StateUpdate } from "../gameState";
 import { Settings } from "../gameSettings"
 
-import { Carryable, CarryableSystem} from '../utilities/carryable';  // not currently in use
-//import { GlassFilterSystem } from 'GlassFilterSystem';
-
-
-
 const fname = "GlassFilter."
 
 /**
@@ -49,8 +44,6 @@ export class GlassFilter extends Entity {
     private filterCanvas: UICanvas
     private filterRect: UIContainerRect
 
-    // optional Carryable method (doesn't fully work)
-    private carryable: Carryable 
     private filter  :Entity                 
 
     constructor () {
@@ -119,17 +112,6 @@ export class GlassFilter extends Entity {
 
         f.setParent(this);
 
-        //* Add the Carryable Component to the box.
-        this.carryable = new Carryable();
-        log(fname + "createFilterEntity this.carryable: ", this.carryable)
-        f.addComponent(this.carryable);
-        //this.carryable.toggleCarry();        // turn it on by default
-        ///*
-        f.addComponent(new OnClick( () => {
-            this.carryable.toggleCarry();        // turn it on by default
-            log(fname + "click filter carryable.beingCarried: " + this.carryable.beingCarried)
-        } ))
-        //*/
 
         //Okay, so to move it to 2m, modify Carryable so that when the carry starts, it calculates the offset vector between the two objects, normalizes it, multiplies it by two, and adds the camera position back in. Then use that as the object's position when calculating objPosUser, not the actual object position.
 
