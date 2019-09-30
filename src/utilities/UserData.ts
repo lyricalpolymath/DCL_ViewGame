@@ -1,6 +1,7 @@
 
 //import { getUserAccount } from '@decentraland/EthereumController'
 import { State, StateUpdate } from "../gameState"
+import { awsPut } from "../functions"
 
 const fname = "userData."
 
@@ -44,32 +45,22 @@ export abstract class UserData
         let inventory = JSON.parse(data.Item.inventory).inventory
         log(fname+"parseServerDataAndUpdateState  inventory: ", inventory);
 
-        //log(fname+"parseServerDataAndUpdateState - before - State.glasses: ", State.glasses)
-        //log(fname+"parseServerDataAndUpdateState - inventory.glasses.RED: " +  inventory.glasses.RED)
-        //log(fname+"parseServerDataAndUpdateState - State.glasses.RED.available: " +  State.glasses.RED.available)
+        //log(fname+"parseServerDataAndUpdateState - before - State: ", State)
         State.glasses.RED.available = inventory.glasses.RED
         State.glasses.GREEN.available = inventory.glasses.GREEN
         State.glasses.BLUE.available = inventory.glasses.BLUE
-        //log(fname+"parseServerDataAndUpdateState - after  - State.glasses: ", State.glasses)
-
-        //log(fname+"parseServerDataAndUpdateState - before - State.playerData: ", State.playerData)
+        
         State.playerData = inventory.playerData
-        //log(fname+"parseServerDataAndUpdateState - after  - State.playerData: ", State.playerData)
+        //log(fname+"parseServerDataAndUpdateState - after  - State: ", State)
 
-        //TODO refactor all this
+        //TODO refactor this function into State so that State updates itself?
         //State.events.fireEvent(new StateUpdate())
         State.updateState()
 
-        //let inventory = data.Item.inventory //JSON.parse(data.Item.inventory)
-        //log(fname+"parseServerDataAndUpdateState  address: ", address);
-        //log(fname+"parseServerDataAndUpdateState  inventory: ", inventory);
-        //log(fname+"parseServerDataAndUpdateState  typeof(inventory): " + typeof(inventory) );
-        //let inventoryObj = JSON.parse(inventory)
-        //log(fname+"parseServerDataAndUpdateState  JSON.parse(inventory): ", inventoryObj );
-
-        // this is how it should appear
-        //UserData.getStateString();
     }
+
+
+    
 
     /**
      * formats the current state object into the string that we will store in the DB
@@ -91,10 +82,31 @@ export abstract class UserData
     }
 
 
+    /**
+     * calls the server and passes the info in the body
+     */
     public static updateServer() {
         let updateString = this.getStateString()
+        let putApiUrl = awsPut
+        log(fname+"updateServer going to call URL: " + putApiUrl );
         log(fname+"updateServer with: " + updateString );
-        
+
+        executeTask(async () => {
+            try {
+              let response = await fetch( putApiUrl , {
+                method: "POST",  
+                headers: { "Content-Type": "application/json" },
+                body: updateString
+              })
+              .then(response => response.json())  // TODO add a handler for the server response
+              .then(data => { 
+                log(fname+"updateServer - update seems to have worked - data: ", data) // maybe it's enought with the response
+              })
+
+            } catch(error) {
+                log(fname+"updateServer - Error: ", error);
+            }  
+        })
     }
 
 }

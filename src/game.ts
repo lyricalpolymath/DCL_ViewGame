@@ -21,6 +21,10 @@ executeTask(async () => {
     const address = await getUserAccount()
     log(address)
     user_address = address
+
+    //add it to the state
+    State.playerData.address = address;
+
     //getServerInfo(address, true)
     getServerInfo_BB(address, true)
 

@@ -74,7 +74,7 @@ export class State {
     }
 
     public static playerData:any = {
-        //address: "",       // will be assigned when found
+        address: undefined,        // will be assigned when found
         currentLevel: 1,    //default 1 but we can put a flag in settings when exporting it
         levels: {
             level1: {

@@ -121,7 +121,7 @@ export class InventoryItem {
             this.active = false
         }
         // emit the event
-        log(fname+"setActive button " + this.name + "  - isActive: " + this.active + " State: ", State)
+        log(fname+"setActive button " + this.name + "  - isActive: " + this.active )//+ " State: ", State)
     }
 
     /**
