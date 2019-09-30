@@ -37,12 +37,12 @@ export class TransitionScene extends Entity
         firstMover.getComponent(BoxShape).withCollisions = true
         firstMover.addComponentOrReplace(new Transform({
             position: new Vector3(32,0,16),
-            scale: new Vector3(1,5,32)
+            scale: new Vector3(1,32,32)
         }))
 
         var alphac = new Material()
         alphac.hasAlpha = true
-        alphac.albedoColor = new Color4(1,1,1,1)
+        alphac.albedoColor = new Color4(0,0,0,1)
         firstMover.addComponentOrReplace(alphac)
 
         var secondmover = new Entity()
@@ -50,28 +50,15 @@ export class TransitionScene extends Entity
         secondmover.getComponent(BoxShape).withCollisions = true
         secondmover.addComponentOrReplace(new Transform({
             position: new Vector3(16,0,32),
-            scale: new Vector3(32,5,1)
+            scale: new Vector3(32,32,1)
         }))
         secondmover.addComponent(alphac)
        
        secondmover.addComponentOrReplace(new utils.MoveTransformComponent(new Vector3(16,0,32),new Vector3(16,0,0),7,()=>{
             log("moved player 2nd time")
-            var timer = 500
-            this.addComponentOrReplace(new utils.Interval(100,()=>{
-                if(timer >=0)
-                {
-                    timer -= 100
-                    this.boxShape.getComponent(Material).albedoColor = new Color4(0,0,0,timer/500)
-                }
-                else
-                {
-                    this.removeComponent(utils.Interval)
-                    this.events.fireEvent(new Globals.TransitionLevelComplete())
-                }
-
-            }))
+            this.removeComponent(utils.Interval)
+            this.events.fireEvent(new Globals.TransitionLevelComplete())
         }))
-
         
         firstMover.addComponentOrReplace(new utils.MoveTransformComponent(new Vector3(32,0,16),new Vector3(1,0,16),7,()=>{
             log("moved player")

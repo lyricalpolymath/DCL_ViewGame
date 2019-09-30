@@ -37,8 +37,6 @@ import { _colorNames } from "../gameSettings"
           scale: new Vector3(.99,.99,.99)
         }))
         lvl1.setParent(level)
-
-        level.events.fireEvent(new Globals.LevelLoadingComplete())
       
     }
 

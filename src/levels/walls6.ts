@@ -24,7 +24,7 @@ import * as Globals from "../functions"
       
       const hypercube_v1 = new Entity()
       hypercube_v1.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/hypercube_v1.glb')
+      const gltfShape_2 = new GLTFShape('models/hypercubeAnimation.glb')
       hypercube_v1.addComponentOrReplace(gltfShape_2)
       const transform_6 = new Transform({
         position: new Vector3(17.5, 4, 17),
@@ -32,6 +32,16 @@ import * as Globals from "../functions"
         scale: new Vector3(1, 1, 1)
       })
       hypercube_v1.addComponentOrReplace(transform_6)
+
+      hypercube_v1.addComponentOrReplace(new Animator())
+
+      for(var i = 0; i < 780; i++)
+      {
+        hypercube_v1.getComponent(Animator).addClip(new AnimationState(("Cube_"+i+"|CINEMA_4D_Main|Layer0")))
+        hypercube_v1.getComponent(Animator).getClip(("Cube_"+i+"|CINEMA_4D_Main|Layer0")).play()
+      }
+
+      /*
       
       const mobius_light = new Entity()
       mobius_light.setParent(level)
@@ -214,6 +224,8 @@ import * as Globals from "../functions"
         scale: new Vector3(1, 1, 1)
       })
       mobius_light_9.addComponentOrReplace(transform_24)
+
+      */
       
     }
 
@@ -254,6 +266,6 @@ import * as Globals from "../functions"
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9, 4.8381171611533125, 16.5), new Quaternion(0, 0.7132461560631227, 0, 0.7009136329542885), _colorNames.PURPLE))
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9, 5.576066545571663, 19.51776978755677), new Quaternion(0, 0.7132461560631227, 0, 0.7009136329542885), _colorNames.PURPLE))
 
-        level.events.fireEvent(new Globals.LevelLoadingComplete())
+
 
     }

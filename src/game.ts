@@ -89,7 +89,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           if(!Object.keys(data).length)
           {
             log("user hasn't played. need to store information on server")
-            currentLevelNumber = 5
+            currentLevelNumber = 1
             user_level = currentLevelNumber
             updateLevelUI(currentLevelNumber)
             currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
@@ -118,7 +118,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
   {
       log("got here")
       user_address = "NONE"
-      user_level = 5
+      user_level = 1
       currentLevelNumber = user_level
       updateLevelUI(currentLevelNumber)
       currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
@@ -143,6 +143,13 @@ events.addListener(LevelCompleted,null,({l})=>{
         log("level " + l + " complete. found blue lens. add it to the inventory.")
         State.updateGlassState(_colorNames.BLUE, false)
         State.updateGlassState(_colorNames.GREEN, true)
+        break;
+
+      case 3:
+        log("level " + l + " complete. found blue lens. add it to the inventory.")
+        State.updateGlassState(_colorNames.BLUE, false)
+        State.updateGlassState(_colorNames.GREEN, false)
+        State.updateGlassState(_colorNames.RED, true)
         break;
     }
 })

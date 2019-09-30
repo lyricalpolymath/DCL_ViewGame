@@ -10,6 +10,29 @@ import * as Globals from "../functions"
     //BB added entities 
     export function createScene(level:Level)
     {
+
+      const ball = new Entity()
+      ball.addComponentOrReplace(new GLTFShape('models/abstractball1.glb'))
+      ball.setParent(level)
+      ball.addComponentOrReplace(new Transform({
+        position: new Vector3(16,8,16),
+        scale: new Vector3(.5,.5,.5)
+      }))
+      ball.addComponentOrReplace(new OnClick(e=>{
+        engine.removeEntity(ball)
+        const box = new Entity()
+        box.addComponentOrReplace(new BoxShape())
+        box.addComponentOrReplace(new Transform({
+          position: new Vector3(16,8,16),
+          scale:new Vector3(.8,.8,.8)
+        }))
+        box.setParent(level)
+        box.addComponentOrReplace(new OnClick(e=>{
+          level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
+        }))
+        level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+      }))
+
       const terrain_level4 = new Entity()
       terrain_level4.setParent(level)
       const gltfShape_2 = new GLTFShape('models/terrain_level4.glb')
@@ -409,7 +432,4 @@ import * as Globals from "../functions"
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31.5, 1.5, 25.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLACK))
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31.5, 4.5, 25.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLACK))
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(31.5, 7.5, 25.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLACK))
-
-        level.events.fireEvent(new Globals.LevelLoadingComplete())
-
 }

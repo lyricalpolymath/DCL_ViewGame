@@ -30,27 +30,6 @@ import { user_level, user_address } from "../game"
         level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
       }))
 
-      const skull = new Entity()
-      skull.setParent(level)
-      skull.addComponentOrReplace(new GLTFShape('models/skull1.glb'))
-      skull.addComponentOrReplace(new Transform({
-        position: new Vector3(5,1,4),
-        scale: new Vector3(.1,.1,.1)
-      }))
-      skull.addComponentOrReplace(new OnClick(e=>{
-        log("pushing data to server")
-        fetch(Globals.awsPut, {
-          method: 'post',
-          body: JSON.stringify({"id": user_address, "level": 1})
-        }).then(function(response) {
-          log(response)
-          return response.json();
-        }).then(function(data) {
-          log("added user to the server")
-          log(data)
-        });
-      }))
-
   const topologylevel2 = new Entity()
 topologylevel2.setParent(level)
 const gltfShape_5 = new GLTFShape('models/topologylevel2.glb')
@@ -408,7 +387,4 @@ metalstructure.addComponentOrReplace(transform_123)
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 13), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
 
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 24.5), new Quaternion(0, -0.7056778438609026, 0, 0.7085328367011844), _colorNames.GREEN))
-
-
-        level.events.fireEvent(new Globals.LevelLoadingComplete())
 }

@@ -10,6 +10,7 @@ import * as Walls6 from "./walls6"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
 import { WallAnimation } from "./wall_animation"
+import { LevelSound } from "./levelSound"
 
 
 export class Level extends Entity
@@ -34,6 +35,7 @@ export class Level extends Entity
     pickSource = new AudioSource(this.pickClip)
     levelAudio:AudioSource
     showWallSystem:WallBumpSystem
+    soundFollowSystem:LevelSound
     glitch1Ent:WallAnimation
     glitch2Ent:WallAnimation
     glitch3Ent:WallAnimation
@@ -96,6 +98,9 @@ export class Level extends Entity
       //need to show active lens from server
       this.showWallSystem = new WallBumpSystem(this)
       engine.addSystem(this.showWallSystem)
+
+      this.soundFollowSystem = new LevelSound(this)
+      engine.addEntity(this.soundFollowSystem)
     }
 
     createColorHoldingEntities()
@@ -152,82 +157,44 @@ export class Level extends Entity
 
     createLevel1()
     { 
-        var levelAudio = new AudioClip('sounds/level1.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls1.createScene(this)
         Walls1.createWalls(this)
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
 
     createLevel2()
     {
-
-        var levelAudio = new AudioClip('sounds/level2.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
       Walls2.createScene(this)
-      //////////////create all the walls for this level
       Walls2.createWalls(this)
+      this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
 
     createLevel3()
     {
-        var levelAudio = new AudioClip('sounds/level3.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
       Walls3.createScene(this)
       Walls3.createWalls(this)
+      this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
 
     createLevel4()
     {
-        var levelAudio = new AudioClip('sounds/level4.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls4.createScene(this)
         Walls4.createWalls(this)
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
 
 
     createLevel5()
     {
-        var levelAudio = new AudioClip('sounds/level5.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls5.createScene(this)
         Walls5.createWalls(this)
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
     createLevel6()
     {
-        var levelAudio = new AudioClip('sounds/level6.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls6.createScene(this)
         Walls6.createWalls(this)
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
 
     getWalls()

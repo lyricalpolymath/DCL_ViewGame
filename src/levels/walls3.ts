@@ -9,7 +9,27 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
-      //ARE THESE NEEDED ON LEVEL 3 ? they were on the file you passed me @Lastraum
+      const glasses = new Entity()
+      glasses.addComponentOrReplace(new GLTFShape('models/redglasses.glb'))
+      glasses.setParent(level)
+      glasses.addComponentOrReplace(new Transform({
+         position: new Vector3(14,3,16),
+         scale: new Vector3(2,2,2)
+       }))
+       glasses.addComponentOrReplace(new OnClick(e=>{
+        engine.removeEntity(glasses)
+        const box = new Entity()
+        box.addComponentOrReplace(new BoxShape())
+        box.addComponentOrReplace(new Transform({
+          position: new Vector3(14,3,16),
+          scale:new Vector3(.8,.8,.8)
+        }))
+        box.setParent(level)
+        box.addComponentOrReplace(new OnClick(e=>{
+          level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
+        }))
+        level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+      }))
     
       const terrain_level3 = new Entity()
       terrain_level3.setParent(level)
@@ -206,7 +226,8 @@ import * as Globals from "../functions"
         scale: new Vector3(1, 1, 1)
       })
       tree_orig_flat_2.addComponentOrReplace(transform_25)
-      
+
+
     }
 
     export function createWalls(level:Level)
@@ -236,6 +257,6 @@ import * as Globals from "../functions"
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 31), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
         level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 29), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
 
-        level.events.fireEvent(new Globals.LevelLoadingComplete())
+        
   
 }
