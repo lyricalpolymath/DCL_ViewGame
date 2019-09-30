@@ -7,6 +7,8 @@ import * as Walls3 from "./walls3"
 import * as Walls4 from "./walls4"
 import * as Walls5 from "./walls5"
 import * as Walls6 from "./walls6"
+import * as Walls7 from "./walls7"
+import * as Walls8 from "./walls8"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { _colorNames } from "../gameSettings"
 import { WallAnimation } from "./wall_animation"
@@ -92,6 +94,16 @@ export class Level extends Entity
                 this.createLevel6()
                 break;
         
+            case 7:
+                log('creating level 7')
+                this.createLevel7()
+                break;
+
+            case 8:
+                log('creating level 8')
+                this.createLevel8()
+                break;
+        
         }
 
       //TODO
@@ -159,7 +171,7 @@ export class Level extends Entity
     { 
         Walls1.createScene(this)
         Walls1.createWalls(this)
-        this.events.fireEvent(new Globals.LevelLoadingComplete())
+       
     }
 
     createLevel2()
@@ -194,6 +206,20 @@ export class Level extends Entity
     {
         Walls6.createScene(this)
         Walls6.createWalls(this)
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
+    }
+
+    createLevel7()
+    {
+        Walls7.createScene(this)
+        Walls7.createWalls(this)
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
+    }
+
+    createLevel8()
+    {
+        Walls8.createScene(this)
+        Walls8.createWalls(this)
         this.events.fireEvent(new Globals.LevelLoadingComplete())
     }
 

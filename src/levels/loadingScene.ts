@@ -459,6 +459,407 @@ const transform_45 = new Transform({
   scale: new Vector3(1, 1, 1)
 })
 neonLightTube_06_40.addComponentOrReplace(transform_45)
-    }
+
+    const neonLightTube_06_41 = new Entity()
+    neonLightTube_06_41.setParent(this)
+    neonLightTube_06_41.addComponentOrReplace(gltfShape_2)
+    const transform_46 = new Transform({
+      position: new Vector3(1.5, 1.5, 2),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_41.addComponentOrReplace(transform_46)
+    
+    const neonLightTube_06_42 = new Entity()
+    neonLightTube_06_42.setParent(this)
+    neonLightTube_06_42.addComponentOrReplace(gltfShape_2)
+    const transform_47 = new Transform({
+      position: new Vector3(1.5, 1.5, 3.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_42.addComponentOrReplace(transform_47)
+    
+    const neonLightTube_06_43 = new Entity()
+    neonLightTube_06_43.setParent(this)
+    neonLightTube_06_43.addComponentOrReplace(gltfShape_2)
+    const transform_48 = new Transform({
+      position: new Vector3(1.5, 1.5, 5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_43.addComponentOrReplace(transform_48)
+    
+    const neonLightTube_06_44 = new Entity()
+    neonLightTube_06_44.setParent(this)
+    neonLightTube_06_44.addComponentOrReplace(gltfShape_2)
+    const transform_49 = new Transform({
+      position: new Vector3(1.5, 1.5, 6.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_44.addComponentOrReplace(transform_49)
+    
+    const neonLightTube_06_45 = new Entity()
+    neonLightTube_06_45.setParent(this)
+    neonLightTube_06_45.addComponentOrReplace(gltfShape_2)
+    const transform_50 = new Transform({
+      position: new Vector3(1.5, 1.5, 8),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_45.addComponentOrReplace(transform_50)
+    
+    const neonLightTube_06_46 = new Entity()
+    neonLightTube_06_46.setParent(this)
+    neonLightTube_06_46.addComponentOrReplace(gltfShape_2)
+    const transform_51 = new Transform({
+      position: new Vector3(1.5, 1.5, 9.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_46.addComponentOrReplace(transform_51)
+    
+    const neonLightTube_06_47 = new Entity()
+    neonLightTube_06_47.setParent(this)
+    neonLightTube_06_47.addComponentOrReplace(gltfShape_2)
+    const transform_52 = new Transform({
+      position: new Vector3(1.5, 1.5, 11),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_47.addComponentOrReplace(transform_52)
+    
+    const neonLightTube_06_48 = new Entity()
+    neonLightTube_06_48.setParent(this)
+    neonLightTube_06_48.addComponentOrReplace(gltfShape_2)
+    const transform_53 = new Transform({
+      position: new Vector3(1.5, 1.5, 12.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_48.addComponentOrReplace(transform_53)
+    
+    const neonLightTube_06_49 = new Entity()
+    neonLightTube_06_49.setParent(this)
+    neonLightTube_06_49.addComponentOrReplace(gltfShape_2)
+    const transform_54 = new Transform({
+      position: new Vector3(1.5, 1.5, 14),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_49.addComponentOrReplace(transform_54)
+    
+    const neonLightTube_06_50 = new Entity()
+    neonLightTube_06_50.setParent(this)
+    neonLightTube_06_50.addComponentOrReplace(gltfShape_2)
+    const transform_55 = new Transform({
+      position: new Vector3(1.5, 1.5, 15.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_50.addComponentOrReplace(transform_55)
+    
+    const neonLightTube_06_51 = new Entity()
+    neonLightTube_06_51.setParent(this)
+    neonLightTube_06_51.addComponentOrReplace(gltfShape_2)
+    const transform_56 = new Transform({
+      position: new Vector3(1.5, 1.5, 17),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_51.addComponentOrReplace(transform_56)
+    
+    const neonLightTube_06_52 = new Entity()
+    neonLightTube_06_52.setParent(this)
+    neonLightTube_06_52.addComponentOrReplace(gltfShape_2)
+    const transform_57 = new Transform({
+      position: new Vector3(1.5, 1.5, 18.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_52.addComponentOrReplace(transform_57)
+    
+    const neonLightTube_06_53 = new Entity()
+    neonLightTube_06_53.setParent(this)
+    neonLightTube_06_53.addComponentOrReplace(gltfShape_2)
+    const transform_58 = new Transform({
+      position: new Vector3(1.5, 1.5, 20),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_53.addComponentOrReplace(transform_58)
+    
+    const neonLightTube_06_54 = new Entity()
+    neonLightTube_06_54.setParent(this)
+    neonLightTube_06_54.addComponentOrReplace(gltfShape_2)
+    const transform_59 = new Transform({
+      position: new Vector3(1.5, 1.5, 21.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_54.addComponentOrReplace(transform_59)
+    
+    const neonLightTube_06_55 = new Entity()
+    neonLightTube_06_55.setParent(this)
+    neonLightTube_06_55.addComponentOrReplace(gltfShape_2)
+    const transform_60 = new Transform({
+      position: new Vector3(1.5, 1.5, 23),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_55.addComponentOrReplace(transform_60)
+    
+    const neonLightTube_06_56 = new Entity()
+    neonLightTube_06_56.setParent(this)
+    neonLightTube_06_56.addComponentOrReplace(gltfShape_2)
+    const transform_61 = new Transform({
+      position: new Vector3(1.5, 1.5, 24.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_56.addComponentOrReplace(transform_61)
+    
+    const neonLightTube_06_57 = new Entity()
+    neonLightTube_06_57.setParent(this)
+    neonLightTube_06_57.addComponentOrReplace(gltfShape_2)
+    const transform_62 = new Transform({
+      position: new Vector3(1.5, 1.5, 26),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_57.addComponentOrReplace(transform_62)
+    
+    const neonLightTube_06_58 = new Entity()
+    neonLightTube_06_58.setParent(this)
+    neonLightTube_06_58.addComponentOrReplace(gltfShape_2)
+    const transform_63 = new Transform({
+      position: new Vector3(1.5, 1.5, 27.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_58.addComponentOrReplace(transform_63)
+    
+    const neonLightTube_06_59 = new Entity()
+    neonLightTube_06_59.setParent(this)
+    neonLightTube_06_59.addComponentOrReplace(gltfShape_2)
+    const transform_64 = new Transform({
+      position: new Vector3(1.5, 1.5, 29),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_59.addComponentOrReplace(transform_64)
+    
+    const neonLightTube_06_60 = new Entity()
+    neonLightTube_06_60.setParent(this)
+    neonLightTube_06_60.addComponentOrReplace(gltfShape_2)
+    const transform_65 = new Transform({
+      position: new Vector3(1.5, 1.5, 30.5),
+      rotation: new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865477),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_60.addComponentOrReplace(transform_65)
+    
+    const neonLightTube_06_61 = new Entity()
+    neonLightTube_06_61.setParent(this)
+    neonLightTube_06_61.addComponentOrReplace(gltfShape_2)
+    const transform_66 = new Transform({
+      position: new Vector3(2.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_61.addComponentOrReplace(transform_66)
+    
+    const neonLightTube_06_62 = new Entity()
+    neonLightTube_06_62.setParent(this)
+    neonLightTube_06_62.addComponentOrReplace(gltfShape_2)
+    const transform_67 = new Transform({
+      position: new Vector3(4, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_62.addComponentOrReplace(transform_67)
+    
+    const neonLightTube_06_63 = new Entity()
+    neonLightTube_06_63.setParent(this)
+    neonLightTube_06_63.addComponentOrReplace(gltfShape_2)
+    const transform_68 = new Transform({
+      position: new Vector3(5.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_63.addComponentOrReplace(transform_68)
+    
+    const neonLightTube_06_64 = new Entity()
+    neonLightTube_06_64.setParent(this)
+    neonLightTube_06_64.addComponentOrReplace(gltfShape_2)
+    const transform_69 = new Transform({
+      position: new Vector3(7, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_64.addComponentOrReplace(transform_69)
+    
+    const neonLightTube_06_65 = new Entity()
+    neonLightTube_06_65.setParent(this)
+    neonLightTube_06_65.addComponentOrReplace(gltfShape_2)
+    const transform_70 = new Transform({
+      position: new Vector3(8.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_65.addComponentOrReplace(transform_70)
+    
+    const neonLightTube_06_66 = new Entity()
+    neonLightTube_06_66.setParent(this)
+    neonLightTube_06_66.addComponentOrReplace(gltfShape_2)
+    const transform_71 = new Transform({
+      position: new Vector3(10, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_66.addComponentOrReplace(transform_71)
+    
+    const neonLightTube_06_67 = new Entity()
+    neonLightTube_06_67.setParent(this)
+    neonLightTube_06_67.addComponentOrReplace(gltfShape_2)
+    const transform_72 = new Transform({
+      position: new Vector3(11.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_67.addComponentOrReplace(transform_72)
+    
+    const neonLightTube_06_68 = new Entity()
+    neonLightTube_06_68.setParent(this)
+    neonLightTube_06_68.addComponentOrReplace(gltfShape_2)
+    const transform_73 = new Transform({
+      position: new Vector3(13, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_68.addComponentOrReplace(transform_73)
+    
+    const neonLightTube_06_69 = new Entity()
+    neonLightTube_06_69.setParent(this)
+    neonLightTube_06_69.addComponentOrReplace(gltfShape_2)
+    const transform_74 = new Transform({
+      position: new Vector3(14.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_69.addComponentOrReplace(transform_74)
+    
+    const neonLightTube_06_70 = new Entity()
+    neonLightTube_06_70.setParent(this)
+    neonLightTube_06_70.addComponentOrReplace(gltfShape_2)
+    const transform_75 = new Transform({
+      position: new Vector3(16, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_70.addComponentOrReplace(transform_75)
+    
+    const neonLightTube_06_71 = new Entity()
+    neonLightTube_06_71.setParent(this)
+    neonLightTube_06_71.addComponentOrReplace(gltfShape_2)
+    const transform_76 = new Transform({
+      position: new Vector3(17.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_71.addComponentOrReplace(transform_76)
+    
+    const neonLightTube_06_72 = new Entity()
+    neonLightTube_06_72.setParent(this)
+    neonLightTube_06_72.addComponentOrReplace(gltfShape_2)
+    const transform_77 = new Transform({
+      position: new Vector3(19, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_72.addComponentOrReplace(transform_77)
+    
+    const neonLightTube_06_73 = new Entity()
+    neonLightTube_06_73.setParent(this)
+    neonLightTube_06_73.addComponentOrReplace(gltfShape_2)
+    const transform_78 = new Transform({
+      position: new Vector3(20.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_73.addComponentOrReplace(transform_78)
+    
+    const neonLightTube_06_74 = new Entity()
+    neonLightTube_06_74.setParent(this)
+    neonLightTube_06_74.addComponentOrReplace(gltfShape_2)
+    const transform_79 = new Transform({
+      position: new Vector3(22, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_74.addComponentOrReplace(transform_79)
+    
+    const neonLightTube_06_75 = new Entity()
+    neonLightTube_06_75.setParent(this)
+    neonLightTube_06_75.addComponentOrReplace(gltfShape_2)
+    const transform_80 = new Transform({
+      position: new Vector3(23.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_75.addComponentOrReplace(transform_80)
+    
+    const neonLightTube_06_76 = new Entity()
+    neonLightTube_06_76.setParent(this)
+    neonLightTube_06_76.addComponentOrReplace(gltfShape_2)
+    const transform_81 = new Transform({
+      position: new Vector3(25, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_76.addComponentOrReplace(transform_81)
+    
+    const neonLightTube_06_77 = new Entity()
+    neonLightTube_06_77.setParent(this)
+    neonLightTube_06_77.addComponentOrReplace(gltfShape_2)
+    const transform_82 = new Transform({
+      position: new Vector3(26.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_77.addComponentOrReplace(transform_82)
+    
+    const neonLightTube_06_78 = new Entity()
+    neonLightTube_06_78.setParent(this)
+    neonLightTube_06_78.addComponentOrReplace(gltfShape_2)
+    const transform_83 = new Transform({
+      position: new Vector3(28, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_78.addComponentOrReplace(transform_83)
+    engine.addEntity(neonLightTube_06_78)
+    
+    const neonLightTube_06_79 = new Entity()
+    neonLightTube_06_79.setParent(this)
+    neonLightTube_06_79.addComponentOrReplace(gltfShape_2)
+    const transform_84 = new Transform({
+      position: new Vector3(29.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_79.addComponentOrReplace(transform_84)
+    
+    const neonLightTube_06_80 = new Entity()
+    neonLightTube_06_80.setParent(this)
+    neonLightTube_06_80.addComponentOrReplace(gltfShape_2)
+    const transform_85 = new Transform({
+      position: new Vector3(30.5, 1.5, 31.5),
+      rotation: new Quaternion(0, 1, 0, 2.636779683484747e-16),
+      scale: new Vector3(1, 1, 1)
+    })
+    neonLightTube_06_80.addComponentOrReplace(transform_85)
+  }
 
 }

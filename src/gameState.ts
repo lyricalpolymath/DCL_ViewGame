@@ -55,19 +55,19 @@ export class State {
         RED: { 
             name: "RED", 
             color:  Settings.colors.RED, 
-            available: true, 
+            available: false, 
             active: false
         },
         GREEN: { 
             name: "GREEN", 
             color:  Settings.colors.GREEN, 
-            available: true, 
+            available: false, 
             active: false
         },
         BLUE: { 
             name: "BLUE", 
             color:  Settings.colors.BLUE, 
-            available: true, 
+            available: false, 
             active: false
         },
         

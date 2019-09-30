@@ -10,6 +10,30 @@ import * as Globals from "../functions"
     // BB added entieties
     export function createScene(level:Level)
     {
+
+      const ball = new Entity()
+      ball.addComponentOrReplace(new GLTFShape('models/abstractball4.glb'))
+      ball.setParent(level)
+      ball.addComponentOrReplace(new Transform({
+        position: new Vector3(8,2,25),
+        scale: new Vector3(.2,.2,.2)
+      }))
+      ball.addComponentOrReplace(new OnClick(e=>{
+        engine.removeEntity(ball)
+        const box = new Entity()
+        box.addComponentOrReplace(new BoxShape())
+        box.addComponentOrReplace(new Transform({
+          position: new Vector3(8,2,25),
+          scale:new Vector3(.8,.8,.8)
+        }))
+        box.setParent(level)
+        box.addComponentOrReplace(new OnClick(e=>{
+          level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
+        }))
+        level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+      }))
+
+
         const terrain_level5 = new Entity()
         terrain_level5.setParent(level)
         const gltfShape_2 = new GLTFShape('models/terrain_level5.glb')

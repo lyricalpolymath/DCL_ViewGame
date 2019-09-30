@@ -89,7 +89,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           if(!Object.keys(data).length)
           {
             log("user hasn't played. need to store information on server")
-            currentLevelNumber = 1
+            currentLevelNumber = 7
             user_level = currentLevelNumber
             updateLevelUI(currentLevelNumber)
             currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
@@ -118,7 +118,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
   {
       log("got here")
       user_address = "NONE"
-      user_level = 1
+      user_level = 7
       currentLevelNumber = user_level
       updateLevelUI(currentLevelNumber)
       currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
