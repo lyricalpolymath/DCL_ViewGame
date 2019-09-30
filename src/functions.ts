@@ -69,6 +69,12 @@ export class InventoryItemSelectedEvent {
     }
 }
 
+@EventConstructor()
+export class BumpedWallEvent {
+    constructor() {
+    }
+}
+
 export function distance(pos1: Vector3, pos2: Vector3): number {
   const a = pos1.x - pos2.x
   const b = pos1.z - pos2.z

@@ -7,7 +7,7 @@ export class LevelPlayer
 {
     events:EventManager
     user_address:string
-    level:number
+    levelBumps:number = 0
     backupData:boolean
     activeColor:string = Globals._colorNames.NONE
     canvas:UICanvas
@@ -18,6 +18,16 @@ export class LevelPlayer
     redItem:InventoryItem
     blueItem:InventoryItem
     greenItem:InventoryItem
+
+    level1:any
+    level2:any
+    level3:any
+    level4:any
+    level5:any
+    level6:any
+
+    playerData:any
+
 
     constructor(events:EventManager)
     {
@@ -56,7 +66,43 @@ export class LevelPlayer
 
     this.greenItem = new InventoryItem(this.inventoryContainer, this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.GREEN,0,100,90,90,100)
 
-    this.blueItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.BLUE,0,200,90,90,100)
+    this.blueItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.BLUE,0,200,90,90,100)  
+    
+    this.playerData = {
+        currentLevel: 1,
+        totalBumps: 0,
+        levels: {
+            level1: {
+                bumps: 0
+            },
+            level2: {       
+                bumps: 0             
+            },
+            level3: { 
+                bumps: 0             
+            },
+            level4: {    
+                bumps: 0             
+            },
+            level5: {    
+                bumps: 0             
+            },
+            level6: {    
+                bumps: 0             
+            },
+            level7: {     
+                bumps: 0             
+            },
+            level8: {    
+                bumps: 0             
+            }
+        },
+        glasses: {
+            RED: this.redItem.visible,
+            GREEN: this.greenItem.visible,
+            BLUE: this.blueItem.visible,
+        }
+    }
 
     }
 
@@ -80,7 +126,7 @@ export class LevelPlayer
 
     setLevel(level:number)
     {
-        this.level = level
+        this.playerData.currentLevel = level
     }
 
     setBackup(backup:boolean)
@@ -105,6 +151,30 @@ export class LevelPlayer
                 }
                 //this.blueItem.toggle()
                 break;
+        }
+    }
+
+    addInventory(color:string)
+    {
+        switch(color)
+        {
+            case Globals._colorNames.BLUE:
+            this.playerData.glasses.BLUE = true
+            this.blueItem.setVisible(true)
+            this.blueItem.setActive(true)
+            break;
+
+        case Globals._colorNames.GREEN:
+            this.playerData.glasses.GREEN = true
+            this.greenItem.setVisible(true)
+            this.greenItem.setActive(true)
+            break;
+
+        case Globals._colorNames.RED:
+            this.playerData.glasses.RED = true
+            this.redItem.setVisible(true)
+            this.redItem.setActive(true)
+            break;
         }
     }
 
@@ -158,5 +228,98 @@ export class LevelPlayer
         this.setFilterColor(Globals.Settings.colors[this.activeColor])
         level.showWallsForLens(this.activeColor)
     }
+
+    getStateString() {
+        let stateObject = {
+            user: this.user_address,
+            message:{
+                playerData: this.getPlayerData()
+            }
+        } 
+        return stateObject
+    }
+
+    getPlayerData()
+    {
+        return this.playerData
+    }
+
+    pushData()
+    {
+        if(this.setBackup)
+        {
+        let updateString = JSON.stringify(this.getStateString())
+        log(updateString)
+        executeTask(async () => {
+            try {
+              let response = await fetch(Globals.awsPut, {
+                method: "POST",  
+                headers: { "Content-Type": "application/json" },
+                body: updateString
+              })
+              .then(response => response.json())
+              .then(data => {
+                log(data)
+                log("success")
+              })
+            } catch(e) {
+              log("error is " + e)
+            }
+          })
+        }
+    }
+
+    updateLocal(data)
+    {
+        this.playerData = data.Item.inventory.playerData
+        if(this.playerData.glasses.RED)
+        {
+            this.redItem.setVisible(true)
+        }
+        if(this.playerData.glasses.GREEN)
+        {
+            this.greenItem.setVisible(true)
+        }
+        if(this.playerData.glasses.BLUE)
+        {
+            this.blueItem.setVisible(true)
+        }
+        log(this.playerData)
+    }
+
+    updateBump()
+    {
+        log("player level is " + this.playerData.currentLevel)
+        this.playerData.totalBumps++
+        switch(this.playerData.currentLevel)
+        {
+            case 1:
+                log("we made it this far")
+                this.playerData.levels.level1.bumps++
+                break;
+            case 2:
+                this.playerData.levels.level2.bumps++
+                break;
+            case 3:
+                this.playerData.levels.level3.bumps++
+                break;
+            case 4:
+                this.playerData.levels.level4.bumps++
+                break;
+            case 5:
+                this.playerData.levels.level5.bumps++
+                break;
+            case 6:
+                this.playerData.levels.level6.bumps++
+                break;
+            case 7:
+                this.playerData.levels.level7.bumps++
+                break;
+            case 8:
+                this.playerData.levels.level8.bumps++
+                break;
+        }
+    }
+
 
 }

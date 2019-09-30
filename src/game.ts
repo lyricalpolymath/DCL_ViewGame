@@ -1,7 +1,7 @@
 import utils from "../node_modules/decentraland-ecs-utils/index"
 import { Level } from "./levels/level"
 import { TransitionScene } from "./levels/transitionScene"
-import {LevelCompleted, TransitionLevelComplete, LevelLoadingComplete, DoTransition,InventoryItemSelectedEvent} from "./functions"
+import {LevelCompleted, TransitionLevelComplete, LevelLoadingComplete, DoTransition,InventoryItemSelectedEvent, BumpedWallEvent} from "./functions"
 import { getUserAccount } from '@decentraland/EthereumController'
 import * as Globals from "./functions"
 import { LoadingScene } from "./levels/loadingScene"
@@ -40,24 +40,24 @@ events.addListener(LevelCompleted,null,({l})=>{
       case 1:
         log("level " + l + " complete. found blue lens. add it to the inventory.")
         player.inventoryContainer.visible = true
-        player.blueItem.setVisible(true)
-        player.blueItem.setActive(true)
+        player.addInventory(Globals._colorNames.BLUE)
+        player.pushData()
         itemSelected(Globals._colorNames.BLUE)
         break;
 
       case 2:
         log("level " + l + " complete. found green lens. add it to the inventory.")
         player.inventoryContainer.visible = true
-        player.greenItem.setVisible(true)
-        player.greenItem.setActive(true)
+        player.addInventory(Globals._colorNames.GREEN)
+        player.pushData()
         itemSelected(Globals._colorNames.GREEN)
         break;
 
       case 3:
         log("level " + l + " complete. found red lens. add it to the inventory.")
         player.inventoryContainer.visible = true
-        player.redItem.setVisible(true)
-        player.redItem.setActive(true)
+        player.addInventory(Globals._colorNames.RED)
+        player.pushData()
         itemSelected(Globals._colorNames.RED)
         break;
     }
@@ -65,7 +65,15 @@ events.addListener(LevelCompleted,null,({l})=>{
 
 events.addListener(DoTransition,null,({l})=>{
   log("transitioning from level " + l + " to level " + (l+1))
+  player.playerData.currentLevel++
+  player.pushData()
   doTransitionLevel(l)
+})
+
+events.addListener(BumpedWallEvent,null,()=>{
+  log("add new bump count to server for current level " + currentLevelNumber)
+  player.updateBump()
+  player.pushData()
 })
 
 events.addListener(InventoryItemSelectedEvent,null,({name})=>{
@@ -117,14 +125,17 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           {
             log("user hasn't played. need to store information on server")
             player.setBackup(true)
+            player.pushData()
             createLevel(1)
           }
           else
           {
             log("user found. retrieving information.")
-            log(data)
-            log(data.Item.level)
-            createLevel(data.Item.level)
+            log(data.Item.id)
+            log(data.Item.inventory.playerData.currentLevel)
+            player.updateLocal(data)
+            createLevel(data.Item.inventory.playerData.currentLevel)
+            player.handleInventory(currentLevel)
           }
         })
       } catch(e) {
@@ -136,7 +147,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
 
 function startGame()
 {
-//try to get user ethereum address
+//try to get user ethereum address to start the game
 executeTask(async () => {
   try {
     const address = await getUserAccount()
