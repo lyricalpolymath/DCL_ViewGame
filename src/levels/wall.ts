@@ -2,7 +2,7 @@ import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Level } from "./level"
 import * as Globals from "../functions"
 import { State } from "../gameState"
-import { Settings, _colorNames } from "gameSettings"
+import { _colorNames } from "../functions"
 
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 

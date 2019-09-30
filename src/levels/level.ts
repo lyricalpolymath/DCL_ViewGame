@@ -1,6 +1,7 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import * as Globals from "../functions"
+import {_colorNames } from "../functions"
 import * as Walls1 from "./walls1"
 import * as Walls2 from "./walls2"
 import * as Walls3 from "./walls3"
@@ -10,7 +11,6 @@ import * as Walls6 from "./walls6"
 import * as Walls7 from "./walls7"
 import * as Walls8 from "./walls8"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
-import { _colorNames } from "../gameSettings"
 import { WallAnimation } from "./wall_animation"
 import { LevelSound } from "./levelSound"
 
@@ -341,6 +341,17 @@ export class Level extends Entity
                     this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;
+            
+                default:
+                        this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        break;
         }
     }
 

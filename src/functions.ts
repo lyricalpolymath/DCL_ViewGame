@@ -3,7 +3,7 @@ import { ActionsSequenceSystem } from "../node_modules/decentraland-ecs-utils/ac
 import { Wall } from "./levels/wall";
 import { Level } from "./levels/level";
 
-export var TESTMODE = true
+export var TESTMODE = false
 
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
 
@@ -63,8 +63,55 @@ export class ShowWalls{
   constructor(public colorGroup:string) {}
 }
 
+@EventConstructor()
+export class InventoryItemSelectedEvent {
+    constructor(public name: string) {
+    }
+}
+
 export function distance(pos1: Vector3, pos2: Vector3): number {
   const a = pos1.x - pos2.x
   const b = pos1.z - pos2.z
   return a * a + b * b
+}
+
+
+
+
+export enum _colorNames {
+  RED    = "RED",
+  GREEN  = "GREEN",
+  BLUE   = "BLUE",
+  YELLOW = "YELLOW",
+  PURPLE = "PURPLE",
+  CYAN   = "CYAN",
+  WHITE  = "WHITE",
+  NONE   = "NONE",
+  TURQUOISE = "TURQUOISE",
+  BLACK = "BLACK"
+} 
+
+/**
+* where to put all the settings of the game so that we can tweak parameters in one unique place
+*/
+export abstract class Settings {
+
+  static inventory = {
+      opacity: 0.9,
+      width: "75px",
+      buttonAtlas: "images/ViewGame_Inventory.png"
+  }
+
+  static colorNames = _colorNames;
+  
+  static colors = {
+      transparency: 0.3,               
+      RED:    new Color4(1,0,0, 0.4 ),
+      GREEN:  new Color4(0,1,0, 0.4 ),
+      BLUE:   new Color4(0,0,1, 0.6 ), // blue needs to be less transparent
+      YELLOW: new Color4(1,1,0, 0.7 ),
+      PURPLE: new Color4(1,0,1, 0.4 ),
+      CYAN:   new Color4(0,1,1, 0.4 ),
+      WHITE:  new Color4(1,1,1, 0.9 )
+  }
 }

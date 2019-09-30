@@ -2,8 +2,7 @@ import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import * as Globals from "../functions"
 import { Level } from "./level"
-import { _colorNames } from "../gameSettings"
-import { user_level, user_address } from "../game"
+import { _colorNames } from "../functions"
 
     export function createScene(level:Level)
     {

@@ -1,7 +1,7 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import { Level } from "./level"
-import { _colorNames } from "../gameSettings"
+import { _colorNames } from "../functions"
 import * as Globals from "../functions"
 
 
