@@ -2,6 +2,8 @@ import * as Globals from "./functions"
 import { InventoryItem } from "./inventoryItem"
 import { Level } from "./levels/level"
 
+// BB addition
+import { InventoryInfoItem } from "components/InventoryInfoItem"
 
 export class LevelPlayer
 {
@@ -14,10 +16,14 @@ export class LevelPlayer
     filter:UICanvas
     filterColor:UIContainerRect
     inventoryContainer:UIContainerStack
-    userLevelText:UIText
+    //userLevelText:UIText                     // BB mod not needed
     redItem:InventoryItem
     blueItem:InventoryItem
     greenItem:InventoryItem
+
+    // BB addition
+    levelInfoItem:InventoryInfoItem             //holds the current level counter in the inventory
+    hitCounterInfoItem:InventoryInfoItem        //holds the wall hit counter
 
     level1:any
     level2:any
@@ -34,6 +40,8 @@ export class LevelPlayer
 
     this.events = events
     this.canvas = new UICanvas()
+
+    /* BB MOD not needed now that it's in the inventory
     this.userLevelText = new UIText(this.canvas)
     this.userLevelText.value = 'LEVEL'
     this.userLevelText.positionX = -200
@@ -41,6 +49,7 @@ export class LevelPlayer
     this.userLevelText.hAlign = 'right'
     this.userLevelText.vAlign = 'top'
     this.userLevelText.fontSize = 50
+    //*/
 
     this.inventoryContainer = new UIContainerStack(this.canvas)
     this.inventoryContainer.stackOrientation = UIStackOrientation.VERTICAL;
@@ -50,7 +59,14 @@ export class LevelPlayer
     this.inventoryContainer.opacity = Globals.Settings.inventory.opacity
     this.inventoryContainer.hAlign = 'right'
     this.inventoryContainer.adaptHeight = true
-    this.inventoryContainer.visible = false
+    this.inventoryContainer.visible = true
+    //this.inventoryContainer.spacing = 0
+
+    // BB - add the Level and the bump counter to the inventory
+    this.levelInfoItem = new InventoryInfoItem(this.inventoryContainer, "Level 7/8")
+    this.hitCounterInfoItem = new InventoryInfoItem(this.inventoryContainer, "hits 0")
+    //let itemCountInfoItem = new InventoryInfoItem(this.inventoryContainer, "items 3/8") 
+
 
     this.filter = new UICanvas()
     this.filterColor = new UIContainerRect(this.filter)
@@ -68,6 +84,11 @@ export class LevelPlayer
 
     this.blueItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.BLUE,0,200,90,90,100)  
     
+    // BB DEV see the items
+    this.redItem.setVisible(true)
+    this.greenItem.setVisible(true)
+    this.blueItem.setVisible(true)
+
     this.playerData = {
         currentLevel: 1,
         totalBumps: 0,
@@ -137,7 +158,10 @@ export class LevelPlayer
     updateLevelUI(levelui:number)
     {
         log('updating level text ' + levelui)
-        this.userLevelText.value = "LEVEL " + levelui
+        // BB mod 
+        //this.userLevelText.value = "LEVEL " + levelui
+        this.levelInfoItem.setText("Level " + levelui + "/8");
+
     }
 
     setVisibleInventory(color:string)
@@ -319,6 +343,9 @@ export class LevelPlayer
                 this.playerData.levels.level8.bumps++
                 break;
         }
+        //BB add - show it in the counter inside the inventory
+        let currentLevel = this.playerData.levels[ "level" + this.playerData.currentLevel]
+        this.hitCounterInfoItem.setText ("hits " + currentLevel.bumps )
     }
 
 

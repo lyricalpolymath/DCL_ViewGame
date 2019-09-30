@@ -5,7 +5,7 @@ export class InventoryItem {
     parent          :UIShape            // UI container Rect or stack
     events          :EventManager
     active          :boolean = false
-    visible       :boolean = false
+    visible         :boolean = false
     buttonImg       :UIImage   
     name            :string             // used to identify the appropriate object in State.glasses
     imgX            :number             // x position in imgAtlas of DESELECTED button
