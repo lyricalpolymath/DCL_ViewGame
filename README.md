@@ -44,6 +44,9 @@ to simplify the experience of testing all levels while not being deployed to dif
 
 [Leveler demo](http://bit.ly/2n8GdUH)  (off-world)
 
+note this is a link that allows to open the url with the ENABLE_WEB3 Flag in the url, needed to enable Web3 functionality and setting information like the inventory for the user.
+However. right now ENABLE_WEB3 seems to create (last minuted) bugs in the game so you can also try it with this [other link](http://bit.ly/2o1oy1i) which disables the ENABLE_WEB3 flag to be able to play the game
+
 
 ## Team
 by their DCL discord channel nicknames
