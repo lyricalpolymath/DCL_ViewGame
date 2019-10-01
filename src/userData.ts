@@ -33,13 +33,6 @@ export class LevelPlayer
 
     this.events = events
     this.canvas = new UICanvas()
-    this.userLevelText = new UIText(this.canvas)
-    this.userLevelText.value = 'LEVEL'
-    this.userLevelText.positionX = -200
-    this.userLevelText.positionY = -5
-    this.userLevelText.hAlign = 'right'
-    this.userLevelText.vAlign = 'top'
-    this.userLevelText.fontSize = 25
 
     this.inventoryContainer = new UIContainerStack(this.canvas)
     this.inventoryContainer.stackOrientation = UIStackOrientation.VERTICAL;
@@ -119,12 +112,7 @@ export class LevelPlayer
     {
         this.backupData = backup
     }
-
-    updateLevelUI(levelui:number)
-    {
-        this.userLevelText.value = "LEVEL " + levelui
-    }
-
+    
     setVisibleInventory(color:string)
     {
         switch(color)
@@ -322,38 +310,4 @@ export class LevelPlayer
     {
         this.playerData.totalBumps++
     }
-
-
-    handleLeaderboard()
-    {
-        if(this.leaderboardItem.active)
-        {
-
-            this.leaderboardItem.setActive(false)
-        }
-        else
-        {
-            this.leaderboardItem.setActive(true)
-            this.getLeaderboardData()
-        }
-    }
-
-    getLeaderboardData()
-    {
-        executeTask(async () => {
-            try {
-              let response = await fetch(Globals.awsLeaderboard, {
-                headers: { "Content-Type": "application/json" },
-                method: "GET"
-              })
-              .then(response => response.json())
-              .then(data => {
-                log(data)
-              })
-            } catch(e) {
-            }
-          })
-    }
-
-
 }

@@ -5,10 +5,12 @@ import { getUserAccount } from '@decentraland/EthereumController'
 import * as Globals from "./functions"
 import { LoadingScene } from "./levels/loadingScene"
 import { LevelPlayer } from "./userData"
+import { LeaderBoard } from "./leaderboard"
 
 const events = new EventManager()
 
 var player = new LevelPlayer(events)
+var leaderboard = new LeaderBoard()
 
 startGame()
 
@@ -109,7 +111,7 @@ function itemSelected(color:string)
   log("selected item " + color)
   if(color == Globals._inventoryItems.LEADERBOARD)
   {
-    player.handleLeaderboard()
+    leaderboard.toggle(player.playerData)
   }
   else{
 
@@ -175,7 +177,6 @@ function createLevel(level:number)
 {
   log("creating level " + level)
   currentLevelNumber = level
-  player.updateLevelUI(level)
   currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
   currentLevel.getComponent(Transform).scale = Vector3.One()
   currentLevel.setParent(scene)
