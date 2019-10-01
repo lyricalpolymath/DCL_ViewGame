@@ -16,7 +16,8 @@ One level of this game could become the worldwide treasure hunt: **players will 
 Along the journey players will pick up **items that will allow them to see the world with "different eyes"**, continuosly asking them to see beyond what is purely visible, using these tools and their imagination,
 to change their perspective on what DCL is and what it could become, **discovering at each level the potential of the Metaverse**, both in terms of artistic expressiveness and for the ways in which it can transform reality
 
-**multiple lens can be used at once to "see" the world differently**
+***HINT***
+***multiple lens can be used at once to "see" the world differently***
 
 These items are wearable colored glasses that filter your view of the world, revealing, when the player wears them, something that was previously invisible. These filters can be combined in multiple ways to reveal different points of view
 
