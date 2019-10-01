@@ -112,7 +112,7 @@ export class LevelPlayer
     {
         this.backupData = backup
     }
-    
+
     setVisibleInventory(color:string)
     {
         switch(color)
@@ -226,6 +226,7 @@ export class LevelPlayer
     getStateString() {
         let stateObject = {
             user: this.user_address,
+            level: this.playerData.currentLevel,
             message:{
                 playerData: this.getPlayerData()
             }

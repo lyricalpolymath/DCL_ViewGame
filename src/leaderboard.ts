@@ -108,23 +108,6 @@ export class LeaderBoard {
         }
     }
 
-    getLeaderboardData()
-    {
-        executeTask(async () => {
-            try {
-              let response = await fetch(Globals.awsLeaderboard, {
-                headers: { "Content-Type": "application/json" },
-                method: "GET"
-              })
-              .then(response => response.json())
-              .then(data => {
-                log(data)
-              })
-            } catch(e) {
-            }
-          })
-    }
-
     update(data)
     {
         this.youL.value = data.currentLevel
