@@ -3,7 +3,8 @@ import { InventoryItem } from "./inventoryItem"
 import { Level } from "./levels/level"
 
 // BB addition
-import { InventoryInfoItem } from "components/InventoryInfoItem"
+import { InventoryInfoItem } from "./components/inventoryInfoItem"
+import { LeaderBoard } from "./components/leaderBoard"
 
 export class LevelPlayer
 {
@@ -24,6 +25,8 @@ export class LevelPlayer
     // BB addition
     levelInfoItem:InventoryInfoItem             //holds the current level counter in the inventory
     hitCounterInfoItem:InventoryInfoItem        //holds the wall hit counter
+    leaderboardButton:InventoryItem             //button to launch th leaderboard in the inventory
+    leaderBoard:LeaderBoard                     //the actual leaderboard
 
     level1:any
     level2:any
@@ -65,8 +68,13 @@ export class LevelPlayer
     // BB - add the Level and the bump counter to the inventory
     this.levelInfoItem = new InventoryInfoItem(this.inventoryContainer, "Level 7/8")
     this.hitCounterInfoItem = new InventoryInfoItem(this.inventoryContainer, "hits 0")
-    //let itemCountInfoItem = new InventoryInfoItem(this.inventoryContainer, "items 3/8") 
-
+    //let itemCountInfoItem = new InventoryInfoItem(this.inventoryContainer, "items 3/8")
+    
+    // BB - add Leaderboard and leaderboard button 
+    this.leaderBoard = new LeaderBoard();
+    // started creating the button for the inventory when Lastraum said that he had done them already
+    //this.leaderboardButton = new InventoryItem(this.inventoryContainer, this.events, Globals.Settings.inventory.buttonAtlas, "leaderBoardButton" ,300,0,90,25,100) 
+    //this.leaderboardButton.buttonImg.onClick = new OnClick(() => { this.leaderBoard.setVisible(true) })
 
     this.filter = new UICanvas()
     this.filterColor = new UIContainerRect(this.filter)
