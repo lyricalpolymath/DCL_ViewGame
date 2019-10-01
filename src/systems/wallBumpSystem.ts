@@ -18,7 +18,6 @@ export class WallBumpSystem {
     {
       for(var i = 1; i <= this.level.levelWalls.length-1; i++)
       {
-        //log(i)
         let wall = this.level.levelWalls[i]
         if(!wall.bumped)
         {
@@ -26,8 +25,7 @@ export class WallBumpSystem {
           let transform = wall.wallCollider.getComponent(Transform)
 
           let dist = Globals.distance(transform.position, this.camera.position)
-          if ( dist < 2) {
-            log("avatar bumped wall, need to animate")
+          if ( dist < 1) {
             this.events.fireEvent(new Globals.BumpedWallEvent())
             wall.bumped = true
             wall.bumpSource.playOnce()

@@ -860,6 +860,17 @@ neonLightTube_06_40.addComponentOrReplace(transform_45)
       scale: new Vector3(1, 1, 1)
     })
     neonLightTube_06_80.addComponentOrReplace(transform_85)
+    
   }
+
+  show()
+  {
+    engine.addEntity(this)
+    this.addComponentOrReplace(new utils.Delay(Globals.Settings.loadDelay,()=>{
+      log("done loading")
+      this.events.fireEvent(new Globals.LevelLoadingComplete())
+    }))
+  }
+
 
 }

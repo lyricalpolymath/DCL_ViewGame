@@ -6,6 +6,7 @@ export class LevelSound extends Entity{
   
   camera = Camera.instance
   level:Level
+  levelSource:AudioSource
 
   constructor(level:Level)
   {
@@ -17,10 +18,15 @@ export class LevelSound extends Entity{
     }))
     this.setParent(level)
     var levelAudio = new AudioClip('sounds/level'+ level.sceneLevel+'.mp3')
-    var levelSource = new AudioSource(levelAudio)
-        this.addComponentOrReplace(levelSource)
-        levelSource.volume = .6
-        levelSource.loop = true
-        levelSource.playing = true
+    this.levelSource = new AudioSource(levelAudio)
+        this.addComponentOrReplace(this.levelSource)
+        this.levelSource.volume = .3
+        this.levelSource.loop = true
+        this.levelSource.playing = true
+  }
+
+  stopPlaying()
+  {
+    this.levelSource.playing = false
   }
 }

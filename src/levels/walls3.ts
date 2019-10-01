@@ -1,4 +1,6 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
+import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentraland-ecs-utils/triggers/triggerSystem"
+
 import { Wall } from "./wall"
 import { Level } from "./level"
 import { _colorNames } from "../functions"
@@ -17,19 +19,29 @@ import * as Globals from "../functions"
          scale: new Vector3(2,2,2)
        }))
        glasses.addComponentOrReplace(new OnClick(e=>{
-        engine.removeEntity(glasses)
-        const box = new Entity()
-        box.addComponentOrReplace(new BoxShape())
-        box.addComponentOrReplace(new Transform({
-          position: new Vector3(14,3,16),
-          scale:new Vector3(.8,.8,.8)
-        }))
-        box.setParent(level)
-        box.addComponentOrReplace(new OnClick(e=>{
-          level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
-        }))
-        level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+        let dist = Globals.distance(glasses.getComponent(Transform).position, Globals.camera.position)
+
+        if ( dist < 11)
+         {
+            engine.removeEntity(glasses)
+            const portal = new Entity()
+            portal.addComponentOrReplace(Globals.portal)
+            portal.addComponentOrReplace(new Transform({
+              position: new Vector3(8,1.5,7),
+              rotation:Quaternion.Euler(0,90,0),
+              scale: Vector3.One()
+            }))
+            portal.setParent(level)
+            portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
+            0,null,null,null,()=>{
+              portal.removeComponent(TriggerComponent)
+              level.events.fireEvent(new Globals.DoTransition())
+            },()=>{},false))
+
+            level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+        }
       }))
+      engine.addEntity(glasses)
     
       const terrain_level3 = new Entity()
       terrain_level3.setParent(level)
@@ -103,11 +115,6 @@ import * as Globals from "../functions"
         scale: new Vector3(0.1916429149367341, 0.15557620331230382, 0.17839852579603924)
       })
       stones_5.addComponentOrReplace(transform_12)
-
-      
-
-
-      /// LEVEL 3 Parsed and names corrected:   converted names like "trunk-flat" with a  -  in the middle  > to  "trunks_flat"
 
       const trunks_flat = new Entity()
       trunks_flat.setParent(level)
@@ -235,28 +242,111 @@ import * as Globals from "../functions"
 
         // example // level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5030281017900293, 29.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
 
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5584415885299827, 30), new Quaternion(0, 0, 0, 1), _colorNames.RED))  // model: models/redwall.glb
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(17.46390046262978, 1.581462796781092, 16), new Quaternion(0, 0, 0, 1), _colorNames.RED))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2.5, 1.5, 16), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.RED))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2.5, 1.5, 22.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.RED))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(25, 1.5, 27.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.RED))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24.5, 1.6505976067636388, 1), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))  // model: models/bluewall.glb
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 1), new Quaternion(0, 0, 0, 1), _colorNames.BLUE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(19.5, 1.5, 1), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLUE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(23, 1.5, 11), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLUE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4.5, 1.5, 11), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.BLUE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN))  // model: models/greenwall.glb
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3.5, 1.5, 23.5), new Quaternion(0, 0, 0, 1), _colorNames.GREEN))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(5.5, 1.5, 23.5), new Quaternion(0, 0, 0, 1), _colorNames.GREEN))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15.5, 1.5, 14), new Quaternion(0, 0, 0, 1), _colorNames.TURQUOISE))  // model: models/turquoisewall.glb
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(13.497530691360588, 1.5, 14), new Quaternion(0, 0, 0, 1), _colorNames.TURQUOISE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.556840048393862, 1.5, 14), new Quaternion(0, 0, 0, 1), _colorNames.TURQUOISE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15.5, 1.5, 31), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15.5, 1.5, 29), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 31), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 31), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
-        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 29), new Quaternion(0, -0.7071067811865477, 0, 0.7071067811865476), _colorNames.TURQUOISE))
-
-        
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(17.5, 1.5, 16), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 30), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(22.5, 1.5, 30), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(23.5, 1.5, 29), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(25, 1.5, 27.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2.5, 1.5, 22.5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2.5, 1.5, 16), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 23.5), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9.5, 1.5, 23.5), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 2), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(8.5, 1.5, 2), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(6.5, 1.5, 2), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4.5, 1.5, 2), new Quaternion(0, 0, 0, 1), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 18), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 16), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 14), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 2), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(14.5, 1.5, 9), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(14.5, 1.5, 7), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(14.5, 1.5, 5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.RED))
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3.115070126396083, 1.5, 24), new Quaternion(0, -0.38268343236508967, 0, 0.9238795325112867), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3, 1.5, 9), new Quaternion(0, -0.38268343236508967, 0, 0.9238795325112867), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(2, 1.5, 9), new Quaternion(0, -0.38268343236508967, 0, 0.9238795325112867), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(8.5, 1.5, 11), new Quaternion(0, -0.38268343236508967, 0, 0.9238795325112867), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 12.5), new Quaternion(0, -0.38268343236508967, 0, 0.9238795325112867), _colorNames.RED)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(13.5, 1.5, 11), new Quaternion(0, -0.38268343236508967, 0, 0.9238795325112867), _colorNames.RED))  
+  
+  
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 1), new Quaternion(0, 0, 0, 1), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24.5, 1.5, 1), new Quaternion(0, 0, 0, 1), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(19.5, 1.5, 1), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(4.5, 1.5, 11), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(23, 1.5, 11), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16.5, 1.5, 13), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16.5, 1.5, 11), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(27, 1.5, 1), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5, 1), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5, 1), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(27.606486409734632, 1.5, 1), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 9), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 7), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 5), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 3), new Quaternion(0, -0.7071067811865476, 0, 0.7071067811865476), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(12, 1.5, 31.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10, 1.5, 31.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(8, 1.5, 31.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(6, 1.5, 31.5), new Quaternion(0, 0, 0, 1), _colorNames.BLUE)) 
+  
+  
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15.5, 1.5, 31), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15.5, 1.5, 29.093403591194757), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 31), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 31), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(29, 1.5, 29), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(15.5, 1.5, 14), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(13.5, 1.5, 14), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 14), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9.5, 1.5, 14), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(5.5, 1.5, 10), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 10), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9.5, 1.5, 10), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11.5, 1.5, 10), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(13.5, 1.5, 10), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(24, 1.5, 26.511208320232992), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(22, 1.5, 26.5), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20, 1.5, 26.5), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16.128487093327216, 1.5, 26.5), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(18.10287364891886, 1.5, 26.5), new Quaternion(0, 0.9999999999999999, 0, 1.3877787807814457e-16), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 29), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 26), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 24), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 22), new Quaternion(0, 0.7071067811865475, 0, 0.7071067811865475), _colorNames.TURQUOISE)) 
+  
+  
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(5.5, 1.5, 23.5), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3.5, 1.5, 23.5), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(3.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(5.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(7.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(17.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(19.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(21.5, 1.5, 17), new Quaternion(0, 0, 0, 1), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 16), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 14), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 30.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 28.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.GREEN)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(10.5, 1.5, 26.5), new Quaternion(0, -0.7071067811865478, 0, 0.7071067811865477), _colorNames.GREEN)) 
+  
+  
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9.704090483121625, 1.5, 22.773487800447075), new Quaternion(0, -0.38268343236508984, 0, 0.9238795325112868), _colorNames.PURPLE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(8.38147453145028, 1.5, 21.5), new Quaternion(0, -0.38268343236508984, 0, 0.9238795325112868), _colorNames.PURPLE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(9.150972039317661, 1.5, 14.715560161196638), new Quaternion(0, -0.38268343236508984, 0, 0.9238795325112868), _colorNames.PURPLE))
+  
+  
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16, 1.5, 18.5), new Quaternion(0, 0, 0, 1), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16, 1.5, 22.5), new Quaternion(0, 0, 0, 1), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(16, 1.5, 20.5), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(13.5, 1.5, 20.5), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(11, 1.5, 20.5), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.698235109698306, 1.5, 21.562511773487945), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5, 4.5), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(26.5, 1.5, 7), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(22.5, 1.5, 7), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+        level.levelWalls.push(new Wall(level,"Wall " + level.levelWalls.length, new Vector3(20.5, 1.5, 7), new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089), _colorNames.WHITE)) 
+  
   
 }

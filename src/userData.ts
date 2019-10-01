@@ -8,7 +8,7 @@ export class LevelPlayer
     events:EventManager
     user_address:string
     levelBumps:number = 0
-    backupData:boolean
+    backupData:boolean = false
     activeColor:string = Globals._colorNames.NONE
     canvas:UICanvas
     filter:UICanvas
@@ -18,13 +18,12 @@ export class LevelPlayer
     redItem:InventoryItem
     blueItem:InventoryItem
     greenItem:InventoryItem
-
-    level1:any
-    level2:any
-    level3:any
-    level4:any
-    level5:any
-    level6:any
+    microscopeItem:InventoryItem
+    telescopeItem:InventoryItem
+    binocularsItem:InventoryItem
+    glassesItem:InventoryItem
+    magnifyingItem:InventoryItem
+    leaderboardItem:InventoryItem
 
     playerData:any
 
@@ -37,10 +36,10 @@ export class LevelPlayer
     this.userLevelText = new UIText(this.canvas)
     this.userLevelText.value = 'LEVEL'
     this.userLevelText.positionX = -200
-    this.userLevelText.positionY = -15
+    this.userLevelText.positionY = -5
     this.userLevelText.hAlign = 'right'
     this.userLevelText.vAlign = 'top'
-    this.userLevelText.fontSize = 50
+    this.userLevelText.fontSize = 25
 
     this.inventoryContainer = new UIContainerStack(this.canvas)
     this.inventoryContainer.stackOrientation = UIStackOrientation.VERTICAL;
@@ -50,7 +49,7 @@ export class LevelPlayer
     this.inventoryContainer.opacity = Globals.Settings.inventory.opacity
     this.inventoryContainer.hAlign = 'right'
     this.inventoryContainer.adaptHeight = true
-    this.inventoryContainer.visible = false
+    this.inventoryContainer.visible = true
 
     this.filter = new UICanvas()
     this.filterColor = new UIContainerRect(this.filter)
@@ -62,45 +61,32 @@ export class LevelPlayer
         rect.visible = false
         rect.isPointerBlocker = false
 
+    this.leaderboardItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._inventoryItems.LEADERBOARD,300,200,90,90,0)
+    this.leaderboardItem.setVisible(true)
     this.redItem = new InventoryItem(this.inventoryContainer, this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.RED,0,0,90,90,100)
-
     this.greenItem = new InventoryItem(this.inventoryContainer, this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.GREEN,0,100,90,90,100)
+    this.blueItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.BLUE,0,200,90,90,100) 
+    this.telescopeItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._inventoryItems.TELESCOPE,    200,0,90,90, 0) 
+    this.magnifyingItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._inventoryItems.MAGNIFIER,    300,0,90,90, 0)
+    this.binocularsItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._inventoryItems.BINOCULARS,    200,100,90,90, 0)
+    this.glassesItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._inventoryItems.GLASSES,        300,100,90,90, 0)
+    this.microscopeItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._inventoryItems.MICROSCOPE,    200,200,90,90, 0)
 
-    this.blueItem = new InventoryItem(this.inventoryContainer,this.events, Globals.Settings.inventory.buttonAtlas,Globals._colorNames.BLUE,0,200,90,90,100)  
     
     this.playerData = {
         currentLevel: 1,
         totalBumps: 0,
-        levels: {
-            level1: {
-                bumps: 0
-            },
-            level2: {       
-                bumps: 0             
-            },
-            level3: { 
-                bumps: 0             
-            },
-            level4: {    
-                bumps: 0             
-            },
-            level5: {    
-                bumps: 0             
-            },
-            level6: {    
-                bumps: 0             
-            },
-            level7: {     
-                bumps: 0             
-            },
-            level8: {    
-                bumps: 0             
-            }
-        },
         glasses: {
             RED: this.redItem.visible,
             GREEN: this.greenItem.visible,
             BLUE: this.blueItem.visible,
+        },
+        items:{
+            MICROSCOPE: this.microscopeItem.visible,
+            TELESCOPE: this.telescopeItem.visible,
+            BINOCULARS: this.binocularsItem.visible,
+            GLASSES: this.glassesItem.visible,
+            MAGNIFIER: this.magnifyingItem.visible
         }
     }
 
@@ -136,7 +122,6 @@ export class LevelPlayer
 
     updateLevelUI(levelui:number)
     {
-        log('updating level text ' + levelui)
         this.userLevelText.value = "LEVEL " + levelui
     }
 
@@ -175,12 +160,36 @@ export class LevelPlayer
             this.redItem.setVisible(true)
             this.redItem.setActive(true)
             break;
+
+        case Globals._inventoryItems.TELESCOPE:
+            this.playerData.items.TELESCOPE = true
+            this.telescopeItem.setVisible(true)
+            break;
+
+        case Globals._inventoryItems.MICROSCOPE:
+            this.playerData.items.MICROSCOPE = true
+            this.microscopeItem.setVisible(true)
+            break;
+
+        case Globals._inventoryItems.BINOCULARS:
+            this.playerData.items.BINOCULARS = true
+            this.binocularsItem.setVisible(true)
+            break;
+
+        case Globals._inventoryItems.GLASSES:
+            this.playerData.items.GLASSES = true
+            this.glassesItem.setVisible(true)
+            break;
+
+        case Globals._inventoryItems.MAGNIFIER:
+            this.playerData.items.MAGNIFIER = true
+            this.magnifyingItem.setVisible(true)
+            break;
         }
     }
 
     handleInventory(level:Level)
     {
-        log("active color is " + this.activeColor)
         if(!this.inventoryContainer.visible)
         {
             this.inventoryContainer.visible = true
@@ -204,7 +213,6 @@ export class LevelPlayer
   
           } else if (!R.active && !G.active && B.active) {
             // only Blue
-            log(" blue ")
             this.activeColor = Globals.Settings.colorNames.BLUE
   
           } else if (R.active && G.active && !B.active) {
@@ -217,14 +225,12 @@ export class LevelPlayer
           
           } else if (!R.active && G.active && B.active) {
             // GREEN+BLUE = CYAN
-            log(" cyan ")
             this.activeColor = Globals.Settings.colorNames.CYAN
           
           } else if (R.active && G.active && B.active) {
             // RED+GREEN+BLUE = WHITE
             this.activeColor = Globals.Settings.colorNames.WHITE
           }
-          log("new active color is " + this.activeColor)
         this.setFilterColor(Globals.Settings.colors[this.activeColor])
         level.showWallsForLens(this.activeColor)
     }
@@ -246,7 +252,7 @@ export class LevelPlayer
 
     pushData()
     {
-        if(this.setBackup)
+        if(this.backupData)
         {
         let updateString = JSON.stringify(this.getStateString())
         log(updateString)
@@ -271,6 +277,8 @@ export class LevelPlayer
 
     updateLocal(data)
     {
+        log(data)
+        log("checking local here")
         this.playerData = data.Item.inventory.playerData
         if(this.playerData.glasses.RED)
         {
@@ -284,41 +292,67 @@ export class LevelPlayer
         {
             this.blueItem.setVisible(true)
         }
+        
+        if(this.playerData.items.MAGNIFIER)
+        {
+            this.magnifyingItem.setVisible(true)
+        }
+        if(this.playerData.items.TELESCOPE)
+        {
+            this.telescopeItem.setVisible(true)
+        }
+        if(this.playerData.items.BINOCULARS)
+        {
+            this.binocularsItem.setVisible(true)
+        }
+        if(this.playerData.items.GLASSES)
+        {
+            this.glassesItem.setVisible(true)
+        }
+        if(this.playerData.items.MAGNIFIER)
+        {
+            this.magnifyingItem.setVisible(true)
+        }
+        
+        log("here is player data")
         log(this.playerData)
     }
 
     updateBump()
     {
-        log("player level is " + this.playerData.currentLevel)
         this.playerData.totalBumps++
-        switch(this.playerData.currentLevel)
+    }
+
+
+    handleLeaderboard()
+    {
+        if(this.leaderboardItem.active)
         {
-            case 1:
-                log("we made it this far")
-                this.playerData.levels.level1.bumps++
-                break;
-            case 2:
-                this.playerData.levels.level2.bumps++
-                break;
-            case 3:
-                this.playerData.levels.level3.bumps++
-                break;
-            case 4:
-                this.playerData.levels.level4.bumps++
-                break;
-            case 5:
-                this.playerData.levels.level5.bumps++
-                break;
-            case 6:
-                this.playerData.levels.level6.bumps++
-                break;
-            case 7:
-                this.playerData.levels.level7.bumps++
-                break;
-            case 8:
-                this.playerData.levels.level8.bumps++
-                break;
+
+            this.leaderboardItem.setActive(false)
         }
+        else
+        {
+            this.leaderboardItem.setActive(true)
+            this.getLeaderboardData()
+        }
+    }
+
+    getLeaderboardData()
+    {
+        executeTask(async () => {
+            try {
+              let response = await fetch(Globals.awsLeaderboard, {
+                headers: { "Content-Type": "application/json" },
+                method: "GET"
+              })
+              .then(response => response.json())
+              .then(data => {
+                log(data)
+              })
+            } catch(e) {
+            }
+          })
     }
 
 

@@ -1,12 +1,10 @@
 import utils from "../node_modules/decentraland-ecs-utils/index"
 import { Level } from "./levels/level"
-import { TransitionScene } from "./levels/transitionScene"
 import {LevelCompleted, TransitionLevelComplete, LevelLoadingComplete, DoTransition,InventoryItemSelectedEvent, BumpedWallEvent} from "./functions"
 import { getUserAccount } from '@decentraland/EthereumController'
 import * as Globals from "./functions"
 import { LoadingScene } from "./levels/loadingScene"
 import { LevelPlayer } from "./userData"
-
 
 const events = new EventManager()
 
@@ -25,20 +23,14 @@ var currentLevelNumber:number
 
 ///have a trigger shape for the avatar
 utils.TriggerSystem.instance.setCameraTriggerShape(new utils.TriggerBoxShape(new Vector3(0.5, 1.8, 0.5), new Vector3(0, -0.91, 0)))
-
-///create reusable components across levels
-const transitionScene = new TransitionScene(events)
 const loadingScene = new LoadingScene(events)
-loadingScene.setParent(scene)
+loadingScene.show()
 
 events.addListener(LevelCompleted,null,({l})=>{
-    log("user won the level " + l)
-
     ///////need to show a congrats message and explain what they just picked up
     switch(l)
     {
       case 1:
-        log("level " + l + " complete. found blue lens. add it to the inventory.")
         player.inventoryContainer.visible = true
         player.addInventory(Globals._colorNames.BLUE)
         player.pushData()
@@ -46,72 +38,90 @@ events.addListener(LevelCompleted,null,({l})=>{
         break;
 
       case 2:
-        log("level " + l + " complete. found green lens. add it to the inventory.")
-        player.inventoryContainer.visible = true
         player.addInventory(Globals._colorNames.GREEN)
         player.pushData()
         itemSelected(Globals._colorNames.GREEN)
         break;
 
       case 3:
-        log("level " + l + " complete. found red lens. add it to the inventory.")
-        player.inventoryContainer.visible = true
         player.addInventory(Globals._colorNames.RED)
         player.pushData()
         itemSelected(Globals._colorNames.RED)
         break;
+
+      case 4:
+        player.addInventory(Globals._inventoryItems.TELESCOPE)
+        player.pushData()
+        break;
+
+      case 5:
+        player.addInventory(Globals._inventoryItems.MICROSCOPE)
+        player.pushData()
+        break;
+
+      case 6:
+        player.addInventory(Globals._inventoryItems.BINOCULARS)
+        player.pushData()
+        break;
+
+      case 7:
+        player.addInventory(Globals._inventoryItems.MAGNIFIER)
+        player.pushData()
+        break;
+
+      case 8:
+        player.addInventory(Globals._inventoryItems.GLASSES)
+        player.pushData()
+        break;
     }
 })
 
-events.addListener(DoTransition,null,({l})=>{
-  log("transitioning from level " + l + " to level " + (l+1))
+events.addListener(DoTransition,null,()=>{
   player.playerData.currentLevel++
   player.pushData()
-  doTransitionLevel(l)
+  doTransitionLevel()
 })
 
 events.addListener(BumpedWallEvent,null,()=>{
-  log("add new bump count to server for current level " + currentLevelNumber)
   player.updateBump()
   player.pushData()
 })
 
 events.addListener(InventoryItemSelectedEvent,null,({name})=>{
-  log("changed lens, so we need to change which walls are visible")
   itemSelected(name)
 })
 
-//listen for when the loading current level is complete
 events.addListener(LevelLoadingComplete,null,()=>{
   engine.removeEntity(loadingScene)
-  loadingScene.setParent(null)
 
 })
 
-//listen for when the transition scene is complete
 events.addListener(TransitionLevelComplete,null,()=>{
-    engine.removeEntity(transitionScene)
-    loadingScene.setParent(scene)
-    engine.addEntity(loadingScene)
+    loadingScene.show()
 
     currentLevelNumber++
-    createLevel(currentLevelNumber)
     currentLevel.showWallsForLens(player.activeColor)
+    createLevel(currentLevelNumber)
 })
 
 function itemSelected(color:string)
 {
-  log("color selected is " + color)
+  log("selected item " + color)
+  if(color == Globals._inventoryItems.LEADERBOARD)
+  {
+    player.handleLeaderboard()
+  }
+  else{
+
+  }
   player.setVisibleInventory(color)
   player.handleInventory(currentLevel)
-  //currentLevel.showWallsForLens(player.activeColor)
 }
 
-function getServerInfo(address:string,ethSuccess:boolean)//:Entity
+function getServerInfo(address:string,ethSuccess:boolean)
 {
   if(ethSuccess)
   {
-    log("found a user")
     executeTask(async () => {
       try {
         let response = await fetch(Globals.awsGet + "?user="+ player.user_address, {
@@ -123,23 +133,22 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
           log(data)
           if(!Object.keys(data).length)
           {
-            log("user hasn't played. need to store information on server")
+            log("player has not played. add them to db")
             player.setBackup(true)
             player.pushData()
             createLevel(1)
           }
           else
           {
-            log("user found. retrieving information.")
-            log(data.Item.id)
+            log("player has played. download info")
             log(data.Item.inventory.playerData.currentLevel)
-            player.updateLocal(data)
+            player.setBackup(true)
             createLevel(data.Item.inventory.playerData.currentLevel)
+            player.updateLocal(data)
             player.handleInventory(currentLevel)
           }
         })
       } catch(e) {
-        log("error is " + e)
       }
     })
   }
@@ -147,7 +156,7 @@ function getServerInfo(address:string,ethSuccess:boolean)//:Entity
 
 function startGame()
 {
-//try to get user ethereum address to start the game
+  log("here")
 executeTask(async () => {
   try {
     const address = await getUserAccount()
@@ -155,7 +164,7 @@ executeTask(async () => {
     player.setAddress(address)
     getServerInfo(address, true)
   } catch (error) {
-    log("No ETH address or provider. Not going to store information to the cloud")
+    log(error)
     player.setBackup(false)
     createLevel(1)
   }
@@ -164,20 +173,20 @@ executeTask(async () => {
 
 function createLevel(level:number)
 {
+  log("creating level " + level)
   currentLevelNumber = level
   player.updateLevelUI(level)
   currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
+  currentLevel.getComponent(Transform).scale = Vector3.One()
   currentLevel.setParent(scene)
+  engine.addEntity(currentLevel)
 }
 
-function doTransitionLevel(lev:number)
+function doTransitionLevel()
 {
-    transitionScene.setParent(scene)
-    engine.addEntity(transitionScene)
-    engine.removeEntity(currentLevel)
-    transitionScene.start()
+    currentLevel.soundFollowSystem.stopPlaying()
+    currentLevel.getComponent(Transform).scale = Vector3.Zero()
+    Globals.transitionStart(events)
 }
 
-
-//add scene to the engine
 engine.addEntity(scene)
