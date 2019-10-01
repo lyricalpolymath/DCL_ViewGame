@@ -334,6 +334,18 @@ export class Level extends Entity
                         this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                         this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                         break;
+
+                default:
+                        this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                        break;
+
         }
     }
 
