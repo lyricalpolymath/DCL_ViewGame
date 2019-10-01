@@ -71,7 +71,9 @@ by their DCL discord channel nicknames
 
 - can be used to **incentivize to visit specific districs and parcels**: district owners and parcels owners could participate even just dropping an item to be found in their scenes and implementing the inventory
 
-- there's a storyline that can shift and grow with Decentraland  
+- there's a storyline that can shift and grow with Decentraland
+
+- utilized: utils libary, sytems, animations, sounds, custom GLB files, builder custom asset pack exports (for positioning), mutli "scene" loading based on server information, server storage for user data, UI implementation, moving an avatar, button events, pickable items for your avatar to hold in an inventory system
 
 ## Screenshots
 
