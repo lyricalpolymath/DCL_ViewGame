@@ -16,6 +16,8 @@ One level of this game could become the worldwide treasure hunt: **players will 
 Along the journey players will pick up **items that will allow them to see the world with "different eyes"**, continuosly asking them to see beyond what is purely visible, using these tools and their imagination,
 to change their perspective on what DCL is and what it could become, **discovering at each level the potential of the Metaverse**, both in terms of artistic expressiveness and for the ways in which it can transform reality
 
+These items are wearable colored glasses that filter your view of the world, revealing, when the player wears them, something that was previously invisible. These filters can be combined in multiple ways to reveal different points of view
+
 Leveler can be therefore the portal between reality and the Metaverse
 
 The authors hope that this, possibly ever expanding game, will reflect the sensation that the real world and the digital world are coming together to create something greater, stranger and stronger than either alone
@@ -44,8 +46,10 @@ to simplify the experience of testing all levels while not being deployed to dif
 
 [Leveler demo](http://bit.ly/2n8GdUH)  (off-world)
 
-note this is a link that allows to open the url with the ENABLE_WEB3 Flag in the url, needed to enable Web3 functionality and setting information like the inventory for the user.
-However. right now ENABLE_WEB3 seems to create (last minuted) bugs in the game so you can also try it with this [other link](http://bit.ly/2o1oy1i) which disables the ENABLE_WEB3 flag to be able to play the game
+<sup>- note this is a link that allows to open the url with the ENABLE_WEB3 Flag in the url, needed to enable Web3 functionality and setting information like the inventory for the user.</sup>
+
+<sup>- we found out a possible bug with ZEIT: deploying twice to the same project creates some problems.
+lesson: always deploy to a new zeit?</sup>
 
 
 ## Team
