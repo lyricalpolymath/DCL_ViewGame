@@ -181,6 +181,7 @@ function createLevel(level:number)
   currentLevel.getComponent(Transform).scale = Vector3.One()
   currentLevel.setParent(scene)
   engine.addEntity(currentLevel)
+  player.handleInventory(currentLevel)
 }
 
 function doTransitionLevel()

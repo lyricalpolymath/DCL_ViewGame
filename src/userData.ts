@@ -197,27 +197,27 @@ export class LevelPlayer
           
           } else if (!R.active && G.active && !B.active) {
             // only Green
-            this.activeColor = Globals.Settings.colorNames.GREEN
+            this.activeColor = Globals._colorNames.GREEN
   
           } else if (!R.active && !G.active && B.active) {
             // only Blue
-            this.activeColor = Globals.Settings.colorNames.BLUE
+            this.activeColor = Globals._colorNames.BLUE
   
           } else if (R.active && G.active && !B.active) {
             // RED+GREEN = YELLOW
-            this.activeColor = Globals.Settings.colorNames.YELLOW
+            this.activeColor = Globals._colorNames.YELLOW
           
           } else if (R.active && !G.active && B.active) {
             // RED+BLUE = PURPLE
-            this.activeColor = Globals.Settings.colorNames.PURPLE
+            this.activeColor = Globals._colorNames.PURPLE
           
           } else if (!R.active && G.active && B.active) {
             // GREEN+BLUE = CYAN
-            this.activeColor = Globals.Settings.colorNames.CYAN
+            this.activeColor = Globals._colorNames.CYAN
           
           } else if (R.active && G.active && B.active) {
             // RED+GREEN+BLUE = WHITE
-            this.activeColor = Globals.Settings.colorNames.WHITE
+            this.activeColor = Globals._colorNames.WHITE
           }
         this.setFilterColor(Globals.Settings.colors[this.activeColor])
         level.showWallsForLens(this.activeColor)
