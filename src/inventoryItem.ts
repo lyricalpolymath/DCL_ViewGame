@@ -1,49 +1,11 @@
-import { Settings } from "../gameSettings";
-import { State, StateUpdate, InventoryItemSelectedEvent } from "../gameState";
+import * as Globals from "./functions"
 
-const fname = "Inventory."
-
-export class InventoryUI {
-
-    canvas:UICanvas ;
-
-    constructor() {
-        this.drawInventory()
-    }
-
-    /**
-     * draws basic inventory untill we can get one designed
-     */
-    drawInventory() {
-        log(fname+"drawInventory")
-        this.canvas = new UICanvas();
-        
-        let cont = new UIContainerStack(this.canvas)
-        cont.stackOrientation = UIStackOrientation.VERTICAL;
-        cont.width = Settings.inventory.width
-        cont.height = '100%'
-        cont.color =  Color4.Black()
-        cont.opacity = Settings.inventory.opacity
-        cont.hAlign = 'right'
-        //cont.spacing = 5
-        cont.adaptHeight = true
-
-        // add buttons here - the items themselves will take care to know wither they can be shown or not
-        let red     = new InventoryItem(cont, Settings.inventory.buttonAtlas, "RED",    0, 0, 90, 90, 100);
-        let green   = new InventoryItem(cont, Settings.inventory.buttonAtlas, "GREEN",  0, 100, 90, 90, 100);
-        let blue    = new InventoryItem(cont, Settings.inventory.buttonAtlas, "BLUE",   0, 200, 90, 90, 100);
-
-    }
-}
-
-
-/**
- * behaviors for each item that appears in the inventory
- */
 export class InventoryItem {
 
     parent          :UIShape            // UI container Rect or stack
+    events          :EventManager
     active          :boolean = false
+    visible       :boolean = false
     buttonImg       :UIImage   
     name            :string             // used to identify the appropriate object in State.glasses
     imgX            :number             // x position in imgAtlas of DESELECTED button
@@ -52,6 +14,7 @@ export class InventoryItem {
 
     constructor(
             parent:UIContainerStack | UIContainerRect,
+            events:EventManager,
             atlas:string,
             name: string,
             x:number, y:number, w:number, h:number,     //position and sizes of the imageAtlas
@@ -63,7 +26,7 @@ export class InventoryItem {
         this.imgX = x
         this.imgSelectedX = (x + selectedXOffset)
         this.imgHeight = h
-        
+        this.events = events
 
         // draw the deselected Button
         let btn = new UIImage(this.parent, new Texture(atlas))
@@ -71,29 +34,24 @@ export class InventoryItem {
         btn.sourceTop = y
         btn.sourceWidth = w
         btn.sourceHeight = h
-        btn.height = Settings.inventory.width// 100
-        btn.width = Settings.inventory.width
+        btn.height = Globals.Settings.inventory.width// 100
+        btn.width = Globals.Settings.inventory.width
         btn.isPointerBlocker = true
         btn.visible = false                    // hide from the beginning and let the State determine wither to show it or not
         btn.onClick = new OnClick(() => { this.toggle() })
         this.buttonImg = btn
 
         // activate or not at the beginning
-        this.handleStateUpdate()
-
-        // listen to the State events to change the view
-        State.events.addListener( StateUpdate, this, () => { this.handleStateUpdate() })
-        
+        this.handleStateUpdate()        
     }
 
     /**
      * changes the view of this inventory item based on the
      */
     private handleStateUpdate() {
-        log(fname+"handleStateUpdate ")
-        var state = State.glasses[this.name]
-        this.setVisible( state.available );
-        this.setActive( state.active );
+        //var state = State.glasses[this.name]
+        //this.setVisible( state.available );
+        //this.setActive( state.active );
     }
 
     /**
@@ -101,7 +59,7 @@ export class InventoryItem {
      */
     toggle() {
         this.setActive(!this.active);
-        State.events.fireEvent(new InventoryItemSelectedEvent(this.name, this.active))
+        this.events.fireEvent(new Globals.InventoryItemSelectedEvent(this.name))
     }
 
     /**
@@ -120,9 +78,7 @@ export class InventoryItem {
             this.buttonImg.sourceLeft = this.imgX
             this.active = false
         }
-        // emit the event
-        log(fname+"setActive button " + this.name + "  - isActive: " + this.active + " State: ", State)
-    }
+      }
 
     /**
      * sets the visibility of the Inventory Item
@@ -137,5 +93,3 @@ export class InventoryItem {
 
 
 }
-
-

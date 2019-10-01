@@ -2,7 +2,8 @@ import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import { Level } from "./level"
 import * as Globals from "../functions"
-import { _colorNames } from "../gameSettings"
+import { _colorNames } from "../functions"
+import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentraland-ecs-utils/triggers/triggerSystem"
 
     export function createScene(level:Level)
     {
@@ -15,19 +16,45 @@ import { _colorNames } from "../gameSettings"
          scale: new Vector3(2,2,2)
        }))
        blueGlasses.addComponentOrReplace(new OnClick(e=>{
-         engine.removeEntity(blueGlasses)
-         const box = new Entity()
-         box.addComponentOrReplace(new BoxShape())
-         box.addComponentOrReplace(new Transform({
-           position: new Vector3(16,1.5,16),
-           scale:new Vector3(.8,.8,.8)
-         }))
-         box.setParent(level)
-         box.addComponentOrReplace(new OnClick(e=>{
-           level.events.fireEvent(new Globals.DoTransition(level.sceneLevel))
-         }))
-         level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
-       }))
+        let dist = Globals.distance(blueGlasses.getComponent(Transform).position, Globals.camera.position)
+        if ( dist < 4)
+         {
+            engine.removeEntity(blueGlasses)
+            const portal = new Entity()
+            portal.addComponentOrReplace(Globals.portal)
+            portal.addComponentOrReplace(new Transform({
+              position: new Vector3(27,1.5,3),
+              scale: Vector3.One()
+            }))
+            portal.setParent(level)
+            portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
+            0,null,null,null,()=>{
+              portal.removeComponent(TriggerComponent)
+              level.events.fireEvent(new Globals.DoTransition())
+            },()=>{},false))
+
+            level.events.fireEvent(new Globals.LevelCompleted(level.sceneLevel))
+        }
+      }))
+      engine.addEntity(blueGlasses)
+
+            /*
+      portal.addComponentOrReplace(new Animator())
+      for(var i = 0; i <= 27; i++)
+      {
+        log("adding clip")
+        portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i)))
+        log("playing clip")
+        portal.getComponent(Animator).getClip(("Polygon_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i)).play()
+      }
+      for(var i = 2; i <= 27; i++)
+      {
+        log("adding clip")
+        portal.getComponent(Animator).addClip(new AnimationState(("Polygon_0_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2")))
+        log("playing clip")
+        portal.getComponent(Animator).getClip(("Polygon_0_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2")).play()
+      }
+      */
        
 
         const lvl1 = new Entity()
@@ -37,8 +64,7 @@ import { _colorNames } from "../gameSettings"
           scale: new Vector3(.99,.99,.99)
         }))
         lvl1.setParent(level)
-
-        level.events.fireEvent(new Globals.LevelLoadingComplete())
+        
       
     }
 

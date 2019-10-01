@@ -6,27 +6,27 @@ export class WallBumpSystem {
   
   camera = Camera.instance
   level:Level
+  events:EventManager
 
   constructor(level:Level)
   {
     this.level = level
+    this.events = this.level.events
   }
   update() {
     if(this.level.levelWalls.length > 1)
     {
       for(var i = 1; i <= this.level.levelWalls.length-1; i++)
       {
-        //log(i)
         let wall = this.level.levelWalls[i]
         if(!wall.bumped)
         {
-          
+         
           let transform = wall.wallCollider.getComponent(Transform)
 
           let dist = Globals.distance(transform.position, this.camera.position)
-          if ( dist < 2) {
-            log("avatar bumped wall, need to animate")
-
+          if ( dist < 1) {
+            this.events.fireEvent(new Globals.BumpedWallEvent())
             wall.bumped = true
             wall.bumpSource.playOnce()
 

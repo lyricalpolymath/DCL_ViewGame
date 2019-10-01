@@ -1,15 +1,18 @@
 import utils from "../../node_modules/decentraland-ecs-utils/index"
 import { Wall } from "./wall"
 import * as Globals from "../functions"
+import {_colorNames } from "../functions"
 import * as Walls1 from "./walls1"
 import * as Walls2 from "./walls2"
 import * as Walls3 from "./walls3"
 import * as Walls4 from "./walls4"
 import * as Walls5 from "./walls5"
 import * as Walls6 from "./walls6"
+import * as Walls7 from "./walls7"
+import * as Walls8 from "./walls8"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
-import { _colorNames } from "../gameSettings"
 import { WallAnimation } from "./wall_animation"
+import { LevelSound } from "./levelSound"
 
 
 export class Level extends Entity
@@ -34,6 +37,7 @@ export class Level extends Entity
     pickSource = new AudioSource(this.pickClip)
     levelAudio:AudioSource
     showWallSystem:WallBumpSystem
+    soundFollowSystem:LevelSound
     glitch1Ent:WallAnimation
     glitch2Ent:WallAnimation
     glitch3Ent:WallAnimation
@@ -57,37 +61,39 @@ export class Level extends Entity
         this.glitch3Ent = new WallAnimation(this)
 
         this.createColorHoldingEntities()
-
-                switch(sceneLevel)
+        log("creating level for " + sceneLevel)
+        switch(sceneLevel)
         {
             case 1:
-                log("creating level 1")
                 this.createLevel1()
                 break;
             
             case 2:
-                log('creating level 2')
                 this.createLevel2()
                 break;
 
             case 3:
-                log('creating level 3')
                 this.createLevel3()
                 break;
 
             case 4:
-                log('creating level 4')
                 this.createLevel4()
                 break;
 
             case 5:
-                log('creating level 5')
                 this.createLevel5()
                 break;
 
             case 6:
-                log('creating level 6')
                 this.createLevel6()
+                break;
+        
+            case 7:
+                this.createLevel7()
+                break;
+
+            case 8:
+                this.createLevel8()
                 break;
         
         }
@@ -96,6 +102,9 @@ export class Level extends Entity
       //need to show active lens from server
       this.showWallSystem = new WallBumpSystem(this)
       engine.addSystem(this.showWallSystem)
+
+      this.soundFollowSystem = new LevelSound(this)
+      engine.addEntity(this.soundFollowSystem)
     }
 
     createColorHoldingEntities()
@@ -152,54 +161,24 @@ export class Level extends Entity
 
     createLevel1()
     { 
-        var levelAudio = new AudioClip('sounds/level1.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls1.createScene(this)
         Walls1.createWalls(this)
     }
 
     createLevel2()
     {
-
-        var levelAudio = new AudioClip('sounds/level2.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
       Walls2.createScene(this)
-      //////////////create all the walls for this level
       Walls2.createWalls(this)
     }
 
     createLevel3()
     {
-        var levelAudio = new AudioClip('sounds/level3.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
       Walls3.createScene(this)
       Walls3.createWalls(this)
     }
 
     createLevel4()
     {
-        var levelAudio = new AudioClip('sounds/level4.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls4.createScene(this)
         Walls4.createWalls(this)
     }
@@ -207,27 +186,25 @@ export class Level extends Entity
 
     createLevel5()
     {
-        var levelAudio = new AudioClip('sounds/level5.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls5.createScene(this)
         Walls5.createWalls(this)
     }
     createLevel6()
     {
-        var levelAudio = new AudioClip('sounds/level6.mp3')
-        this.levelAudio = new AudioSource(levelAudio)
-        this.addComponentOrReplace(this.levelAudio)
-        this.levelAudio.volume = .5
-        this.levelAudio.loop = true
-        this.levelAudio.playing = true
-
         Walls6.createScene(this)
         Walls6.createWalls(this)
+    }
+
+    createLevel7()
+    {
+        Walls7.createScene(this)
+        Walls7.createWalls(this)
+    }
+
+    createLevel8()
+    {
+        Walls8.createScene(this)
+        Walls8.createWalls(this)
     }
 
     getWalls()
@@ -242,10 +219,13 @@ export class Level extends Entity
 
     showWallsForLens(lens:string)
     {
+        if(Globals.TESTMODE)
+        {
+            lens = _colorNames.ALL
+        }
         switch(lens)
         {
             case _colorNames.GREEN:
-                log("need to show all the green walls in this level")
                 this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                 this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -257,16 +237,17 @@ export class Level extends Entity
                 break;
 
             case _colorNames.BLUE:
-                    log("need to show all the blue walls in this level")
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
-                    this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
+                    this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;
 
             case _colorNames.YELLOW:
-                    log("need to show all the yellow walls in this level")
                     this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -278,7 +259,6 @@ export class Level extends Entity
                 break;            
                 
             case _colorNames.RED:
-                    log("need to show all the yellow walls in this level")
                     this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -290,7 +270,6 @@ export class Level extends Entity
                 break;  
                 
             case _colorNames.BLACK:
-                    log("need to show all the yellow walls in this level")
                     this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -302,7 +281,6 @@ export class Level extends Entity
                 break;    
 
             case _colorNames.WHITE:
-                    log("need to show all the yellow walls in this level")
                     this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -314,7 +292,6 @@ export class Level extends Entity
                 break; 
             
             case _colorNames.TURQUOISE:
-                    log("need to show all the yellow walls in this level")
                     this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -326,7 +303,6 @@ export class Level extends Entity
                 break; 
 
             case _colorNames.PURPLE:
-                    log("need to show all the yellow walls in this level")
                     this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -338,7 +314,6 @@ export class Level extends Entity
                 break; 
 
             case _colorNames.NONE:
-                    log("no lens on, don't show any walls")
                     this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
@@ -348,6 +323,17 @@ export class Level extends Entity
                     this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                     this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.Zero()}))
                 break;
+            
+            case _colorNames.ALL:
+                        this.greenWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.blueWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.yellowWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.redWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.blackWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.whiteWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.turquoiseWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        this.purpleWalls.addComponentOrReplace(new Transform({scale: Vector3.One()}))
+                        break;
         }
     }
 
