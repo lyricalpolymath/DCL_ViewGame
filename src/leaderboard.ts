@@ -1,17 +1,19 @@
 import * as Globals from "./functions"
+import { InventoryItem } from "./inventoryItem";
 
 
 export class LeaderBoard {
 
     canvas:UICanvas
     container:UIContainerStack | UIContainerRect;
+    sortedLeaderBoard:{ id: string, level: number, totalBumps:number }[]
 
-    youL:UIText
+    youL:UIText 
     youB:UIText
 
     constructor() {
 
-        let imgTexture = new Texture( "images/lbbg.png")
+        let imgTexture = new Texture( "images/leaderboard_white_placeholder.png")
 
         this.canvas = new UICanvas();
 
@@ -89,6 +91,51 @@ export class LeaderBoard {
         this.youB.positionX = 200
         this.youB.hAlign = "center"
         this.youB.vAlign = "center"
+
+        this.getLeaderboardDataFromServer()
+    }
+
+    private getLeaderboardDataFromServer(){
+        //let apiUrl = Globals.awsLeaderboard // with proxy
+        let apiUrl =  Globals.leaderboardUrl
+        log("Leaderboard.getLeaderboardDataFromServer - going to call url:\n" + apiUrl);
+        executeTask(async () => {
+            try {
+              let response = await fetch(apiUrl, {
+                headers: { "Content-Type": "application/json" },
+                method: "GET"
+              })
+              .then(response => response.json())
+              .then(data => {
+                //log("Leaderboard - data:", data)
+                //log("Leaderboard - JSON.parse(data): ", JSON.parse(data)) // returns an arry
+                this.parseLeaderboardData(data.Items)
+              })
+            } catch(e) {
+            }
+          })
+    }
+
+    private parseLeaderboardData(items:[any]) {
+        log("Leaderboard.parseLeaderboardData items: ", items)
+
+        // 1- simplify the array with only the elements we want
+        let arr = items.map( item => { 
+            return {
+                "id": item.id,
+                "level": item.level,
+                "totalBumps": item.inventory.playerData.totalBumps
+            }
+        })
+        //log("Leaderboard.parseLeaderboardData arr: ", arr)
+
+        //2- sort the array by level first in descending order, 
+        //   then sort by total bumps in ascending order: the least bumps wins
+        arr.sort((a, b) => b.level - a.level || a.totalBumps - b.totalBumps);
+        log("Leaderboard.parseLeaderboardData - sorted leaderboard: ", arr)
+
+        this.sortedLeaderBoard = arr
+        //TODO - update the actual information in the layout
 
     }
 
