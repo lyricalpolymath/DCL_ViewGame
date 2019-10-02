@@ -47,7 +47,7 @@ each level has a game concept
 ## Demo
 to simplify the experience of testing all levels while not being deployed to different areas of the Decentraland you can visit a demo here
 
-[Leveler demo](http://bit.ly/2o3rtqr)  (off-world)
+[Leveler demo](http://bit.ly/2o7rZ6s)  (off-world)
 
 <sup>- note this is a link that allows to open the url with the ENABLE_WEB3 Flag in the url, needed to enable Web3 functionality and setting information like the inventory for the user.</sup>
 
