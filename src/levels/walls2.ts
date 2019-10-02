@@ -40,6 +40,21 @@ import { _colorNames } from "../functions"
             }))
             portal.setParent(level)
             engine.addEntity(portal)
+            for(var i = 0; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
+              log("playing clip")
+              portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
+            }
+
+            for(var i = 1; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")))
+              log("playing clip")
+              portal.getComponent(Animator).getClip(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")).play()
+            }
             portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
             0,null,null,null,()=>{
               portal.removeComponent(TriggerComponent)
