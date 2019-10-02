@@ -20,13 +20,14 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
         if ( dist < 4)
          {
             engine.removeEntity(blueGlasses)
-            const portal = new Entity()
+            var portal = new Entity()
             portal.addComponentOrReplace(Globals.portal)
             portal.addComponentOrReplace(new Transform({
               position: new Vector3(27,1.5,3),
               scale: Vector3.One()
             }))
             portal.setParent(level)
+            engine.addEntity(portal)
             portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
             0,null,null,null,()=>{
               portal.removeComponent(TriggerComponent)

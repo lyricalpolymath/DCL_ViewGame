@@ -98,11 +98,6 @@ export class Level extends Entity
         
         }
 
-      //TODO
-      //need to show active lens from server
-      this.showWallSystem = new WallBumpSystem(this)
-      engine.addSystem(this.showWallSystem)
-
       this.soundFollowSystem = new LevelSound(this)
       engine.addEntity(this.soundFollowSystem)
     }

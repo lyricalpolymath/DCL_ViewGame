@@ -76,54 +76,6 @@ export function distance(pos1: Vector3, pos2: Vector3): number {
   return a * a + b * b
 }
 
-export function transitionStart(event:EventManager)
-{
-    var events = event       
-    var firstMover = new Entity()
-    var shape = new PlaneShape()
-    firstMover.addComponentOrReplace(shape)
-    firstMover.getComponent(PlaneShape).withCollisions = true
-    firstMover.addComponentOrReplace(new Transform({
-        position: new Vector3(31,0,16),
-        scale: new Vector3(32,12,1),
-        rotation: Quaternion.Euler(0,90,0)
-    }))
-
-    var alphac = new Material()
-    alphac.hasAlpha = true
-    alphac.albedoColor = new Color4(0,0,0,0)
-    firstMover.addComponentOrReplace(alphac)
-
-    var secondmover = new Entity()
-    secondmover.addComponentOrReplace(shape)
-    secondmover.getComponent(PlaneShape).withCollisions = true
-    secondmover.addComponentOrReplace(new Transform({
-        position: new Vector3(16,0,31),
-        scale: new Vector3(32,12,1)
-    }))
-    secondmover.addComponent(alphac)
-
-    engine.addEntity(firstMover)
-    engine.addEntity(secondmover)
-
-    firstMover.addComponent(new utils.Delay(3000,()=>{
-        firstMover.addComponentOrReplace(new utils.MoveTransformComponent(new Vector3(31,0,16),new Vector3(0,0,16),7,()=>{
-            log("moved player")
-            //engine.removeEntity(firstMover)
-            engine.removeEntity(firstMover)
-        }))
-
-        secondmover.addComponentOrReplace(new utils.MoveTransformComponent(new Vector3(16,0,31),new Vector3(16,0,0),7,()=>{
-            log("moved player 2nd time")
-            engine.removeEntity(secondmover)
-            events.fireEvent(new TransitionLevelComplete())
-        }))
-        
-    }))
-   
-
-}
-
 export enum _inventoryItems {
  TELESCOPE = "TELESCOPE",
  MICROSCOPE = "MICROSCOPE",
@@ -159,7 +111,9 @@ export abstract class Settings {
   }
 
   static colorNames = _colorNames;
-  static loadDelay = 10000
+  static loadDelay = 20000
+  static loaded:boolean = false
+  static transitionDone:boolean = false
   
   static colors = {
       transparency: 0.3,               

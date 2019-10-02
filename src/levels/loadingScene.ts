@@ -865,10 +865,15 @@ neonLightTube_06_40.addComponentOrReplace(transform_45)
 
   show()
   {
+    Globals.Settings.loaded = false
     engine.addEntity(this)
-    this.addComponentOrReplace(new utils.Delay(Globals.Settings.loadDelay,()=>{
+    this.addComponentOrReplace(new utils.Interval(Globals.Settings.loadDelay,()=>{
       log("done loading")
-      this.events.fireEvent(new Globals.LevelLoadingComplete())
+      if(!Globals.Settings.loaded)
+      {
+        Globals.Settings.loaded = true
+        this.events.fireEvent(new Globals.LevelLoadingComplete())
+      }
     }))
   }
 

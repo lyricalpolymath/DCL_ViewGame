@@ -6,11 +6,16 @@ import * as Globals from "./functions"
 import { LoadingScene } from "./levels/loadingScene"
 import { LevelPlayer } from "./userData"
 import { LeaderBoard } from "./leaderboard"
+import { SceneRefreshSystem } from "./systems/sceneRefreshSystem"
+import { WallBumpSystem } from "./systems/wallBumpSystem"
+
 
 const events = new EventManager()
 
 var player = new LevelPlayer(events)
 var leaderboard = new LeaderBoard()
+var sceneRefreshSystem = new SceneRefreshSystem(events)
+var showWallSystem:WallBumpSystem
 
 startGame()
 
@@ -20,7 +25,7 @@ const scenetransform = new Transform({ position: new Vector3(0, 0, 0), rotation:
 scene.addComponent(scenetransform)
 
 
-var currentLevel:Level
+var currentLevel:Level = new Level(null,null,null,null)
 var currentLevelNumber:number
 
 ///have a trigger shape for the avatar
@@ -100,10 +105,9 @@ events.addListener(LevelLoadingComplete,null,()=>{
 
 events.addListener(TransitionLevelComplete,null,()=>{
     loadingScene.show()
+        currentLevelNumber++
+        createLevel(currentLevelNumber)
 
-    currentLevelNumber++
-    currentLevel.showWallsForLens(player.activeColor)
-    createLevel(currentLevelNumber)
 })
 
 function itemSelected(color:string)
@@ -177,18 +181,28 @@ function createLevel(level:number)
 {
   log("creating level " + level)
   currentLevelNumber = level
+  engine.removeEntity(currentLevel)
+
   currentLevel = new Level(scene, events, currentLevelNumber, "Level" + currentLevelNumber)
-  currentLevel.getComponent(Transform).scale = Vector3.One()
-  currentLevel.setParent(scene)
   engine.addEntity(currentLevel)
+  currentLevel.setParent(scene)
+
+  showWallSystem = new WallBumpSystem(currentLevel)
+  engine.addSystem(showWallSystem)
+
+  scene.getComponent(Transform).scale = Vector3.One()
   player.handleInventory(currentLevel)
 }
 
 function doTransitionLevel()
 {
+  engine.addSystem(sceneRefreshSystem)
+  engine.removeSystem(showWallSystem)
+
     currentLevel.soundFollowSystem.stopPlaying()
-    currentLevel.getComponent(Transform).scale = Vector3.Zero()
-    Globals.transitionStart(events)
+    
+    scene.getComponent(Transform).scale = Vector3.Zero()
+    
 }
 
 engine.addEntity(scene)

@@ -13,6 +13,7 @@ export class WallBumpSystem {
     this.level = level
     this.events = this.level.events
   }
+  
   update() {
     if(this.level.levelWalls.length > 1)
     {
