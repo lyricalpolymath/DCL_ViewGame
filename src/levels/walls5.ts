@@ -49,6 +49,8 @@ import * as Globals from "../functions"
             }))
             portal.setParent(level)
             engine.addEntity(portal)
+            portal.addComponentOrReplace(new Animator())
+
             for(var i = 0; i <= 27; i++)
             {
               log("adding clip")
