@@ -10,7 +10,19 @@ import * as Globals from "../functions"
 
     export function createScene(level:Level)
     {
-
+    
+      const terrain_level3 = new Entity()
+      terrain_level3.setParent(level)
+      const gltfShape_2 = new GLTFShape('models/terrain_level3.glb')
+      terrain_level3.addComponentOrReplace(gltfShape_2)
+      const transform_6 = new Transform({
+        position: new Vector3(16, 0.05670942611333096, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(1, 1, 1)
+      })
+      terrain_level3.addComponentOrReplace(transform_6)
+      engine.addEntity(terrain_level3)
+      
       const glasses = new Entity()
       glasses.addComponentOrReplace(new GLTFShape('models/redglasses.glb'))
       glasses.setParent(level)
@@ -42,17 +54,7 @@ import * as Globals from "../functions"
         }
       }))
       engine.addEntity(glasses)
-    
-      const terrain_level3 = new Entity()
-      terrain_level3.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/terrain_level3.glb')
-      terrain_level3.addComponentOrReplace(gltfShape_2)
-      const transform_6 = new Transform({
-        position: new Vector3(16, 0.05670942611333096, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      terrain_level3.addComponentOrReplace(transform_6)
+
       
       const bones = new Entity()
       bones.setParent(level)

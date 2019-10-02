@@ -13,6 +13,18 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
+      const hypercube_v1 = new Entity()
+      hypercube_v1.setParent(level)
+      const gltfShape_2 = new GLTFShape('models/hypercube_v1.glb')
+      hypercube_v1.addComponentOrReplace(gltfShape_2)
+      const transform_6 = new Transform({
+        position: new Vector3(17.5, 4, 17),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(1, 1, 1)
+      })
+      hypercube_v1.addComponentOrReplace(transform_6)
+      engine.addEntity(hypercube_v1)
+
       const binoculars = new Entity()
 binoculars.setParent(level)
 const gg = new GLTFShape('models/binoculars.glb')
@@ -49,16 +61,7 @@ binoculars.addComponentOrReplace(new OnClick(e=>{
       engine.addEntity(binoculars)
       
 
-      const hypercube_v1 = new Entity()
-		hypercube_v1.setParent(level)
-		const gltfShape_2 = new GLTFShape('models/hypercube_v1.glb')
-		hypercube_v1.addComponentOrReplace(gltfShape_2)
-		const transform_6 = new Transform({
-		  position: new Vector3(17.5, 4, 17),
-		  rotation: new Quaternion(0, 0, 0, 1),
-		  scale: new Vector3(1, 1, 1)
-		})
-		hypercube_v1.addComponentOrReplace(transform_6)
+
 
 		const blackBox = new Entity()
 	  blackBox.setParent(level)

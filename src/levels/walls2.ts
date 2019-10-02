@@ -8,6 +8,18 @@ import { _colorNames } from "../functions"
     export function createScene(level:Level)
     {
 
+      const topologylevel2 = new Entity()
+      topologylevel2.setParent(level)
+      const gltfShape_17 = new GLTFShape('models/topologylevel2.glb')
+      topologylevel2.addComponentOrReplace(gltfShape_17)
+      const transform_82 = new Transform({
+      position: new Vector3(16, 0.04898657780819793, 16),
+      rotation: new Quaternion(0, 0, 0, 1),
+      scale: new Vector3(1, 1, 1)
+      })
+      topologylevel2.addComponentOrReplace(transform_82)
+      engine.addEntity(topologylevel2)
+
       const glasses = new Entity()
       glasses.addComponentOrReplace(new GLTFShape('models/greenglasses.glb'))
       glasses.setParent(level)
@@ -271,16 +283,6 @@ import { _colorNames } from "../functions"
       })
       openbarrel_7.addComponentOrReplace(transform_27)
 
-      const topologylevel2 = new Entity()
-      topologylevel2.setParent(level)
-      const gltfShape_17 = new GLTFShape('models/topologylevel2.glb')
-      topologylevel2.addComponentOrReplace(gltfShape_17)
-      const transform_82 = new Transform({
-      position: new Vector3(16, 0.04898657780819793, 16),
-      rotation: new Quaternion(0, 0, 0, 1),
-      scale: new Vector3(1, 1, 1)
-      })
-      topologylevel2.addComponentOrReplace(transform_82)
 
 
 }

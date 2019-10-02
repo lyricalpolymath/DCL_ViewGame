@@ -13,6 +13,19 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
+      const mandalaFran = new Entity()
+      //mandalaFran.setParent(level)
+      const gltfShape_16 = new GLTFShape('models/mandalaFran.glb')
+      mandalaFran.addComponentOrReplace(gltfShape_16)
+      const transform_253 = new Transform({
+        position: new Vector3(16, 16.5, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(3.3116811683351344, 3.480390073196002, 3.341963787384948)
+      })
+      mandalaFran.addComponentOrReplace(transform_253)
+      //engine.addEntity(mandalaFran)
+      
+
       const magnifyingGlass = new Entity()
 magnifyingGlass.setParent(level)
 const gltfShape_17 = new GLTFShape('models/magnifyingGlass.glb')
@@ -122,17 +135,7 @@ engine.addEntity(magnifyingGlass)
       neuron8.addComponentOrReplace(transform_11)
       engine.addEntity(neuron8)
 
-          const mandalaFran = new Entity()
-    //mandalaFran.setParent(level)
-    const gltfShape_16 = new GLTFShape('models/mandalaFran.glb')
-    mandalaFran.addComponentOrReplace(gltfShape_16)
-    const transform_253 = new Transform({
-      position: new Vector3(16, 16.5, 16),
-      rotation: new Quaternion(0, 0, 0, 1),
-      scale: new Vector3(3.3116811683351344, 3.480390073196002, 3.341963787384948)
-    })
-    mandalaFran.addComponentOrReplace(transform_253)
-    //engine.addEntity(mandalaFran)
+
 
     }
 

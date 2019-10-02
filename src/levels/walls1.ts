@@ -7,7 +7,15 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
 
     export function createScene(level:Level)
     {
-
+      const lvl1 = new Entity()
+      lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
+      lvl1.addComponentOrReplace(new Transform({
+        position: new Vector3(15,0,15),
+        scale: new Vector3(.99,.99,.99)
+      }))
+      lvl1.setParent(level)
+      engine.addEntity(lvl1)
+      
        const blueGlasses = new Entity()
        blueGlasses.addComponentOrReplace(new GLTFShape('models/blueglasses.glb'))
        blueGlasses.setParent(level)
@@ -58,13 +66,7 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
       */
        
 
-        const lvl1 = new Entity()
-        lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
-        lvl1.addComponentOrReplace(new Transform({
-          position: new Vector3(15,0,15),
-          scale: new Vector3(.99,.99,.99)
-        }))
-        lvl1.setParent(level)
+
         
       
     }

@@ -12,6 +12,18 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
+      const terrain_level5 = new Entity()
+      terrain_level5.setParent(level)
+      const gltfShape_2 = new GLTFShape('models/terrain_level5.glb')
+      terrain_level5.addComponentOrReplace(gltfShape_2)
+      const transform_6 = new Transform({
+        position: new Vector3(16, 0.04900266164462419, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(1, 1, 1)
+      })
+      terrain_level5.addComponentOrReplace(transform_6)
+      engine.addEntity(terrain_level5)
+      
       const microscope = new Entity()
       microscope.setParent(level)
       const gltfShape_27 = new GLTFShape('models/microscope.glb')
@@ -47,17 +59,6 @@ import * as Globals from "../functions"
       }))
       engine.addEntity(microscope)
 
-      const terrain_level5 = new Entity()
-      terrain_level5.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/terrain_level5.glb')
-      terrain_level5.addComponentOrReplace(gltfShape_2)
-      const transform_6 = new Transform({
-        position: new Vector3(16, 0.04900266164462419, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      terrain_level5.addComponentOrReplace(transform_6)
-      engine.addEntity(terrain_level5)
   
       const abstractball1 = new Entity()
       abstractball1.setParent(level)
