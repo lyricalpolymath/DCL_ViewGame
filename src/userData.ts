@@ -212,8 +212,8 @@ export class LevelPlayer
             this.activeColor = Globals._colorNames.PURPLE
           
           } else if (!R.active && G.active && B.active) {
-            // GREEN+BLUE = CYAN
-            this.activeColor = Globals._colorNames.CYAN
+            // GREEN+BLUE = CYAN > renamed to TURQUOISE
+            this.activeColor = Globals._colorNames.TURQUOISE
           
           } else if (R.active && G.active && B.active) {
             // RED+GREEN+BLUE = WHITE
