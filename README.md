@@ -25,7 +25,7 @@ I'll put some screenshots of seeing the same place with and without the glasses
 
 ## Demo
 to simplify the experience of testing all levels while not being deployed to different areas of the Decentraland you can visit a demo here
-https://leveler.lastraumonline.now.sh/?position=0%2C0&ENABLE_WEB3
+http://bit.ly/2o7rZ6s
 
 
 ## Team
