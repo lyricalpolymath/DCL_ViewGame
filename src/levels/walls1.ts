@@ -7,7 +7,15 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
 
     export function createScene(level:Level)
     {
-
+      const lvl1 = new Entity()
+      lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
+      lvl1.addComponentOrReplace(new Transform({
+        position: new Vector3(15,0,15),
+        scale: new Vector3(.99,.99,.99)
+      }))
+      lvl1.setParent(level)
+      engine.addEntity(lvl1)
+      
        const blueGlasses = new Entity()
        blueGlasses.addComponentOrReplace(new GLTFShape('models/blueglasses.glb'))
        blueGlasses.setParent(level)
@@ -28,6 +36,22 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
             }))
             portal.setParent(level)
             engine.addEntity(portal)
+            portal.addComponentOrReplace(new Animator())
+            for(var i = 0; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
+              log("playing clip")
+              portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
+            }
+
+            for(var i = 1; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")))
+              log("playing clip")
+              portal.getComponent(Animator).getClip(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")).play()
+            }
             portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
             0,null,null,null,()=>{
               portal.removeComponent(TriggerComponent)
@@ -39,32 +63,7 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
       }))
       engine.addEntity(blueGlasses)
 
-            /*
-      portal.addComponentOrReplace(new Animator())
-      for(var i = 0; i <= 27; i++)
-      {
-        log("adding clip")
-        portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i)))
-        log("playing clip")
-        portal.getComponent(Animator).getClip(("Polygon_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i)).play()
-      }
-      for(var i = 2; i <= 27; i++)
-      {
-        log("adding clip")
-        portal.getComponent(Animator).addClip(new AnimationState(("Polygon_0_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2")))
-        log("playing clip")
-        portal.getComponent(Animator).getClip(("Polygon_0_"+i+"|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2")).play()
-      }
-      */
-       
 
-        const lvl1 = new Entity()
-        lvl1.addComponentOrReplace(new GLTFShape('models/level1_v3.glb'))
-        lvl1.addComponentOrReplace(new Transform({
-          position: new Vector3(15,0,15),
-          scale: new Vector3(.99,.99,.99)
-        }))
-        lvl1.setParent(level)
         
       
     }

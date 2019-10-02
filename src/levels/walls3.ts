@@ -10,7 +10,19 @@ import * as Globals from "../functions"
 
     export function createScene(level:Level)
     {
-
+    
+      const terrain_level3 = new Entity()
+      terrain_level3.setParent(level)
+      const gltfShape_2 = new GLTFShape('models/terrain_level3.glb')
+      terrain_level3.addComponentOrReplace(gltfShape_2)
+      const transform_6 = new Transform({
+        position: new Vector3(16, 0.05670942611333096, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(1, 1, 1)
+      })
+      terrain_level3.addComponentOrReplace(transform_6)
+      engine.addEntity(terrain_level3)
+      
       const glasses = new Entity()
       glasses.addComponentOrReplace(new GLTFShape('models/redglasses.glb'))
       glasses.setParent(level)
@@ -32,6 +44,23 @@ import * as Globals from "../functions"
               scale: Vector3.One()
             }))
             portal.setParent(level)
+            engine.addEntity(portal)
+            portal.addComponentOrReplace(new Animator())
+            for(var i = 0; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
+              log("playing clip")
+              portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
+            }
+
+            for(var i = 1; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")))
+              log("playing clip")
+              portal.getComponent(Animator).getClip(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")).play()
+            }
             portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
             0,null,null,null,()=>{
               portal.removeComponent(TriggerComponent)
@@ -42,17 +71,7 @@ import * as Globals from "../functions"
         }
       }))
       engine.addEntity(glasses)
-    
-      const terrain_level3 = new Entity()
-      terrain_level3.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/terrain_level3.glb')
-      terrain_level3.addComponentOrReplace(gltfShape_2)
-      const transform_6 = new Transform({
-        position: new Vector3(16, 0.05670942611333096, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      terrain_level3.addComponentOrReplace(transform_6)
+
       
       const bones = new Entity()
       bones.setParent(level)

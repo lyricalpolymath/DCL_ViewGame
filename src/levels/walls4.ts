@@ -12,6 +12,17 @@ import * as Globals from "../functions"
     //BB added entities 
     export function createScene(level:Level)
     {
+      const terrain_level4 = new Entity()
+      terrain_level4.setParent(level)
+      const gltfShape_2 = new GLTFShape('models/terrain_level4.glb')
+      terrain_level4.addComponentOrReplace(gltfShape_2)
+      const transform_6 = new Transform({
+        position: new Vector3(16, 0.07251290268377986, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(1, 1, 1)
+      })
+      terrain_level4.addComponentOrReplace(transform_6)
+      engine.addEntity(terrain_level4)
 
       const ball = new Entity()
       ball.addComponentOrReplace(new GLTFShape('models/telescope.glb'))
@@ -34,6 +45,23 @@ import * as Globals from "../functions"
               scale: Vector3.One()
             }))
             portal.setParent(level)
+            engine.addEntity(portal)
+            portal.addComponentOrReplace(new Animator())
+            for(var i = 0; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
+              log("playing clip")
+              portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
+            }
+
+            for(var i = 1; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")))
+              log("playing clip")
+              portal.getComponent(Animator).getClip(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")).play()
+            }
             portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
             0,null,null,null,()=>{
               portal.removeComponent(TriggerComponent)
@@ -45,17 +73,7 @@ import * as Globals from "../functions"
       }))
       engine.addEntity(ball)
 
-      const terrain_level4 = new Entity()
-      terrain_level4.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/terrain_level4.glb')
-      terrain_level4.addComponentOrReplace(gltfShape_2)
-      const transform_6 = new Transform({
-        position: new Vector3(16, 0.07251290268377986, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      terrain_level4.addComponentOrReplace(transform_6)
-      engine.addEntity(terrain_level4)
+
       
       const skull1 = new Entity()
       skull1.setParent(level)

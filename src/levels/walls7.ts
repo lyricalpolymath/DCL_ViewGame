@@ -13,6 +13,19 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
+      const mandalaFran = new Entity()
+      //mandalaFran.setParent(level)
+      const gltfShape_16 = new GLTFShape('models/mandalaFran.glb')
+      mandalaFran.addComponentOrReplace(gltfShape_16)
+      const transform_253 = new Transform({
+        position: new Vector3(16, 16.5, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(3.3116811683351344, 3.480390073196002, 3.341963787384948)
+      })
+      mandalaFran.addComponentOrReplace(transform_253)
+      //engine.addEntity(mandalaFran)
+      
+
       const magnifyingGlass = new Entity()
 magnifyingGlass.setParent(level)
 const gltfShape_17 = new GLTFShape('models/magnifyingGlass.glb')
@@ -39,6 +52,24 @@ magnifyingGlass.addComponentOrReplace(new OnClick(e=>{
               rotation:Quaternion.Euler(0,90,0)
             }))
             portal.setParent(level)
+            engine.addEntity(portal)
+            portal.addComponentOrReplace(new Animator())
+
+            for(var i = 0; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
+              log("playing clip")
+              portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
+            }
+
+            for(var i = 1; i <= 27; i++)
+            {
+              log("adding clip")
+              portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")))
+              log("playing clip")
+              portal.getComponent(Animator).getClip(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")).play()
+            }
             portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
             0,null,null,null,()=>{
               portal.removeComponent(TriggerComponent)
@@ -122,17 +153,7 @@ engine.addEntity(magnifyingGlass)
       neuron8.addComponentOrReplace(transform_11)
       engine.addEntity(neuron8)
 
-          const mandalaFran = new Entity()
-    //mandalaFran.setParent(level)
-    const gltfShape_16 = new GLTFShape('models/mandalaFran.glb')
-    mandalaFran.addComponentOrReplace(gltfShape_16)
-    const transform_253 = new Transform({
-      position: new Vector3(16, 16.5, 16),
-      rotation: new Quaternion(0, 0, 0, 1),
-      scale: new Vector3(3.3116811683351344, 3.480390073196002, 3.341963787384948)
-    })
-    mandalaFran.addComponentOrReplace(transform_253)
-    //engine.addEntity(mandalaFran)
+
 
     }
 
