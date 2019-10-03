@@ -24,6 +24,7 @@ export class LevelPlayer
     glassesItem:InventoryItem
     magnifyingItem:InventoryItem
     leaderboardItem:InventoryItem
+    username:string = ""
 
     playerData:any
 
@@ -67,6 +68,7 @@ export class LevelPlayer
 
     
     this.playerData = {
+        username: this.username,
         currentLevel: 1,
         totalBumps: 0,
         glasses: {
@@ -213,7 +215,7 @@ export class LevelPlayer
           
           } else if (!R.active && G.active && B.active) {
             // GREEN+BLUE = CYAN
-            this.activeColor = Globals._colorNames.CYAN
+            this.activeColor = Globals._colorNames.TURQUOISE
           
           } else if (R.active && G.active && B.active) {
             // RED+GREEN+BLUE = WHITE

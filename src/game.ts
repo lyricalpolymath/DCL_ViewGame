@@ -8,7 +8,7 @@ import { LevelPlayer } from "./userData"
 import { LeaderBoard } from "./leaderboard"
 import { SceneRefreshSystem } from "./systems/sceneRefreshSystem"
 import { WallBumpSystem } from "./systems/wallBumpSystem"
-
+import { getUserData } from "@decentraland/Identity"
 
 const events = new EventManager()
 
@@ -115,7 +115,7 @@ function itemSelected(color:string)
   log("selected item " + color)
   if(color == Globals._inventoryItems.LEADERBOARD)
   {
-    leaderboard.toggle(player.playerData)
+    leaderboard.toggle(player)
   }
   else{
 
@@ -143,6 +143,22 @@ function getServerInfo(address:string,ethSuccess:boolean)
             player.setBackup(true)
             player.pushData()
             createLevel(1)
+            /*
+            TODO: retreive DCL display name and save it
+            executeTask(async () => {
+              try {
+                const address = await getUserData()
+                player.pushData()
+                createLevel(1)
+              } catch (error) {
+                log(error)
+                player.username = player.user_address
+                player.pushData()
+                createLevel(1)
+              }
+            })
+            */
+
           }
           else
           {
