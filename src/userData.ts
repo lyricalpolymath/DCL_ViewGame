@@ -68,7 +68,7 @@ export class LevelPlayer
 
     
     this.playerData = {
-        username: this.username,
+        //username: this.username,
         currentLevel: 1,
         totalBumps: 0,
         glasses: {
