@@ -45,6 +45,7 @@ export class LeaderBoard {
 
     createUI()
     {
+        
                 // trick to center the UI
                 this.container = new UIContainerRect(this.canvas);
                 this.container.positionX = 0 //-50;
@@ -123,7 +124,7 @@ export class LeaderBoard {
                 this.oneN = new UIText(this.container)
                 this.oneN.color = Color4.White()
                 this.oneN.fontSize = this.fontSize
-                this.oneN.value = "First Place"
+                this.oneN.value = ""
                 this.oneN.outlineColor = Color4.Black()
                 this.oneN.outlineWidth = .2
                 this.oneN.positionX = - 300
@@ -134,7 +135,7 @@ export class LeaderBoard {
                 this.oneB = new UIText(this.container)
                 this.oneB.color = Color4.White()
                 this.oneB.fontSize = this.fontSize
-                this.oneB.value = "1"
+                this.oneB.value = ""
                 this.oneB.outlineColor = Color4.Black()
                 this.oneB.outlineWidth = .2
                 this.oneB.positionX = 350
@@ -145,7 +146,7 @@ export class LeaderBoard {
                 this.oneL = new UIText(this.container)
                 this.oneL.color = Color4.White()
                 this.oneL.fontSize = this.fontSize
-                this.oneL.value = "1"
+                this.oneL.value = ""
                 this.oneL.outlineColor = Color4.Black()
                 this.oneL.outlineWidth = .2
                 this.oneL.positionX = 150
@@ -156,7 +157,7 @@ export class LeaderBoard {
                 this.twoN = new UIText(this.container)
                 this.twoN.color = Color4.White()
                 this.twoN.fontSize = this.fontSize
-                this.twoN.value = "Second Place"
+                this.twoN.value = ""
                 this.twoN.outlineColor = Color4.Black()
                 this.twoN.outlineWidth = .2
                 this.twoN.positionX = - 300
@@ -167,7 +168,7 @@ export class LeaderBoard {
                 this.twoB = new UIText(this.container)
                 this.twoB.color = Color4.White()
                 this.twoB.fontSize = this.fontSize
-                this.twoB.value = "22"
+                this.twoB.value = ""
                 this.twoB.outlineColor = Color4.Black()
                 this.twoB.outlineWidth = .2
                 this.twoB.positionX = 350
@@ -178,7 +179,7 @@ export class LeaderBoard {
                 this.twoL = new UIText(this.container)
                 this.twoL.color = Color4.White()
                 this.twoL.fontSize = this.fontSize
-                this.twoL.value = "2"
+                this.twoL.value = ""
                 this.twoL.outlineColor = Color4.Black()
                 this.twoL.outlineWidth = .2
                 this.twoL.positionX = 150
@@ -189,7 +190,7 @@ export class LeaderBoard {
                 this.threeN = new UIText(this.container)
                 this.threeN.color = Color4.White()
                 this.threeN.fontSize = this.fontSize
-                this.threeN.value = "Third Place"
+                this.threeN.value = ""
                 this.threeN.outlineColor = Color4.Black()
                 this.threeN.outlineWidth = .2
                 this.threeN.positionX = - 300
@@ -200,7 +201,7 @@ export class LeaderBoard {
                 this.threeB = new UIText(this.container)
                 this.threeB.color = Color4.White()
                 this.threeB.fontSize = this.fontSize
-                this.threeB.value = "33"
+                this.threeB.value = ""
                 this.threeB.outlineColor = Color4.Black()
                 this.threeB.outlineWidth = .2
                 this.threeB.positionX = 350
@@ -211,7 +212,7 @@ export class LeaderBoard {
                 this.threeL = new UIText(this.container)
                 this.threeL.color = Color4.White()
                 this.threeL.fontSize = this.fontSize
-                this.threeL.value = "3"
+                this.threeL.value = ""
                 this.threeL.outlineColor = Color4.Black()
                 this.threeL.outlineWidth = .2
                 this.threeL.positionX = 150
@@ -223,7 +224,7 @@ export class LeaderBoard {
                 this.fourN = new UIText(this.container)
                 this.fourN.color = Color4.White()
                 this.fourN.fontSize = this.fontSize
-                this.fourN.value = "Fourth Place"
+                this.fourN.value = ""
                 this.fourN.outlineColor = Color4.Black()
                 this.fourN.outlineWidth = .2
                 this.fourN.positionX = - 300
@@ -234,7 +235,7 @@ export class LeaderBoard {
                 this.fourB = new UIText(this.container)
                 this.fourB.color = Color4.White()
                 this.fourB.fontSize = this.fontSize
-                this.fourB.value = "44"
+                this.fourB.value = ""
                 this.fourB.outlineColor = Color4.Black()
                 this.fourB.outlineWidth = .2
                 this.fourB.positionX = 350
@@ -245,7 +246,7 @@ export class LeaderBoard {
                 this.fourL = new UIText(this.container)
                 this.fourL.color = Color4.White()
                 this.fourL.fontSize = this.fontSize
-                this.fourL.value = "4"
+                this.fourL.value = ""
                 this.fourL.outlineColor = Color4.Black()
                 this.fourL.outlineWidth = .2
                 this.fourL.positionX = 150
@@ -256,7 +257,7 @@ export class LeaderBoard {
                 this.fiveN = new UIText(this.container)
                 this.fiveN.color = Color4.White()
                 this.fiveN.fontSize = this.fontSize
-                this.fiveN.value = "Fifth Place"
+                this.fiveN.value = ""
                 this.fiveN.outlineColor = Color4.Black()
                 this.fiveN.outlineWidth = .2
                 this.fiveN.positionX = - 300
@@ -267,7 +268,7 @@ export class LeaderBoard {
                 this.fiveB = new UIText(this.container)
                 this.fiveB.color = Color4.White()
                 this.fiveB.fontSize = this.fontSize
-                this.fiveB.value = "55"
+                this.fiveB.value = ""
                 this.fiveB.outlineColor = Color4.Black()
                 this.fiveB.outlineWidth = .2
                 this.fiveB.positionX = 350
@@ -278,7 +279,7 @@ export class LeaderBoard {
                 this.fiveL = new UIText(this.container)
                 this.fiveL.color = Color4.White()
                 this.fiveL.fontSize = this.fontSize
-                this.fiveL.value = "5"
+                this.fiveL.value = ""
                 this.fiveL.outlineColor = Color4.Black()
                 this.fiveL.outlineWidth = .2
                 this.fiveL.positionX = 150
@@ -369,41 +370,28 @@ export class LeaderBoard {
 
     displayTop5(player:LevelPlayer)
     {
+        
         this.oneN.value = this.sortedLeaderBoard[0].id == player.user_address ? "YOU" : this.sortedLeaderBoard[0].id.substr(0,15)
         this.oneB.value = this.sortedLeaderBoard[0].id == player.user_address ? player.playerData.totalBumps : this.sortedLeaderBoard[0].totalBumps.toString()
         this.oneL.value = this.sortedLeaderBoard[0].id == player.user_address ? player.playerData.currentLevel : this.sortedLeaderBoard[0].level.toString()
-        this.oneN.color =this.sortedLeaderBoard[0].id == player.user_address ? Color4.Red() : Color4.White()
-        this.oneB.color =this.sortedLeaderBoard[0].id == player.user_address ? Color4.Red() : Color4.White()
-        this.oneL.color =this.sortedLeaderBoard[0].id == player.user_address ? Color4.Red() : Color4.White()
         
 
         this.twoN.value = this.sortedLeaderBoard[1].id == player.user_address ? "YOU" : this.sortedLeaderBoard[1].id.substr(0,15)
         this.twoB.value = this.sortedLeaderBoard[1].id == player.user_address ? player.playerData.totalBumps : this.sortedLeaderBoard[1].totalBumps.toString()
         this.twoL.value = this.sortedLeaderBoard[1].id == player.user_address ? player.playerData.currentLevel : this.sortedLeaderBoard[1].level.toString()
-        this.twoN.color =this.sortedLeaderBoard[1].id == player.user_address ? Color4.Red() : Color4.White()
-        this.twoB.color =this.sortedLeaderBoard[1].id == player.user_address ? Color4.Red() : Color4.White()
-        this.twoL.color =this.sortedLeaderBoard[1].id == player.user_address ? Color4.Red() : Color4.White()
 
         this.threeN.value = this.sortedLeaderBoard[2].id == player.user_address ? "YOU" : this.sortedLeaderBoard[2].id.substr(0,15)
         this.threeB.value = this.sortedLeaderBoard[2].id == player.user_address ? player.playerData.totalBumps : this.sortedLeaderBoard[2].totalBumps.toString()
         this.threeL.value = this.sortedLeaderBoard[2].id == player.user_address ? player.playerData.currentLevel : this.sortedLeaderBoard[2].level.toString()
-        this.threeN.color =this.sortedLeaderBoard[2].id == player.user_address ? Color4.Red() : Color4.White()
-        this.threeB.color =this.sortedLeaderBoard[2].id == player.user_address ? Color4.Red() : Color4.White()
-        this.threeL.color =this.sortedLeaderBoard[2].id == player.user_address ? Color4.Red() : Color4.White()
 
         this.fourN.value = this.sortedLeaderBoard[3].id == player.user_address ? "YOU" : this.sortedLeaderBoard[3].id.substr(0,15)
         this.fourB.value = this.sortedLeaderBoard[3].id == player.user_address ? player.playerData.totalBumps : this.sortedLeaderBoard[3].totalBumps.toString()
         this.fourL.value = this.sortedLeaderBoard[3].id == player.user_address ? player.playerData.currentLevel : this.sortedLeaderBoard[3].level.toString()
-        this.fourN.color =this.sortedLeaderBoard[3].id == player.user_address ? Color4.Red() : Color4.White()
-        this.fourB.color =this.sortedLeaderBoard[3].id == player.user_address ? Color4.Red() : Color4.White()
-        this.fourL.color =this.sortedLeaderBoard[3].id == player.user_address ? Color4.Red() : Color4.White()
 
         this.fiveN.value = this.sortedLeaderBoard[4].id == player.user_address ? "YOU" : this.sortedLeaderBoard[4].id.substr(0,15)
         this.fiveB.value = this.sortedLeaderBoard[4].id == player.user_address ? player.playerData.totalBumps : this.sortedLeaderBoard[4].totalBumps.toString()
         this.fiveL.value = this.sortedLeaderBoard[4].id == player.user_address ? player.playerData.currentLevel : this.sortedLeaderBoard[4].level.toString()
-        this.fiveN.color =this.sortedLeaderBoard[4].id == player.user_address ? Color4.Red() : Color4.White()
-        this.fiveB.color =this.sortedLeaderBoard[4].id == player.user_address ? Color4.Red() : Color4.White()
-        this.fiveL.color =this.sortedLeaderBoard[4].id == player.user_address ? Color4.Red() : Color4.White()
+        
     }
 
 
