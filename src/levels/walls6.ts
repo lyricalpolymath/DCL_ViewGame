@@ -17,7 +17,7 @@ import * as Globals from "../functions"
 		const gltfShape_10 = new GLTFShape('models/simpletesseract.glb')
 		simpletesseract.addComponentOrReplace(gltfShape_10)
 		const transform_249 = new Transform({
-		  position: new Vector3(16, 3.6526248245320208, 16),
+		  position: new Vector3(16, 12, 16),
 		  rotation: new Quaternion(0, 0, 0, 1),
 		  scale: new Vector3(1, 1, 1)
 		})
