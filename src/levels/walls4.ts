@@ -149,7 +149,7 @@ import * as Globals from "../functions"
       
       const glowing_Stone_02 = new Entity()
       glowing_Stone_02.setParent(level)
-      const gltfShape_9 = new GLTFShape('models/Glowing_Stone_02/Glowing_Stone_02.glb')
+      const gltfShape_9 = new GLTFShape('models/Glowing_Stone_02.glb')
       glowing_Stone_02.addComponentOrReplace(gltfShape_9)
       const transform_13 = new Transform({
         position: new Vector3(16, 7.5, 16),
@@ -260,7 +260,7 @@ import * as Globals from "../functions"
       
       const glowing_Stone_01 = new Entity()
       glowing_Stone_01.setParent(level)
-      const gltfShape_10 = new GLTFShape('models/Glowing_Stone_01/Glowing_Stone_01.glb')
+      const gltfShape_10 = new GLTFShape('models/Glowing_Stone_01.glb')
       glowing_Stone_01.addComponentOrReplace(gltfShape_10)
       const transform_23 = new Transform({
         position: new Vector3(19.5, 8, 16),
@@ -382,7 +382,7 @@ import * as Globals from "../functions"
       
       const glowing_Stone_04 = new Entity()
       glowing_Stone_04.setParent(level)
-      const gltfShape_11 = new GLTFShape('models/Glowing_Stone_04/Glowing_Stone_04.glb')
+      const gltfShape_11 = new GLTFShape('models/Glowing_Stone_04.glb')
       glowing_Stone_04.addComponentOrReplace(gltfShape_11)
       const transform_34 = new Transform({
         position: new Vector3(16, 7, 11.5),
