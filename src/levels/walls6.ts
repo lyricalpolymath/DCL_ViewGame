@@ -12,6 +12,41 @@ import * as Globals from "../functions"
     // BB added entieties
     export function createScene(level:Level)
     {
+		const simpletesseract = new Entity()
+		simpletesseract.setParent(level)
+		const gltfShape_10 = new GLTFShape('models/simpletesseract.glb')
+		simpletesseract.addComponentOrReplace(gltfShape_10)
+		const transform_249 = new Transform({
+		  position: new Vector3(16, 3.6526248245320208, 16),
+		  rotation: new Quaternion(0, 0, 0, 1),
+		  scale: new Vector3(1, 1, 1)
+		})
+		simpletesseract.addComponentOrReplace(transform_249)
+		engine.addEntity(simpletesseract)
+		simpletesseract.addComponentOrReplace(new utils.KeepRotatingComponent(Quaternion.Euler(45,45,0)))
+		
+		const simpletesseract_2 = new Entity()
+		simpletesseract_2.setParent(level)
+		simpletesseract_2.addComponentOrReplace(gltfShape_10)
+		const transform_250 = new Transform({
+		  position: new Vector3(16, 12.225947188862044, 16),
+		  rotation: new Quaternion(0, 0, 0, 1),
+		  scale: new Vector3(7, 7, 8)
+		})
+		simpletesseract_2.addComponentOrReplace(transform_250)
+		engine.addEntity(simpletesseract_2)
+		
+		const blackBox = new Entity()
+		//blackBox.setParent(level)
+		const gltfShape_11 = new GLTFShape('models/blackBox.glb')
+		blackBox.addComponentOrReplace(gltfShape_11)
+		const transform_251 = new Transform({
+		  position: new Vector3(16, 20.096948690892475, 16),
+		  rotation: new Quaternion(0, 0, 0, 1),
+		  scale: new Vector3(1, 1, 1)
+		})
+		blackBox.addComponentOrReplace(transform_251)
+		//engine.addEntity(blackBox)
 
       const binoculars = new Entity()
       binoculars.setParent(level)
@@ -68,40 +103,7 @@ binoculars.addComponentOrReplace(new OnClick(e=>{
       engine.addEntity(binoculars)
       
       
-      const simpletesseract = new Entity()
-      simpletesseract.setParent(level)
-      const gltfShape_10 = new GLTFShape('models/simpletesseract.glb')
-      simpletesseract.addComponentOrReplace(gltfShape_10)
-      const transform_249 = new Transform({
-        position: new Vector3(16, 3.6526248245320208, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      simpletesseract.addComponentOrReplace(transform_249)
-      engine.addEntity(simpletesseract)
-      
-      const simpletesseract_2 = new Entity()
-      simpletesseract_2.setParent(level)
-      simpletesseract_2.addComponentOrReplace(gltfShape_10)
-      const transform_250 = new Transform({
-        position: new Vector3(16, 12.225947188862044, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(7, 7, 8)
-      })
-      simpletesseract_2.addComponentOrReplace(transform_250)
-      engine.addEntity(simpletesseract_2)
-      
-      const blackBox = new Entity()
-      blackBox.setParent(level)
-      const gltfShape_11 = new GLTFShape('models/blackBox.glb')
-      blackBox.addComponentOrReplace(gltfShape_11)
-      const transform_251 = new Transform({
-        position: new Vector3(16, 20.096948690892475, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      blackBox.addComponentOrReplace(transform_251)
-      engine.addEntity(blackBox)
+
     
       /*
       hypercube_v1.addComponentOrReplace(transform_6)
