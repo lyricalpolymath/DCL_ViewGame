@@ -20,7 +20,7 @@ import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentrala
        blueGlasses.addComponentOrReplace(new GLTFShape('models/blueglasses.glb'))
        blueGlasses.setParent(level)
        blueGlasses.addComponentOrReplace(new Transform({
-         position: new Vector3(16,1.5,16),
+         position: new Vector3(14,2,13.5),
          scale: new Vector3(2,2,2)
        }))
        blueGlasses.addComponentOrReplace(new OnClick(e=>{

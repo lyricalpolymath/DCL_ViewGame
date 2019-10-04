@@ -23,7 +23,7 @@ import * as Globals from "../functions"
         scale: new Vector3(3.3116811683351344, 3.480390073196002, 3.341963787384948)
       })
       mandalaFran.addComponentOrReplace(transform_253)
-      //engine.addEntity(mandalaFran)
+      engine.addEntity(mandalaFran)
       
 
       const magnifyingGlass = new Entity()
