@@ -122,7 +122,7 @@ export abstract class Settings {
       BLUE:   new Color4(0,0,1, 0.6 ), // blue needs to be less transparent
       YELLOW: new Color4(1,1,0, 0.7 ),
       PURPLE: new Color4(1,0,1, 0.4 ),
-      TURQOISE:   new Color4(0,1,1, 0.4 ),
+      TURQUOISE: new Color4(0,1,1, 0.4 ),
       WHITE:  new Color4(1,1,1, 0.9 )
   }
 }
