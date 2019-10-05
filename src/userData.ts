@@ -251,7 +251,7 @@ export class LevelPlayer
             try {
               let response = await fetch(Globals.awsPut, {
                 method: "POST",  
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", "tokenHeader": "allow" },
                 body: updateString
               })
               .then(response => response.json())
