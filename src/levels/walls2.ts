@@ -351,7 +351,6 @@ engine.addEntity(openbarrel_7)
       engine.addEntity(biohazardsuit_4)
 
 
-
 }
 
     export function createWalls(level:Level)

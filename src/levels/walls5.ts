@@ -59,6 +59,8 @@ import * as Globals from "../functions"
       })
       abstractball6.addComponentOrReplace(transform_9)
       engine.addEntity(abstractball6)
+
+      
       
       const microscope = new Entity()
       microscope.setParent(level)

@@ -13,17 +13,17 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
-      const mandalaFran = new Entity()
-      //mandalaFran.setParent(level)
-      const gltfShape_16 = new GLTFShape('models/mandalaFran.glb')
-      mandalaFran.addComponentOrReplace(gltfShape_16)
-      const transform_253 = new Transform({
-        position: new Vector3(16, 16.5, 16),
+      const ceilingAnimation = new Entity()
+      ceilingAnimation.setParent(level)
+      const gltfShape_9 = new GLTFShape('models/ceilingAnimation.glb')
+      ceilingAnimation.addComponentOrReplace(gltfShape_9)
+      const transform_185 = new Transform({
+        position: new Vector3(16, 8.36802353605908, 16),
         rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(3.3116811683351344, 3.480390073196002, 3.341963787384948)
+        scale: new Vector3(0.9562221109929432, 1.1719785835636767, 1.0036075096848407)
       })
-      mandalaFran.addComponentOrReplace(transform_253)
-      engine.addEntity(mandalaFran)
+      ceilingAnimation.addComponentOrReplace(transform_185)
+      engine.addEntity(ceilingAnimation)
       
 
       const magnifyingGlass = new Entity()
