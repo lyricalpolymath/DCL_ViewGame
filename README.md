@@ -6,7 +6,7 @@ submission for the [Decentraland GameJam 2019.09](https://gamejam.decentraland.o
 
 ## Game concept
 
-Leveler is a game within the game (within another game); <br> a game within the Metaverse of Decentraland.
+Leveler is a game within the game (within another game); a game within the Metaverse of Decentraland.
 
 **The purpose of the game is to let the players discover what's beautiful and fascinating in the Metaverse, guiding them through a journey of discovery and philosophical reflection**.
 
