@@ -300,9 +300,9 @@ export class LevelPlayer
         {
             this.glassesItem.setVisible(true)
         }
-        if(this.playerData.items.MAGNIFIER)
+        if(this.playerData.items.MICROSCOPE)
         {
-            this.magnifyingItem.setVisible(true)
+            this.microscopeItem.setVisible(true)
         }
         
         log("here is player data")
