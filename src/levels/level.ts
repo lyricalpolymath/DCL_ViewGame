@@ -10,6 +10,7 @@ import * as Walls5 from "./walls5"
 import * as Walls6 from "./walls6"
 import * as Walls7 from "./walls7"
 import * as Walls8 from "./walls8"
+import * as Walls9 from "./walls9"
 import { WallBumpSystem } from "../systems/wallBumpSystem"
 import { WallAnimation } from "./wall_animation"
 import { LevelSound } from "./levelSound"
@@ -94,6 +95,10 @@ export class Level extends Entity
 
             case 8:
                 this.createLevel8()
+                break;
+
+            case 9:
+                this.createLevel9()
                 break;
         
         }
@@ -200,6 +205,11 @@ export class Level extends Entity
     {
         Walls8.createScene(this)
         Walls8.createWalls(this)
+    }
+
+    createLevel9()
+    {
+        Walls9.createScene(this)
     }
 
     getWalls()
