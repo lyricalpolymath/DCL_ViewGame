@@ -12,6 +12,18 @@ import * as Globals from "../functions"
     // BB added entieties
     export function createScene(level:Level)
     {
+
+		const terrain_level5_3 = new Entity()
+		terrain_level5_3.setParent(level)
+		terrain_level5_3.addComponentOrReplace(new GLTFShape('models/terrain_level5.glb'))
+		const transform_253 = new Transform({
+		position: new Vector3(16, 0.07235691426235746, 16),
+		rotation: new Quaternion(0, 0, 0, 1),
+		scale: new Vector3(1, 1, 1)
+		})
+		terrain_level5_3.addComponentOrReplace(transform_253)
+		engine.addEntity(terrain_level5_3)
+
 		const simpletesseract = new Entity()
 		simpletesseract.setParent(level)
 		const gltfShape_10 = new GLTFShape('models/simpletesseract.glb')
