@@ -438,7 +438,7 @@ engine.addEntity(skull2_2)
 
 const treesplitflat = new Entity()
 treesplitflat.setParent(level)
-const gltfShape_16 = new GLTFShape('models/treesplitflat.glb')
+const gltfShape_16 = new GLTFShape('models/tree-split-flat.glb')
 treesplitflat.addComponentOrReplace(gltfShape_16)
 const transform_232 = new Transform({
   position: new Vector3(29, 2.0191548825495804, 16),

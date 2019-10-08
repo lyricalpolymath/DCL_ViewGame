@@ -184,7 +184,7 @@ const openbarrel_7 = new Entity()
 openbarrel_7.setParent(level)
 openbarrel_7.addComponentOrReplace(gltfShape_3)
 const transform_16 = new Transform({
-  position: new Vector3(16.5, 0.8703529778880723, 31),
+  position: new Vector3(16.5, 0.8703529778880723, 27),
   rotation: new Quaternion(0, 0.5555702330196022, 0, 0.8314696123025452),
   scale: new Vector3(1, 1, 1)
 })
@@ -277,7 +277,7 @@ engine.addEntity(openbarrel_7)
       const gltfShape_11 = new GLTFShape('models/container9.glb')
       container9.addComponentOrReplace(gltfShape_11)
       const transform_79 = new Transform({
-        position: new Vector3(30.389933402713453, 0, 0.49403792152348913),
+        position: new Vector3(30.389933402713453, 0, 2.49403792152348913),
         rotation: new Quaternion(0.02259794758098476, -0.28491487312311664, 0.022458187453876538, 0.9580232135259835),
         scale: new Vector3(1, 1, 1)
       })

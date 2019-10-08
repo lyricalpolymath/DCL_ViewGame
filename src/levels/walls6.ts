@@ -36,7 +36,7 @@ import * as Globals from "../functions"
 		engine.addEntity(simpletesseract_2)
 		
 		const blackBox = new Entity()
-		blackBox.setParent(level)
+		//blackBox.setParent(level)
 		const gltfShape_11 = new GLTFShape('models/blackBox.glb')
 		blackBox.addComponentOrReplace(gltfShape_11)
 		const transform_251 = new Transform({
@@ -45,7 +45,7 @@ import * as Globals from "../functions"
 		  scale: new Vector3(1, 1, 1)
 		})
 		blackBox.addComponentOrReplace(transform_251)
-		engine.addEntity(blackBox)
+		//engine.addEntity(blackBox)
 
 
 

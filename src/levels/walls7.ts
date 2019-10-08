@@ -10,6 +10,51 @@ import * as Globals from "../functions"
     export function createScene(level:Level)
     {
 
+      const floorBaseGrass_01 = new Entity()
+floorBaseGrass_01.setParent(level)
+const gltfShape = new GLTFShape('models/FloorBaseGrass_01.glb')
+floorBaseGrass_01.addComponentOrReplace(gltfShape)
+const transform_2 = new Transform({
+  position: new Vector3(8, 0, 8),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(1, 1, 1)
+})
+floorBaseGrass_01.addComponentOrReplace(transform_2)
+engine.addEntity(floorBaseGrass_01)
+
+const floorBaseGrass_01_2 = new Entity()
+floorBaseGrass_01_2.setParent(level)
+floorBaseGrass_01_2.addComponentOrReplace(gltfShape)
+const transform_3 = new Transform({
+  position: new Vector3(24, 0, 8),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(1, 1, 1)
+})
+floorBaseGrass_01_2.addComponentOrReplace(transform_3)
+engine.addEntity(floorBaseGrass_01_2)
+
+const floorBaseGrass_01_3 = new Entity()
+floorBaseGrass_01_3.setParent(level)
+floorBaseGrass_01_3.addComponentOrReplace(gltfShape)
+const transform_4 = new Transform({
+  position: new Vector3(8, 0, 24),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(1, 1, 1)
+})
+floorBaseGrass_01_3.addComponentOrReplace(transform_4)
+engine.addEntity(floorBaseGrass_01_3)
+
+const floorBaseGrass_01_4 = new Entity()
+floorBaseGrass_01_4.setParent(level)
+floorBaseGrass_01_4.addComponentOrReplace(gltfShape)
+const transform_5 = new Transform({
+  position: new Vector3(24, 0, 24),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(1, 1, 1)
+})
+floorBaseGrass_01_4.addComponentOrReplace(transform_5)
+engine.addEntity(floorBaseGrass_01_4)
+
       const ceilingAnimation = new Entity()
       ceilingAnimation.setParent(level)
       const gltfShape_9 = new GLTFShape('models/ceilingAnimation.glb')
@@ -21,6 +66,7 @@ import * as Globals from "../functions"
       })
       ceilingAnimation.addComponentOrReplace(transform_185)
       engine.addEntity(ceilingAnimation)
+      /*
 
       ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1"))
       ceilingAnimation.getComponent(Animator).getClip("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1").play()
@@ -61,6 +107,8 @@ import * as Globals from "../functions"
       ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3"))
       ceilingAnimation.getComponent(Animator).getClip("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3").play()  
 
+      */
+
 
 
       const magnifyingGlass = new Entity()
@@ -77,7 +125,7 @@ magnifyingGlass.addComponentOrReplace(transform_254)
 
 magnifyingGlass.addComponentOrReplace(new OnClick(e=>{
         let dist = Globals.distance(magnifyingGlass.getComponent(Transform).position, Globals.camera.position)
-        if ( dist < 5)
+        if ( dist < 3)
          {
            
             engine.removeEntity(magnifyingGlass)

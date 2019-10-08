@@ -142,7 +142,7 @@ engine.addEntity(stones_5)
 
 const trunksflat = new Entity()
 trunksflat.setParent(level)
-const gltfShape_5 = new GLTFShape('models/trunksflat.glb')
+const gltfShape_5 = new GLTFShape('models/trunks-flat.glb')
 trunksflat.addComponentOrReplace(gltfShape_5)
 const transform_13 = new Transform({
   position: new Vector3(25, 2, 9),
@@ -154,7 +154,7 @@ engine.addEntity(trunksflat)
 
 const trunk1flat = new Entity()
 trunk1flat.setParent(level)
-const gltfShape_6 = new GLTFShape('models/trunk1flat.glb')
+const gltfShape_6 = new GLTFShape('models/trunk1-flat.glb')
 trunk1flat.addComponentOrReplace(gltfShape_6)
 const transform_14 = new Transform({
   position: new Vector3(29.5, 2.248190535998476, 12),
@@ -166,7 +166,7 @@ engine.addEntity(trunk1flat)
 
 const trunkflat = new Entity()
 trunkflat.setParent(level)
-const gltfShape_7 = new GLTFShape('models/trunkflat.glb')
+const gltfShape_7 = new GLTFShape('models/trunk-flat.glb')
 trunkflat.addComponentOrReplace(gltfShape_7)
 const transform_15 = new Transform({
   position: new Vector3(13.5, 0.5, 16.5),
@@ -189,7 +189,7 @@ engine.addEntity(trunkflat_2)
 
 const treesplitflat = new Entity()
 treesplitflat.setParent(level)
-const gltfShape_8 = new GLTFShape('models/treesplitflat.glb')
+const gltfShape_8 = new GLTFShape('models/tree-split-flat.glb')
 treesplitflat.addComponentOrReplace(gltfShape_8)
 const transform_17 = new Transform({
   position: new Vector3(17, 3.5, 22),
@@ -201,7 +201,7 @@ engine.addEntity(treesplitflat)
 
 const tree1flat = new Entity()
 tree1flat.setParent(level)
-const gltfShape_9 = new GLTFShape('models/tree1flat.glb')
+const gltfShape_9 = new GLTFShape('models/tree1-flat.glb')
 tree1flat.addComponentOrReplace(gltfShape_9)
 const transform_18 = new Transform({
   position: new Vector3(12.449440260474297, 11.091053965731705, 23.850838277656333),
@@ -213,7 +213,7 @@ engine.addEntity(tree1flat)
 
 const treeorigflat = new Entity()
 treeorigflat.setParent(level)
-const gltfShape_10 = new GLTFShape('models/treeorigflat.glb')
+const gltfShape_10 = new GLTFShape('models/tree-orig-flat.glb')
 treeorigflat.addComponentOrReplace(gltfShape_10)
 const transform_19 = new Transform({
   position: new Vector3(9, 6.668833995582675, 17.5),

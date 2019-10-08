@@ -138,7 +138,7 @@ tdGlasses.addComponentOrReplace(transform_315)
 
 tdGlasses.addComponentOrReplace(new OnClick(e=>{
   let dist = Globals.distance(tdGlasses.getComponent(Transform).position, Globals.camera.position)
-  if ( dist < 2)
+  if ( dist < 3)
    {
      
       engine.removeEntity(tdGlasses)
@@ -146,9 +146,28 @@ tdGlasses.addComponentOrReplace(new OnClick(e=>{
       portal.addComponentOrReplace(Globals.portal)
       portal.addComponentOrReplace(new Transform({
         position: new Vector3(27,1.5,3),
-        scale: Vector3.One()
+        scale: Vector3.One(),
+        rotation:Quaternion.Euler(0,90,0)
       }))
       portal.setParent(level)
+      engine.addEntity(portal)
+      portal.addComponentOrReplace(new Animator())
+
+      for(var i = 0; i <= 27; i++)
+      {
+        log("adding clip")
+        portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
+        log("playing clip")
+        portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
+      }
+
+      for(var i = 1; i <= 27; i++)
+      {
+        log("adding clip")
+        portal.getComponent(Animator).addClip(new AnimationState(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")))
+        log("playing clip")
+        portal.getComponent(Animator).getClip(("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0")).play()
+      }
       portal.addComponentOrReplace(new TriggerComponent(new TriggerBoxShape(Vector3.One(),Vector3.Zero()),
       0,null,null,null,()=>{
         portal.removeComponent(TriggerComponent)
