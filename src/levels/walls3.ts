@@ -1,5 +1,5 @@
-import utils from "../../node_modules/decentralandecsutils/index"
-import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentralandecsutils/triggers/triggerSystem"
+import utils from "../../node_modules/decentraland-ecs-utils/index"
+import { TriggerComponent, TriggerBoxShape } from "../../node_modules/decentraland-ecs-utils/triggers/triggerSystem"
 
 import { Wall } from "./wall"
 import { Level } from "./level"
