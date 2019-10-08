@@ -55,63 +55,9 @@ const transform_5 = new Transform({
 floorBaseGrass_01_4.addComponentOrReplace(transform_5)
 engine.addEntity(floorBaseGrass_01_4)
 
-      const ceilingAnimation = new Entity()
-      ceilingAnimation.setParent(level)
-      const gltfShape_9 = new GLTFShape('models/ceilingAnimation.glb')
-      ceilingAnimation.addComponentOrReplace(gltfShape_9)
-      const transform_185 = new Transform({
-        position: new Vector3(16, 8.36802353605908, 16),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(0.9562221109929432, 1.1719785835636767, 1.0036075096848407)
-      })
-      ceilingAnimation.addComponentOrReplace(transform_185)
-      engine.addEntity(ceilingAnimation)
-      /*
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1"))
-      ceilingAnimation.getComponent(Animator).getClip("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1").play()
-      
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_5|CINEMA_4D_Main|Layer0_Cloner_2_5_Cloner_2_5"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_5|CINEMA_4D_Main|Layer0_Cloner_2_5_Cloner_2_5").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_0|CINEMA_4D_Main|Layer0_Cloner_1_0_Cloner_1_0"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_0|CINEMA_4D_Main|Layer0_Cloner_1_0_Cloner_1_0").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_1|CINEMA_4D_Main|Layer0_Cloner_1_1_Cloner_1_1"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_1|CINEMA_4D_Main|Layer0_Cloner_1_1_Cloner_1_1").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_2_2|CINEMA_4D_Main|Layer0_Cloner_1_2_2_Cloner_1_2_2"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_2_2|CINEMA_4D_Main|Layer0_Cloner_1_2_2_Cloner_1_2_2").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_3|CINEMA_4D_Main|Layer0_Cloner_3_Cloner_3"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_3|CINEMA_4D_Main|Layer0_Cloner_3_Cloner_3").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_0|CINEMA_4D_Main|Layer0_Cloner_2_0_Cloner_2_0"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_0|CINEMA_4D_Main|Layer0_Cloner_2_0_Cloner_2_0").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_1_2|CINEMA_4D_Main|Layer0_Cloner_2_1_2_Cloner_2_1_2"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_1_2|CINEMA_4D_Main|Layer0_Cloner_2_1_2_Cloner_2_1_2").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_2_4|CINEMA_4D_Main|Layer0_Cloner_2_2_4_Cloner_2_3_4"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_2_4|CINEMA_4D_Main|Layer0_Cloner_2_2_4_Cloner_2_3_4").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_4|CINEMA_4D_Main|Layer0_Cloner_4_Cloner_4"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_4|CINEMA_4D_Main|Layer0_Cloner_4_Cloner_4").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_0|CINEMA_4D_Main|Layer0_Cloner_0_Cloner_0"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_0|CINEMA_4D_Main|Layer0_Cloner_0_Cloner_0").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("CCloner_1_2|CINEMA_4D_Main|Layer0_Cloner_1_2_Cloner_1_2"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_2|CINEMA_4D_Main|Layer0_Cloner_1_2_Cloner_1_2").play()  
-
-      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3"))
-      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3").play()  
-
-      */
 
 
-
-      const magnifyingGlass = new Entity()
+const magnifyingGlass = new Entity()
 magnifyingGlass.setParent(level)
 const gltfShape_17 = new GLTFShape('models/magnifyingGlass.glb')
 magnifyingGlass.addComponentOrReplace(gltfShape_17)
@@ -166,79 +112,57 @@ magnifyingGlass.addComponentOrReplace(new OnClick(e=>{
       }))
 engine.addEntity(magnifyingGlass)
 
-      const neuron1 = new Entity()
-      neuron1.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/neuron1.glb')
-      neuron1.addComponentOrReplace(gltfShape_2)
-      const transform_6 = new Transform({
-        position: new Vector3(4, 0, 28),
+      const ceilingAnimation = new Entity()
+      ceilingAnimation.setParent(level)
+      const gltfShape_9 = new GLTFShape('models/ceilingAnimation.glb')
+      ceilingAnimation.addComponentOrReplace(gltfShape_9)
+      const transform_185 = new Transform({
+        position: new Vector3(16, 8.36802353605908, 16),
         rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
+        scale: new Vector3(0.9562221109929432, 1.1719785835636767, 1.0036075096848407)
       })
-      neuron1.addComponentOrReplace(transform_6)
-      engine.addEntity(neuron1)
+      ceilingAnimation.addComponentOrReplace(transform_185)
+      engine.addEntity(ceilingAnimation)
       
-      const neuron3 = new Entity()
-      neuron3.setParent(level)
-      const gltfShape_3 = new GLTFShape('models/neuron3.glb')
-      neuron3.addComponentOrReplace(gltfShape_3)
-      const transform_7 = new Transform({
-        position: new Vector3(6.5, 0, 5),
-        rotation: new Quaternion(0, 0.3826834323650897, 0, 0.9238795325112867),
-        scale: new Vector3(1, 1, 1)
-      })
-      neuron3.addComponentOrReplace(transform_7)
-      engine.addEntity(neuron3)
-      
-      const neuron4 = new Entity()
-      neuron4.setParent(level)
-      const gltfShape_4 = new GLTFShape('models/neuron4.glb')
-      neuron4.addComponentOrReplace(gltfShape_4)
-      const transform_8 = new Transform({
-        position: new Vector3(16, 0, 14.5),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      neuron4.addComponentOrReplace(transform_8)
-      engine.addEntity(neuron4)
-      
-      const neuron6 = new Entity()
-      neuron6.setParent(level)
-      const gltfShape_5 = new GLTFShape('models/neuron6.glb')
-      neuron6.addComponentOrReplace(gltfShape_5)
-      const transform_9 = new Transform({
-        position: new Vector3(26.5, 0, 5),
-        rotation: new Quaternion(0, -0.29028467725446233, 0, 0.9569403357322088),
-        scale: new Vector3(1, 1, 1)
-      })
-      neuron6.addComponentOrReplace(transform_9)
-      engine.addEntity(neuron6)
-      
-      const neuron7 = new Entity()
-      neuron7.setParent(level)
-      const gltfShape_6 = new GLTFShape('models/neuron7.glb')
-      neuron7.addComponentOrReplace(gltfShape_6)
-      const transform_10 = new Transform({
-        position: new Vector3(29, 0, 23),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      neuron7.addComponentOrReplace(transform_10)
-      engine.addEntity(neuron7)
-      
-      const neuron8 = new Entity()
-      neuron8.setParent(level)
-      const gltfShape_7 = new GLTFShape('models/neuron8.glb')
-      neuron8.addComponentOrReplace(gltfShape_7)
-      const transform_11 = new Transform({
-        position: new Vector3(16, 0, 26),
-        rotation: new Quaternion(0, 0, 0, 1),
-        scale: new Vector3(1, 1, 1)
-      })
-      neuron8.addComponentOrReplace(transform_11)
-      engine.addEntity(neuron8)
 
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1"))
+      ceilingAnimation.getComponent(Animator).getClip("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1").play()
+      
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_5|CINEMA_4D_Main|Layer0_Cloner_2_5_Cloner_2_5"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_5|CINEMA_4D_Main|Layer0_Cloner_2_5_Cloner_2_5").play()  
 
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_0|CINEMA_4D_Main|Layer0_Cloner_1_0_Cloner_1_0"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_0|CINEMA_4D_Main|Layer0_Cloner_1_0_Cloner_1_0").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_1|CINEMA_4D_Main|Layer0_Cloner_1_1_Cloner_1_1"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_1|CINEMA_4D_Main|Layer0_Cloner_1_1_Cloner_1_1").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_2_2|CINEMA_4D_Main|Layer0_Cloner_1_2_2_Cloner_1_2_2"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_2_2|CINEMA_4D_Main|Layer0_Cloner_1_2_2_Cloner_1_2_2").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_3|CINEMA_4D_Main|Layer0_Cloner_3_Cloner_3"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_3|CINEMA_4D_Main|Layer0_Cloner_3_Cloner_3").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_0|CINEMA_4D_Main|Layer0_Cloner_2_0_Cloner_2_0"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_0|CINEMA_4D_Main|Layer0_Cloner_2_0_Cloner_2_0").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_1_2|CINEMA_4D_Main|Layer0_Cloner_2_1_2_Cloner_2_1_2"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_1_2|CINEMA_4D_Main|Layer0_Cloner_2_1_2_Cloner_2_1_2").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_2_4|CINEMA_4D_Main|Layer0_Cloner_2_2_4_Cloner_2_3_4"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_2_4|CINEMA_4D_Main|Layer0_Cloner_2_2_4_Cloner_2_3_4").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_4|CINEMA_4D_Main|Layer0_Cloner_4_Cloner_4"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_4|CINEMA_4D_Main|Layer0_Cloner_4_Cloner_4").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_0|CINEMA_4D_Main|Layer0_Cloner_0_Cloner_0"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_0|CINEMA_4D_Main|Layer0_Cloner_0_Cloner_0").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("CCloner_1_2|CINEMA_4D_Main|Layer0_Cloner_1_2_Cloner_1_2"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_2|CINEMA_4D_Main|Layer0_Cloner_1_2_Cloner_1_2").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3").play()  
 
     }
 

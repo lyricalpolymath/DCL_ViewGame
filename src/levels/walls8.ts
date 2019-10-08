@@ -180,7 +180,7 @@ tdGlasses.addComponentOrReplace(new OnClick(e=>{
 engine.addEntity(tdGlasses)
 
 const blackBox = new Entity()
-blackBox.setParent(level)
+//blackBox.setParent(level)
 const gltfShape_13 = new GLTFShape('models/blackBox.glb')
 blackBox.addComponentOrReplace(gltfShape_13)
 const transform_316 = new Transform({
@@ -189,7 +189,7 @@ const transform_316 = new Transform({
   scale: new Vector3(1, 1, 1)
 })
 blackBox.addComponentOrReplace(transform_316)
-engine.addEntity(blackBox)
+//engine.addEntity(blackBox)
         
 
     }
