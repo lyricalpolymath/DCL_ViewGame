@@ -124,6 +124,7 @@ engine.addEntity(magnifyingGlass)
       ceilingAnimation.addComponentOrReplace(transform_185)
       engine.addEntity(ceilingAnimation)
       
+      /*
 
       ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1"))
       ceilingAnimation.getComponent(Animator).getClip("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1").play()
@@ -164,7 +165,7 @@ engine.addEntity(magnifyingGlass)
       ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3"))
       ceilingAnimation.getComponent(Animator).getClip("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3").play()  
 
-
+*/
     }
 
     export function createWalls(level:Level)
