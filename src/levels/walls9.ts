@@ -23,6 +23,12 @@ import * as Globals from "../functions"
       })
       dome_6.addComponentOrReplace(transform_6)
       engine.addEntity(dome_6)
+
+      for(var i = 0; i< 168; i++)
+      {
+        dome_6.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2_Polygon_"+i+"_2"))
+        dome_6.getComponent(Animator).getClip("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2_Polygon_"+i+"_2").play()  
+      }
       
       const blackBox = new Entity()
       blackBox.setParent(level)

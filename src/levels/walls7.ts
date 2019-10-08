@@ -22,16 +22,46 @@ import * as Globals from "../functions"
       ceilingAnimation.addComponentOrReplace(transform_185)
       engine.addEntity(ceilingAnimation)
 
-      /*
-      for(var i = 0; i <= 27; i++)
-            {
-              log("adding clip")
-              portal.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"|CINEMA_4D_Main|Layer0"))
-              log("playing clip")
-              portal.getComponent(Animator).getClip("Polygon_"+i+"|CINEMA_4D_Main|Layer0").play()
-            }
-            */
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1"))
+      ceilingAnimation.getComponent(Animator).getClip("Atom_Array_1|CINEMA_4D_Main|Layer0_Atom_Array_1_Atom_Array_1").play()
       
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_5|CINEMA_4D_Main|Layer0_Cloner_2_5_Cloner_2_5"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_5|CINEMA_4D_Main|Layer0_Cloner_2_5_Cloner_2_5").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_0|CINEMA_4D_Main|Layer0_Cloner_1_0_Cloner_1_0"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_0|CINEMA_4D_Main|Layer0_Cloner_1_0_Cloner_1_0").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_1|CINEMA_4D_Main|Layer0_Cloner_1_1_Cloner_1_1"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_1|CINEMA_4D_Main|Layer0_Cloner_1_1_Cloner_1_1").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_1_2_2|CINEMA_4D_Main|Layer0_Cloner_1_2_2_Cloner_1_2_2"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_2_2|CINEMA_4D_Main|Layer0_Cloner_1_2_2_Cloner_1_2_2").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_3|CINEMA_4D_Main|Layer0_Cloner_3_Cloner_3"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_3|CINEMA_4D_Main|Layer0_Cloner_3_Cloner_3").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_0|CINEMA_4D_Main|Layer0_Cloner_2_0_Cloner_2_0"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_0|CINEMA_4D_Main|Layer0_Cloner_2_0_Cloner_2_0").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_1_2|CINEMA_4D_Main|Layer0_Cloner_2_1_2_Cloner_2_1_2"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_1_2|CINEMA_4D_Main|Layer0_Cloner_2_1_2_Cloner_2_1_2").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_2_4|CINEMA_4D_Main|Layer0_Cloner_2_2_4_Cloner_2_3_4"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_2_4|CINEMA_4D_Main|Layer0_Cloner_2_2_4_Cloner_2_3_4").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_4|CINEMA_4D_Main|Layer0_Cloner_4_Cloner_4"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_4|CINEMA_4D_Main|Layer0_Cloner_4_Cloner_4").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_0|CINEMA_4D_Main|Layer0_Cloner_0_Cloner_0"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_0|CINEMA_4D_Main|Layer0_Cloner_0_Cloner_0").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("CCloner_1_2|CINEMA_4D_Main|Layer0_Cloner_1_2_Cloner_1_2"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_1_2|CINEMA_4D_Main|Layer0_Cloner_1_2_Cloner_1_2").play()  
+
+      ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3"))
+      ceilingAnimation.getComponent(Animator).getClip("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3").play()  
+
+
 
       const magnifyingGlass = new Entity()
 magnifyingGlass.setParent(level)
