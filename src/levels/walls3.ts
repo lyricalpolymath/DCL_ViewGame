@@ -189,15 +189,49 @@ engine.addEntity(trunkflat_2)
 
 const treesplitflat = new Entity()
 treesplitflat.setParent(level)
-const gltfShape_8 = new GLTFShape('models/tree-split-flat.glb')
-treesplitflat.addComponentOrReplace(gltfShape_8)
+const gltfShape_16 = new GLTFShape('models/tree-split-flat.glb')
+treesplitflat.addComponentOrReplace(gltfShape_16)
+const transform_232 = new Transform({
+  position: new Vector3(29, 2.0191548825495804, 16),
+  rotation: new Quaternion(0, 0, 0, 1),
+  scale: new Vector3(0.7417792184904712, 0.654821009793352, 0.6128252192175729)
+})
+treesplitflat.addComponentOrReplace(transform_232)
+engine.addEntity(treesplitflat)
+
+const treesplitflat_2 = new Entity()
+treesplitflat_2.setParent(level)
+treesplitflat_2.addComponentOrReplace(gltfShape_16)
+const transform_233 = new Transform({
+  position: new Vector3(11.5, 1.967837258794832, 23),
+  rotation: new Quaternion(0, 0.5555702330196022, 0, 0.8314696123025452),
+  scale: new Vector3(0.7417792184904712, 0.654821009793352, 0.6128252192175729)
+})
+treesplitflat_2.addComponentOrReplace(transform_233)
+engine.addEntity(treesplitflat_2)
+
+const treesplitflat_3 = new Entity()
+treesplitflat_3.setParent(level)
+treesplitflat_3.addComponentOrReplace(gltfShape_16)
+const transform_234 = new Transform({
+  position: new Vector3(2.51485352850489, 1.670546359369478, 17.831551897389108),
+  rotation: new Quaternion(0.0008027606655730488, 0.2232329749423471, 0.0035052965259661697, 0.9747584866878395),
+  scale: new Vector3(0.5661623895304206, 0.5908885921356266, 0.43581600062390907)
+})
+treesplitflat_3.addComponentOrReplace(transform_234)
+engine.addEntity(treesplitflat_3)
+
+
+const treesplitfla2t = new Entity()
+treesplitflat.setParent(level)
+treesplitflat.addComponentOrReplace(gltfShape_16)
 const transform_17 = new Transform({
   position: new Vector3(17, 3.5, 22),
   rotation: new Quaternion(0, 0.2902846772544624, 0, 0.9569403357322089),
   scale: new Vector3(1, 1, 1)
 })
-treesplitflat.addComponentOrReplace(transform_17)
-engine.addEntity(treesplitflat)
+treesplitfla2t.addComponentOrReplace(transform_17)
+engine.addEntity(treesplitfla2t)
 
 const tree1flat = new Entity()
 tree1flat.setParent(level)
