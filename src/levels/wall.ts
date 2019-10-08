@@ -77,11 +77,6 @@ export class Wall extends Entity
                 this.holdingEntity = this.level.purpleWalls
                 this.addComponentOrReplace(Globals.purpleWall)
                 break;
-
-            case _colorNames.BLACK:
-                this.holdingEntity = this.level.blackWalls
-                this.addComponentOrReplace(Globals.blackWall)
-                break;
         }
 
         this.setParent(this.holdingEntity)

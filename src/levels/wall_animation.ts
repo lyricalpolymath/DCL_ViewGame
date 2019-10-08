@@ -45,7 +45,7 @@ export class WallAnimation extends Entity
         var wall = wall
         this.getComponent(Transform).scale = Vector3.One()
         this.addComponentOrReplace(new utils.Interval(100,()=>{
-            if(this.bumpCount < 13 && this.isAnimating)
+            if(this.bumpCount < 12 && this.isAnimating)
             {
               if(this.bumpCount !=1)
               {
