@@ -35,6 +35,10 @@ import * as Globals from "../functions"
       })
       ladybug.addComponentOrReplace(transform_7)
       engine.addEntity(ladybug)
+
+      ladybug.addComponentOrReplace(new Animator())
+      ladybug.getComponent(Animator).addClip(new AnimationState("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2"))
+      ladybug.getComponent(Animator).getClip("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2").play()
       
       const ladybug_2 = new Entity()
       ladybug_2.setParent(level)
@@ -46,6 +50,10 @@ import * as Globals from "../functions"
       })
       ladybug_2.addComponentOrReplace(transform_8)
       engine.addEntity(ladybug_2)
+
+      ladybug_2.addComponentOrReplace(new Animator())
+      ladybug_2.getComponent(Animator).addClip(new AnimationState("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2"))
+      ladybug_2.getComponent(Animator).getClip("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2").play()
       
       const ladybug_3 = new Entity()
       ladybug_3.setParent(level)
@@ -57,6 +65,10 @@ import * as Globals from "../functions"
       })
       ladybug_3.addComponentOrReplace(transform_9)
       engine.addEntity(ladybug_3)
+
+      ladybug_3.addComponentOrReplace(new Animator())
+      ladybug_3.getComponent(Animator).addClip(new AnimationState("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2"))
+      ladybug_3.getComponent(Animator).getClip("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2").play()
       
       const ladybug_4 = new Entity()
       ladybug_4.setParent(level)
@@ -68,6 +80,10 @@ import * as Globals from "../functions"
       })
       ladybug_4.addComponentOrReplace(transform_10)
       engine.addEntity(ladybug_4)
+
+      ladybug_4.addComponentOrReplace(new Animator())
+      ladybug_4.getComponent(Animator).addClip(new AnimationState("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2"))
+      ladybug_4.getComponent(Animator).getClip("Sphere_2|CINEMA_4D_Main|Layer0_Sphere_2").play()
       
       const butterfly = new Entity()
       butterfly.setParent(level)
