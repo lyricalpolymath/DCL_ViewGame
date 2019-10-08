@@ -96,6 +96,12 @@ import * as Globals from "../functions"
       })
       butterfly.addComponentOrReplace(transform_11)
       engine.addEntity(butterfly)
+
+      butterfly.addComponentOrReplace(new Animator())
+      butterfly.getComponent(Animator).addClip(new AnimationState("Polygon|CINEMA_4D_Main|Layer0_Polygon"))
+      butterfly.getComponent(Animator).getClip("Polygon|CINEMA_4D_Main|Layer0_Polygon").play()
+      butterfly.getComponent(Animator).addClip(new AnimationState("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1"))
+      butterfly.getComponent(Animator).getClip("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1").play()
       
       const butterfly_2 = new Entity()
       butterfly_2.setParent(level)
@@ -107,6 +113,12 @@ import * as Globals from "../functions"
       })
       butterfly_2.addComponentOrReplace(transform_12)
       engine.addEntity(butterfly_2)
+
+      butterfly_2.addComponentOrReplace(new Animator())
+      butterfly_2.getComponent(Animator).addClip(new AnimationState("Polygon|CINEMA_4D_Main|Layer0_Polygon"))
+      butterfly_2.getComponent(Animator).getClip("Polygon|CINEMA_4D_Main|Layer0_Polygon").play()
+      butterfly_2.getComponent(Animator).addClip(new AnimationState("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1"))
+      butterfly_2.getComponent(Animator).getClip("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1").play()
       
       const butterfly_3 = new Entity()
       butterfly_3.setParent(level)
@@ -118,6 +130,12 @@ import * as Globals from "../functions"
       })
       butterfly_3.addComponentOrReplace(transform_13)
       engine.addEntity(butterfly_3)
+
+      butterfly_3.addComponentOrReplace(new Animator())
+      butterfly_3.getComponent(Animator).addClip(new AnimationState("Polygon|CINEMA_4D_Main|Layer0_Polygon"))
+      butterfly_3.getComponent(Animator).getClip("Polygon|CINEMA_4D_Main|Layer0_Polygon").play()
+      butterfly_3.getComponent(Animator).addClip(new AnimationState("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1"))
+      butterfly_3.getComponent(Animator).getClip("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1").play()
       
       const butterfly_4 = new Entity()
       butterfly_4.setParent(level)
@@ -129,6 +147,12 @@ import * as Globals from "../functions"
       })
       butterfly_4.addComponentOrReplace(transform_14)
       engine.addEntity(butterfly_4)
+
+      butterfly_4.addComponentOrReplace(new Animator())
+      butterfly_4.getComponent(Animator).addClip(new AnimationState("Polygon|CINEMA_4D_Main|Layer0_Polygon"))
+      butterfly_4.getComponent(Animator).getClip("Polygon|CINEMA_4D_Main|Layer0_Polygon").play()
+      butterfly_4.getComponent(Animator).addClip(new AnimationState("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1"))
+      butterfly_4.getComponent(Animator).getClip("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1").play()
       
       const butterfly_5 = new Entity()
       butterfly_5.setParent(level)
@@ -140,6 +164,13 @@ import * as Globals from "../functions"
       })
       butterfly_5.addComponentOrReplace(transform_15)
       engine.addEntity(butterfly_5)
+
+      butterfly_5.addComponentOrReplace(new Animator())
+      butterfly_5.getComponent(Animator).addClip(new AnimationState("Polygon|CINEMA_4D_Main|Layer0_Polygon"))
+      butterfly_5.getComponent(Animator).getClip("Polygon|CINEMA_4D_Main|Layer0_Polygon").play()
+      butterfly_5.getComponent(Animator).addClip(new AnimationState("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1"))
+      butterfly_5.getComponent(Animator).getClip("Polygon_1|CINEMA_4D_Main|Layer0_Polygon_1").play()
+
         const tdGlasses = new Entity()
         tdGlasses.setParent(level)
 const gltfShape_12 = new GLTFShape('models/3dGlasses.glb')
