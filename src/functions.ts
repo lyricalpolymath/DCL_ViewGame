@@ -14,7 +14,6 @@ export var leaderboardUrl = "https://l1wjzxqx5k.execute-api.us-east-1.amazonaws.
 export var awsLeaderboard = proxyUrl + leaderboardUrl
 export var levelUser:string
 
-export const blackWall = new GLTFShape("models/neonwall-BLACK.glb")
 export const blueWall = new GLTFShape("models/neonwall-BLUE.glb")
 export const greenWall = new GLTFShape("models/neonwall-GREEN.glb")
 export const purpleWall = new GLTFShape("models/neonwall-PURPLE.glb")
