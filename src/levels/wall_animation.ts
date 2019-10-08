@@ -18,7 +18,7 @@ export class WallAnimation extends Entity
         super()
 
        
-        for(var i = 1; i < 9; i++)
+        for(var i = 1; i < 12; i++)
         {
             let temp = new Entity()
             temp.addComponentOrReplace(new GLTFShape("models/glitch"+i+".glb"))
