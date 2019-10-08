@@ -164,6 +164,7 @@ engine.addEntity(magnifyingGlass)
       ceilingAnimation.getComponent(Animator).addClip(new AnimationState("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3"))
       ceilingAnimation.getComponent(Animator).getClip("Cloner_2_3|CINEMA_4D_Main|Layer0_Cloner_2_3_Cloner_2_3").play()  
 
+
     }
 
     export function createWalls(level:Level)
