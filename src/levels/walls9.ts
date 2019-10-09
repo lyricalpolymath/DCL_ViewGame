@@ -38,14 +38,11 @@ import * as Globals from "../functions"
       engine.addEntity(dome_6)
 
       dome_6.addComponentOrReplace(new Animator())    
-      
-      dome_6.getComponent(Animator).addClip(new AnimationState("Polygon_0_2|CINEMA_4D_Main|Layer0_Polygon_0_2_Polygon_0_2"))
-        dome_6.getComponent(Animator).getClip("Polygon_0_2|CINEMA_4D_Main|Layer0_Polygon_0_2_Polygon_0_2").play()  
-
-      for(var i = 1; i< 168; i++)
+    
+      for(var i = 1; i< 336; i++)
       {
-        dome_6.getComponent(Animator).addClip(new AnimationState("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2_Polygon_"+i+"_2"))
-        dome_6.getComponent(Animator).getClip("Polygon_"+i+"_2|CINEMA_4D_Main|Layer0_Polygon_"+i+"_2").play()  
+        dome_6.getComponent(Animator).addClip(new AnimationState(""+i))
+        dome_6.getComponent(Animator).getClip(""+i).play()  
       }
       
       const blackBox = new Entity()

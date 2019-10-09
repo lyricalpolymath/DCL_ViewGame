@@ -1,11 +1,11 @@
 {
   "display": {
-    "title": "leveler-game-jam-2019",
-    "favicon": "favicon_asset"
+    "title": "Leveler",
+    "favicon": "images/favicon.jpg"
   },
   "contact": {
     "name": "Collaboration",
-    "email": ""
+    "email": "lastraumonline@gmail.com"
   },
   "owner": "",
   "scene": {
@@ -18,12 +18,23 @@
     "type": "webrtc",
     "signalling": "https://signalling-01.decentraland.org"
   },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    }
+  ],
   "policy": {
     "contentRating": "E",
     "fly": false,
     "voiceEnabled": true,
     "blacklist": [],
-    "teleportPosition": "26,28"
+    "teleportPosition": ""
   },
   "main": "bin/game.js",
   "tags": []
