@@ -197,8 +197,8 @@ export class Level extends Entity
 
     createLevel7()
     {
-        Walls7.createScene(this)
-        Walls7.createWalls(this)
+         Walls7.createWalls(this)
+        Walls7.createScene(this)  
     }
 
     createLevel8()

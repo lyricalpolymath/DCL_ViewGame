@@ -14,7 +14,7 @@ import * as Globals from "../functions"
     {
       const terrainLevel8 = new Entity()
       terrainLevel8.setParent(level)
-      const gltfShape_2 = new GLTFShape('models/terrainLevel8.glb')
+      const gltfShape_2 = new GLTFShape('models/terrain_level8.glb')
       terrainLevel8.addComponentOrReplace(gltfShape_2)
       const transform_6 = new Transform({
         position: new Vector3(16, 0.29637226562080343, 16),
