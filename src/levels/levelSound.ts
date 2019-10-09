@@ -20,7 +20,7 @@ export class LevelSound extends Entity{
     var levelAudio = new AudioClip('sounds/level'+ level.sceneLevel+'.mp3')
     this.levelSource = new AudioSource(levelAudio)
         this.addComponentOrReplace(this.levelSource)
-        this.levelSource.volume = .3
+        this.levelSource.volume = .6
         this.levelSource.loop = true
         this.levelSource.playing = true
   }

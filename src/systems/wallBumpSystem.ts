@@ -29,6 +29,7 @@ export class WallBumpSystem {
           if ( dist < 1) {
             this.events.fireEvent(new Globals.BumpedWallEvent())
             wall.bumped = true
+            wall.bumpSource.volume = .3
             wall.bumpSource.playOnce()
 
             if(!this.level.glitch1Ent.isAnimating)
