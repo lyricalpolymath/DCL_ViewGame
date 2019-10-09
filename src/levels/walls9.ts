@@ -12,6 +12,19 @@ import * as Globals from "../functions"
     // BB added entieties
     export function createScene(level:Level)
     {
+
+      const topologylevel2 = new Entity()
+      topologylevel2.setParent(level)
+      const gltfShape_8 = new GLTFShape('models/topologylevel2.glb')
+      topologylevel2.addComponentOrReplace(gltfShape_8)
+      const transform_71 = new Transform({
+        position: new Vector3(16, 0.04898657780819793, 16),
+        rotation: new Quaternion(0, 0, 0, 1),
+        scale: new Vector3(1, 1, 1)
+      })
+      topologylevel2.addComponentOrReplace(transform_71)
+      engine.addEntity(topologylevel2)
+
       const dome_6 = new Entity()
       dome_6.setParent(level)
       const gltfShape_2 = new GLTFShape('models/dome_6.glb')
