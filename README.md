@@ -21,7 +21,7 @@ to change their perspective on what DCL is and what it could become, **discoveri
 
 These items are wearable colored glasses that filter your view of the world, revealing, when the player wears them, something that was previously invisible. These filters can be combined in multiple ways to reveal different points of view
 
-Leveler can be therefore the portal between reality and the Metaverse
+Leveler can therefore be the portal between reality and the Metaverse
 
 The authors hope that this, possibly ever expanding game, will reflect the sensation that the real world and the digital world are coming together to create something greater, stranger and stronger than either alone
 
@@ -32,17 +32,19 @@ each level has a game concept
 
 - Level 2 will show some ways in which technological progress has harmed us as a species
 
-- Level 3 is a warning, a wake up call to the people.  Here the player starts to encounter some difficulty which represents the process undertaken by society.
+- Level 3 is a warning, a wake up call to the people.  Here the player starts to encounter some navigation difficulty which represents the process undertaken by society.
 
 - Level 4 represents the inital struggle of humans overcoming their previous conventions and adapting in order to survive.
 
-- In level 5 the product of mindful technology becomes visible via means of abstract shapes with new materials.
+- Level 5 reflects the potential of mindful technology.
 
-- Level 6 is where the game really kicks off, make your way to the centre to see a 4D cube...
+- Level 6 is where the game really kicks off.
 
-- Level 7 is chaos unleashed through neuron style sculptures but some hidden geometry reveals the calm that is to come.
+- Level 7 showcases animated geometry and suggests a calm is to come.
 
 - Level 8, if you make it, is the birthplace of a new world.
+
+- Level 9 is the apex of this new world.
 
 ## Demo
 to simplify the experience of testing all levels while not being deployed to different areas of the Decentraland you can visit a demo here
