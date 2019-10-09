@@ -28,7 +28,7 @@ The authors hope that this, possibly ever expanding game, will reflect the sensa
 ### Level concepts + screenshots
 each level has a game concept
 
-- In level 1 you will find evidence of a digital society where something has gone awry...
+- Level 1 has evidence of a digital society where something has gone awry...
 
 - Level 2 will show some ways in which technological progress has harmed us as a species
 
