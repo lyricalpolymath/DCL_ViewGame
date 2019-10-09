@@ -188,7 +188,7 @@ executeTask(async () => {
   } catch (error) {
     log(error)
     player.setBackup(false)
-    createLevel(1)
+    createLevel(8)
   }
 })
 }
