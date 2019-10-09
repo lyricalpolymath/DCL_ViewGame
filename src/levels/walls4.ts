@@ -437,13 +437,13 @@ skull2_2.addComponentOrReplace(transform_231)
 engine.addEntity(skull2_2)
 
 const skull6 = new Entity()
-skull6.setParent(level)
+skull6.setParent(scene)
 const gltfShape_17 = new GLTFShape('models/skull6.glb')
 skull6.addComponentOrReplace(gltfShape_17)
 const transform_235 = new Transform({
-  position: new Vector3(16, 3.770168449453994, 16),
+  position: new Vector3(16, 6, 16),
   rotation: new Quaternion(0, 0, 0, 1),
-  scale: new Vector3(1, 0.5848799134890772, 1)
+  scale: new Vector3(0.2770318547111543, 0.29679452013518315, 0.20378022050422473)
 })
 skull6.addComponentOrReplace(transform_235)
 engine.addEntity(skull6)
