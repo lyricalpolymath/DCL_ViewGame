@@ -437,7 +437,7 @@ skull2_2.addComponentOrReplace(transform_231)
 engine.addEntity(skull2_2)
 
 const skull6 = new Entity()
-skull6.setParent(scene)
+skull6.setParent(level)
 const gltfShape_17 = new GLTFShape('models/skull6.glb')
 skull6.addComponentOrReplace(gltfShape_17)
 const transform_235 = new Transform({

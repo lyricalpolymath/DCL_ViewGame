@@ -80,7 +80,7 @@ biohazardsuit.addComponentOrReplace(transform_6)
 engine.addEntity(biohazardsuit)
 
 const openbarrel = new Entity()
-openbarrel.setParent(scene)
+openbarrel.setParent(level)
 const gltfShape_11 = new GLTFShape('models/openbarrel.glb')
 openbarrel.addComponentOrReplace(gltfShape_11)
 const transform_107 = new Transform({
@@ -92,7 +92,7 @@ openbarrel.addComponentOrReplace(transform_107)
 engine.addEntity(openbarrel)
 
 const openbarrel_2 = new Entity()
-openbarrel_2.setParent(scene)
+openbarrel_2.setParent(level)
 openbarrel_2.addComponentOrReplace(gltfShape_11)
 const transform_106 = new Transform({
   position: new Vector3(25, 0.9622393586202926, 25),
@@ -103,7 +103,7 @@ openbarrel_2.addComponentOrReplace(transform_106)
 engine.addEntity(openbarrel_2)
 
 const openbarrel_3 = new Entity()
-openbarrel_3.setParent(scene)
+openbarrel_3.setParent(level)
 openbarrel_3.addComponentOrReplace(gltfShape_11)
 const transform_105 = new Transform({
   position: new Vector3(23, 1.0450734968498567, 25),
@@ -114,7 +114,7 @@ openbarrel_3.addComponentOrReplace(transform_105)
 engine.addEntity(openbarrel_3)
 
 const openbarrel_4 = new Entity()
-openbarrel_4.setParent(scene)
+openbarrel_4.setParent(level)
 openbarrel_4.addComponentOrReplace(gltfShape_11)
 const transform_104 = new Transform({
   position: new Vector3(22, 1.4405382807585863, 13.5),
@@ -125,7 +125,7 @@ openbarrel_4.addComponentOrReplace(transform_104)
 engine.addEntity(openbarrel_4)
 
 const openbarrel_5 = new Entity()
-openbarrel_5.setParent(scene)
+openbarrel_5.setParent(level)
 openbarrel_5.addComponentOrReplace(gltfShape_11)
 const transform_103 = new Transform({
   position: new Vector3(25.5, 1.30526238462603, 10.5),
@@ -136,7 +136,7 @@ openbarrel_5.addComponentOrReplace(transform_103)
 engine.addEntity(openbarrel_5)
 
 const openbarrel_6 = new Entity()
-openbarrel_6.setParent(scene)
+openbarrel_6.setParent(level)
 openbarrel_6.addComponentOrReplace(gltfShape_11)
 const transform_102 = new Transform({
   position: new Vector3(23.5, 0.9984678983774131, 6),
@@ -147,7 +147,7 @@ openbarrel_6.addComponentOrReplace(transform_102)
 engine.addEntity(openbarrel_6)
 
 const openbarrel_7 = new Entity()
-openbarrel_7.setParent(scene)
+openbarrel_7.setParent(level)
 openbarrel_7.addComponentOrReplace(gltfShape_11)
 const transform_101 = new Transform({
   position: new Vector3(17.5, 0.8619857010567111, 2),
@@ -158,7 +158,7 @@ openbarrel_7.addComponentOrReplace(transform_101)
 engine.addEntity(openbarrel_7)
 
 const openbarrel_8 = new Entity()
-openbarrel_8.setParent(scene)
+openbarrel_8.setParent(level)
 openbarrel_8.addComponentOrReplace(gltfShape_11)
 const transform_79 = new Transform({
   position: new Vector3(16, 1.0317692063929766, 5),
@@ -169,7 +169,7 @@ openbarrel_8.addComponentOrReplace(transform_79)
 engine.addEntity(openbarrel_8)
 
 const openbarrel_9 = new Entity()
-openbarrel_9.setParent(scene)
+openbarrel_9.setParent(level)
 openbarrel_9.addComponentOrReplace(gltfShape_11)
 const transform_80 = new Transform({
   position: new Vector3(13, 0.8624177358235734, 2.5),
@@ -180,7 +180,7 @@ openbarrel_9.addComponentOrReplace(transform_80)
 engine.addEntity(openbarrel_9)
 
 const openbarrel_10 = new Entity()
-openbarrel_10.setParent(scene)
+openbarrel_10.setParent(level)
 openbarrel_10.addComponentOrReplace(gltfShape_11)
 const transform_81 = new Transform({
   position: new Vector3(10.5, 0.8660333175681711, 5),
@@ -191,7 +191,7 @@ openbarrel_10.addComponentOrReplace(transform_81)
 engine.addEntity(openbarrel_10)
 
 const openbarrel_11 = new Entity()
-openbarrel_11.setParent(scene)
+openbarrel_11.setParent(level)
 openbarrel_11.addComponentOrReplace(gltfShape_11)
 const transform_82 = new Transform({
   position: new Vector3(9, 0.8732716484270848, 3.5),
@@ -202,7 +202,7 @@ openbarrel_11.addComponentOrReplace(transform_82)
 engine.addEntity(openbarrel_11)
 
 const openbarrel_12 = new Entity()
-openbarrel_12.setParent(scene)
+openbarrel_12.setParent(level)
 openbarrel_12.addComponentOrReplace(gltfShape_11)
 const transform_83 = new Transform({
   position: new Vector3(10.5, 1.2769375095853581, 23.5),
@@ -213,7 +213,7 @@ openbarrel_12.addComponentOrReplace(transform_83)
 engine.addEntity(openbarrel_12)
 
 const openbarrel_13 = new Entity()
-openbarrel_13.setParent(scene)
+openbarrel_13.setParent(level)
 openbarrel_13.addComponentOrReplace(gltfShape_11)
 const transform_84 = new Transform({
   position: new Vector3(13, 1.3358796631586047, 25),
@@ -224,7 +224,7 @@ openbarrel_13.addComponentOrReplace(transform_84)
 engine.addEntity(openbarrel_13)
 
 const openbarrel_14 = new Entity()
-openbarrel_14.setParent(scene)
+openbarrel_14.setParent(level)
 openbarrel_14.addComponentOrReplace(gltfShape_11)
 const transform_85 = new Transform({
   position: new Vector3(16, 0.9063962182809377, 30.5),
@@ -327,14 +327,14 @@ engine.addEntity(container3)
       
       const container9 = new Entity()
       container9.setParent(level)
-      const gltfShape_11 = new GLTFShape('models/container9.glb')
-      container9.addComponentOrReplace(gltfShape_11)
-      const transform_79 = new Transform({
+      const gltfShape_12 = new GLTFShape('models/container9.glb')
+      container9.addComponentOrReplace(gltfShape_12)
+      const transform_809 = new Transform({
         position: new Vector3(30.389933402713453, 0, 2.49403792152348913),
         rotation: new Quaternion(0.02259794758098476, -0.28491487312311664, 0.022458187453876538, 0.9580232135259835),
         scale: new Vector3(1, 1, 1)
       })
-      container9.addComponentOrReplace(transform_79)
+      container9.addComponentOrReplace(transform_809)
       engine.addEntity(container9)
       
    

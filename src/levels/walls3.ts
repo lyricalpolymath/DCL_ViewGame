@@ -73,7 +73,7 @@ import * as Globals from "../functions"
       engine.addEntity(glasses)
 
       const bones = new Entity()
-bones.setParent(scene)
+bones.setParent(level)
 const gltfShape_3 = new GLTFShape('models/bones.glb')
 bones.addComponentOrReplace(gltfShape_3)
 const transform_7 = new Transform({
@@ -85,7 +85,7 @@ bones.addComponentOrReplace(transform_7)
 engine.addEntity(bones)
 
 const stones = new Entity()
-stones.setParent(scene)
+stones.setParent(level)
 const gltfShape_4 = new GLTFShape('models/stones.glb')
 stones.addComponentOrReplace(gltfShape_4)
 const transform_8 = new Transform({
@@ -97,7 +97,7 @@ stones.addComponentOrReplace(transform_8)
 engine.addEntity(stones)
 
 const stones_2 = new Entity()
-stones_2.setParent(scene)
+stones_2.setParent(level)
 stones_2.addComponentOrReplace(gltfShape_4)
 const transform_9 = new Transform({
   position: new Vector3(20, 0.5, 8.5),
@@ -108,7 +108,7 @@ stones_2.addComponentOrReplace(transform_9)
 engine.addEntity(stones_2)
 
 const stones_3 = new Entity()
-stones_3.setParent(scene)
+stones_3.setParent(level)
 stones_3.addComponentOrReplace(gltfShape_4)
 const transform_10 = new Transform({
   position: new Vector3(2.5, 0.5, 4),
@@ -119,7 +119,7 @@ stones_3.addComponentOrReplace(transform_10)
 engine.addEntity(stones_3)
 
 const stones_4 = new Entity()
-stones_4.setParent(scene)
+stones_4.setParent(level)
 stones_4.addComponentOrReplace(gltfShape_4)
 const transform_11 = new Transform({
   position: new Vector3(2, 0.5, 28.5),
@@ -130,7 +130,7 @@ stones_4.addComponentOrReplace(transform_11)
 engine.addEntity(stones_4)
 
 const stones_5 = new Entity()
-stones_5.setParent(scene)
+stones_5.setParent(level)
 stones_5.addComponentOrReplace(gltfShape_4)
 const transform_12 = new Transform({
   position: new Vector3(27, 0.5, 24.5),
@@ -140,99 +140,99 @@ const transform_12 = new Transform({
 stones_5.addComponentOrReplace(transform_12)
 engine.addEntity(stones_5)
 
-const trunks-flat = new Entity()
-trunks-flat.setParent(scene)
+const trunks_flat = new Entity()
+trunks_flat.setParent(level)
 const gltfShape_5 = new GLTFShape('models/trunks-flat.glb')
-trunks-flat.addComponentOrReplace(gltfShape_5)
+trunks_flat.addComponentOrReplace(gltfShape_5)
 const transform_13 = new Transform({
   position: new Vector3(25, 2, 9),
   rotation: new Quaternion(0, 0.19509032201612825, 0, 0.9807852804032304),
   scale: new Vector3(0.32281732419231446, 0.39630021111265634, 0.520878120795949)
 })
-trunks-flat.addComponentOrReplace(transform_13)
-engine.addEntity(trunks-flat)
+trunks_flat.addComponentOrReplace(transform_13)
+engine.addEntity(trunks_flat)
 
-const trunk1-flat = new Entity()
-trunk1-flat.setParent(scene)
+const trunk1_flat = new Entity()
+trunk1_flat.setParent(level)
 const gltfShape_6 = new GLTFShape('models/trunk1-flat.glb')
-trunk1-flat.addComponentOrReplace(gltfShape_6)
+trunk1_flat.addComponentOrReplace(gltfShape_6)
 const transform_14 = new Transform({
   position: new Vector3(29.5, 2.248190535998476, 12),
   rotation: new Quaternion(0, -0.006283911572028571, 0, 0.9999802560327646),
   scale: new Vector3(1, 1, 1)
 })
-trunk1-flat.addComponentOrReplace(transform_14)
-engine.addEntity(trunk1-flat)
+trunk1_flat.addComponentOrReplace(transform_14)
+engine.addEntity(trunk1_flat)
 
-const trunk-flat = new Entity()
-trunk-flat.setParent(scene)
+const trunk_flat = new Entity()
+trunk_flat.setParent(level)
 const gltfShape_7 = new GLTFShape('models/trunk-flat.glb')
-trunk-flat.addComponentOrReplace(gltfShape_7)
+trunk_flat.addComponentOrReplace(gltfShape_7)
 const transform_15 = new Transform({
   position: new Vector3(13.5, 0.5, 16.5),
   rotation: new Quaternion(0, 0, 0, 1),
   scale: new Vector3(1, 1, 1)
 })
-trunk-flat.addComponentOrReplace(transform_15)
-engine.addEntity(trunk-flat)
+trunk_flat.addComponentOrReplace(transform_15)
+engine.addEntity(trunk_flat)
 
-const trunk-flat_2 = new Entity()
-trunk-flat_2.setParent(scene)
-trunk-flat_2.addComponentOrReplace(gltfShape_7)
+const trunk_flat_2 = new Entity()
+trunk_flat_2.setParent(level)
+trunk_flat_2.addComponentOrReplace(gltfShape_7)
 const transform_16 = new Transform({
   position: new Vector3(24.5, 0.5, 19.5),
   rotation: new Quaternion(0, 0, 0, 1),
   scale: new Vector3(0.8457193451888187, 0.8992071768163115, 0.7296020906209755)
 })
-trunk-flat_2.addComponentOrReplace(transform_16)
-engine.addEntity(trunk-flat_2)
+trunk_flat_2.addComponentOrReplace(transform_16)
+engine.addEntity(trunk_flat_2)
 
-const tree-split-flat = new Entity()
-tree-split-flat.setParent(scene)
+const tree_split_flat = new Entity()
+tree_split_flat.setParent(level)
 const gltfShape_8 = new GLTFShape('models/tree-split-flat.glb')
-tree-split-flat.addComponentOrReplace(gltfShape_8)
+tree_split_flat.addComponentOrReplace(gltfShape_8)
 const transform_17 = new Transform({
   position: new Vector3(17, 3.5, 22),
   rotation: new Quaternion(0, -0.2902846772544624, 0, 0.9569403357322089),
   scale: new Vector3(1, 1, 1)
 })
-tree-split-flat.addComponentOrReplace(transform_17)
-engine.addEntity(tree-split-flat)
+tree_split_flat.addComponentOrReplace(transform_17)
+engine.addEntity(tree_split_flat)
 
-const tree1-flat = new Entity()
-tree1-flat.setParent(scene)
+const tree1_flat = new Entity()
+tree1_flat.setParent(level)
 const gltfShape_9 = new GLTFShape('models/tree1-flat.glb')
-tree1-flat.addComponentOrReplace(gltfShape_9)
+tree1_flat.addComponentOrReplace(gltfShape_9)
 const transform_18 = new Transform({
   position: new Vector3(12.449440260474297, 11.091053965731705, 23.850838277656333),
   rotation: new Quaternion(0, 0, 0, 1),
   scale: new Vector3(1, 1, 1)
 })
-tree1-flat.addComponentOrReplace(transform_18)
-engine.addEntity(tree1-flat)
+tree1_flat.addComponentOrReplace(transform_18)
+engine.addEntity(tree1_flat)
 
-const tree-orig-flat = new Entity()
-tree-orig-flat.setParent(scene)
+const tree_orig_flat = new Entity()
+tree_orig_flat.setParent(level)
 const gltfShape_10 = new GLTFShape('models/tree-orig-flat.glb')
-tree-orig-flat.addComponentOrReplace(gltfShape_10)
+tree_orig_flat.addComponentOrReplace(gltfShape_10)
 const transform_19 = new Transform({
   position: new Vector3(9, 6.668833995582675, 17.5),
   rotation: new Quaternion(0, 0, 0, 1),
   scale: new Vector3(1, 1, 1)
 })
-tree-orig-flat.addComponentOrReplace(transform_19)
-engine.addEntity(tree-orig-flat)
+tree_orig_flat.addComponentOrReplace(transform_19)
+engine.addEntity(tree_orig_flat)
 
-const tree-orig-flat_2 = new Entity()
-tree-orig-flat_2.setParent(scene)
-tree-orig-flat_2.addComponentOrReplace(gltfShape_10)
+const tree_orig_flat_2 = new Entity()
+tree_orig_flat_2.setParent(level)
+tree_orig_flat_2.addComponentOrReplace(gltfShape_10)
 const transform_20 = new Transform({
   position: new Vector3(12, 6.5, 27.5),
   rotation: new Quaternion(0, -0.5555702330196024, 0, 0.8314696123025453),
   scale: new Vector3(1, 1, 1)
 })
-tree-orig-flat_2.addComponentOrReplace(transform_20)
-engine.addEntity(tree-orig-flat_2)
+tree_orig_flat_2.addComponentOrReplace(transform_20)
+engine.addEntity(tree_orig_flat_2)
     }
 
     export function createWalls(level:Level)
